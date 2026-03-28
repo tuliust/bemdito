@@ -1,0 +1,457 @@
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * ⚠️  VALORES ESTÁTICOS DE FALLBACK — AdminThemeProvider sobrescreve em runtime
+ *
+ * Fluxo:
+ *   1. theme.css define os valores padrão abaixo (carregados imediatamente pelo browser)
+ *   2. AdminThemeProvider (montado em /src/app/admin/layout.tsx) carrega a tabela
+ *      design_tokens do Supabase e injeta um <style id="admin-theme-dynamic"> no <head>
+ *      que sobrescreve --primary, --secondary, --background, etc. com os valores do banco
+ *   3. Os tokens --admin-* (interface do painel) são EXCLUSIVAMENTE injetados pelo
+ *      AdminThemeProvider — NÃO estão neste arquivo
+ *
+ * Resultado: se o banco/JS ainda não carregou, o browser usa os valores deste arquivo.
+ *            Quando o provider carrega, as CSS vars são atualizadas em tempo real.
+ */
+
+:root {
+  --font-size: 16px;
+  --font-family: 'Poppins', sans-serif;
+  --background: #f6f6f6;    /* fallback — sobrescrito pelo AdminThemeProvider via design_tokens */
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #ea526e;       /* fallback — sobrescrito pelo AdminThemeProvider via design_tokens */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: #2e2240;     /* fallback — sobrescrito pelo AdminThemeProvider via design_tokens */
+  --secondary-foreground: #030213;
+  --muted: #e7e8e8;         /* fallback — sobrescrito pelo AdminThemeProvider via design_tokens */
+  --muted-foreground: #717182;
+  --accent: #ed9331;        /* fallback — sobrescrito pelo AdminThemeProvider via design_tokens */
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+}
+
+/* ✅ NOVO: Controle de exibição de abas do modal sem recarregar componentes */
+[role="tabpanel"][data-state="active"] {
+  display: block !important;
+}
+
+[role="tabpanel"][data-state="inactive"] {
+  display: none !important;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-family);
+  }
+
+  /**
+  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
+  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-family);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-family);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-family);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-family);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-family);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-family);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    font-family: var(--font-family);
+    line-height: 1.5;
+  }
+
+  /* ✅ HOVER EFFECT: Outline Button */
+  .hover-outline-button:hover {
+    background-color: var(--primary) !important;
+    color: white !important;
+  }
+
+  /* ✅ CUSTOM SCROLLBAR: Horizontal scroll para ColorTokenPicker */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db #f3f4f6;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 10px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+
+  /* ✅ LINE CLAMP: Truncamento de texto responsivo */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ✅ ANIMAÇÕES DE ÍCONES (BOTÃO CTA)
+     ======================================== */
+  
+  /* Animação: Deslizar para Baixo */
+  @keyframes icon-slide-down {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+  
+  .icon-effect-slide-down {
+    animation: icon-slide-down 1.5s ease-in-out infinite;
+  }
+  
+  /* Animação: Deslizar para Direita */
+  @keyframes icon-slide-right {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+  }
+  
+  .icon-effect-slide-right {
+    animation: icon-slide-right 1.5s ease-in-out infinite;
+  }
+  
+  /* Animação: Deslizar para Esquerda */
+  @keyframes icon-slide-left {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-8px); }
+  }
+  
+  .icon-effect-slide-left {
+    animation: icon-slide-left 1.5s ease-in-out infinite;
+  }
+  
+  /* Animação: Deslizar para Cima */
+  @keyframes icon-slide-up {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  
+  .icon-effect-slide-up {
+    animation: icon-slide-up 1.5s ease-in-out infinite;
+  }
+  
+  /* Animação: Pulsar */
+  @keyframes icon-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.85; }
+  }
+  
+  .icon-effect-pulse {
+    animation: icon-pulse 1.5s ease-in-out infinite;
+  }
+  
+  /* Animação: Fade */
+  @keyframes icon-fade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  
+  .icon-effect-fade {
+    animation: icon-fade 1.8s ease-in-out infinite;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVO: Título de seção mobile — FORA do @layer base
+   para ter prioridade sobre inline styles e Tailwind utilities.
+   Mesmo padrão usado pelas regras do Admin Layout abaixo.
+   ════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .section-title-mobile-reduce {
+    /* ✅ CORREÇÃO 2026-02-23: Definir CSS custom properties que o inline style consome.
+       O h2 usa fontSize: var(--_stmr-fs, <fallback>). No desktop a var não existe
+       e o fallback (valor do token) é usado. No mobile esta regra DEFINE a var,
+       que o var() lê automaticamente — zero batalha de especificidade. */
+    --_stmr-fs: clamp(2.5rem, 11vw, 6rem);
+    --_stmr-lh: 1.05;
+    --_stmr-ls: -0.02em;
+    width: 100% !important;
+    align-self: stretch !important;
+    max-width: 100% !important;
+  }
+  /* ✅ CORREÇÃO 2026-02-23: Desabilitar zoom trick no mobile.
+     O JS auto-fit define zoom:0.55 + width:181.818% como inline style,
+     o que encolhe TODO o texto a 55%. No mobile, precisamos:
+     1. zoom:1 → texto renderiza no tamanho real
+     2. width:100% → container não excede a tela
+     O clamp() no --_stmr-fs cuida do dimensionamento responsivo.
+     !important é obrigatório para vencer inline styles do JS. */
+  .section-text-content {
+    zoom: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 4px !important;
+    align-self: stretch !important;
+  }
+  /* ✅ CORREÇÃO 2026-02-23: Inverter grid no mobile.
+     Desktop: 2 colunas × 1 linha. Mobile: 1 coluna × 2 linhas.
+     !important é obrigatório para vencer inline styles do JS (gridStyle). */
+  .section-grid-layout {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+  .section-grid-layout > * {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+
+  /* ✅ Mobile Manager: Header bar height from /admin/mobile-manager config
+     CSS var injected by MobileConfigProvider at runtime. */
+  header .container > div:first-child {
+    height: var(--mobile-header-height, 80px);
+  }
+  header .container > div:first-child img {
+    height: var(--mobile-header-logo-height, 56px);
+    width: auto;
+  }
+
+  /* ✅ Mobile Manager: Footer column gap from config */
+  footer .container .grid {
+    gap: var(--mobile-footer-col-gap, 32px);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ADMIN LAYOUT — Tokens v1.10: Tabs, Campos e Botões Ação
+   Escopo: .admin-layout (definido em /src/app/admin/layout.tsx)
+   Fora do @layer base para ter prioridade sobre utilitários Tailwind.
+   Tokens gerenciados via /admin/system-manager → aba "Painel Admin"
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Abas de Navegação (TabsList / TabsTrigger) ── */
+html .admin-layout [data-slot="tabs-list"] {
+  background-color: var(--admin-tab-list-bg, var(--muted));
+}
+
+html .admin-layout [data-slot="tabs-trigger"] {
+  font-size:   var(--admin-tab-label-size,   0.875rem);
+  font-weight: var(--admin-tab-label-weight, 500);
+  color:       var(--admin-tab-label-color,  var(--muted-foreground));
+}
+
+html .admin-layout [data-slot="tabs-trigger"][data-state="active"] {
+  background-color: var(--admin-tab-active-bg,   var(--card)) !important;
+  color:            var(--admin-tab-active-text,  var(--foreground)) !important;
+  border-color:     var(--admin-tab-border,       transparent) !important;
+}
+
+/* ── Campos de Formulário (Input / Select / Textarea) ── */
+html .admin-layout [data-slot="input"] {
+  background-color: var(--admin-field-bg,    var(--input-background)) !important;
+  color:            var(--admin-field-text,   var(--foreground)) !important;
+  border-color:     var(--admin-field-border, var(--border)) !important;
+}
+
+html .admin-layout [data-slot="input"]::placeholder {
+  color: var(--admin-field-placeholder, var(--muted-foreground)) !important;
+}
+
+html .admin-layout select {
+  background-color: var(--admin-field-bg,    var(--input-background));
+  color:            var(--admin-field-text,   var(--foreground));
+  border-color:     var(--admin-field-border, var(--border));
+}
+
+html .admin-layout textarea {
+  background-color: var(--admin-field-bg,    var(--input-background)) !important;
+  color:            var(--admin-field-text,   var(--foreground)) !important;
+  border-color:     var(--admin-field-border, var(--border)) !important;
+}
+
+html .admin-layout textarea::placeholder {
+  color: var(--admin-field-placeholder, var(--muted-foreground)) !important;
+}
+
+/* ── Botão de Campo Picker (Label interno dos picker buttons) ── */
+html .admin-layout [data-slot="field-button"] {
+  font-size:   var(--admin-field-button-size,   0.875rem) !important;
+  font-weight: var(--admin-field-button-weight, 500) !important;
+  color:       var(--admin-field-button-color,  #374151) !important;
+}
+
+/* ── Texto de Dica / Helper Text abaixo de campos ── */
+html .admin-layout [data-slot="field-hint"] {
+  font-size:   var(--admin-field-hint-size,   0.75rem) !important;
+  font-weight: var(--admin-field-hint-weight, 400) !important;
+  color:       var(--admin-field-hint-color,  #6b7280) !important;
+}
+
+/* ── Accordion Header (pronto para uso se componente for adotado no admin) ── */
+html .admin-layout [data-slot="accordion-trigger"] {
+  font-size:   var(--admin-accordion-header-size,   0.875rem) !important;
+  font-weight: var(--admin-accordion-header-weight, 500) !important;
+  color:       var(--admin-accordion-header-color,  var(--foreground)) !important;
+}

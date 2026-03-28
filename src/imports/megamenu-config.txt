@@ -1,0 +1,206 @@
+ [MegamenuContent] Config recebido: {column: {…}, footer: {…}, bgColor: '#e5d4d4', columns: Array(1), enabled: true, …}
+ 🎨 [MegamenuContent] cardStyles: undefined
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🎨 [Card 55555555-5555-5555-5555-555555555553] Valores finais: {finalBgColorToken: undefined, finalBgOpacity: 100, bgColor: 'rgba(255, 255, 255, 0.5)', rgbaFinal: 'rgba(255, 255, 255, 0.5)', finalBorderColorToken: undefined, …}
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🔍 [hexToRgba] INPUT: hex="transparent", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "transparent"
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🎨 [Card 55555555-5555-5555-5555-555555555551] Valores finais: {finalBgColorToken: undefined, finalBgOpacity: 100, bgColor: 'rgba(255, 255, 255, 0.5)', rgbaFinal: 'rgba(255, 255, 255, 0.5)', finalBorderColorToken: undefined, …}
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🔍 [hexToRgba] INPUT: hex="transparent", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "transparent"
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔍 [bgOpacity] Novo valor do slider: 12
+ 🔍 [bgOpacity] Config atual: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] cardStyles atual: {bgOpacity: 19, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [bgOpacity] Config atualizado: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] bgOpacity no config atualizado: 12
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔍 [bgOpacity] Novo valor do slider: 11
+ 🔍 [bgOpacity] Config atual: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] cardStyles atual: {bgOpacity: 12, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [bgOpacity] Config atualizado: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] bgOpacity no config atualizado: 11
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔍 [bgOpacity] Novo valor do slider: 10
+ 🔍 [bgOpacity] Config atual: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] cardStyles atual: {bgOpacity: 11, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [bgOpacity] Config atualizado: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] bgOpacity no config atualizado: 10
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔍 [bgOpacity] Novo valor do slider: 9
+ 🔍 [bgOpacity] Config atual: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] cardStyles atual: {bgOpacity: 10, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [bgOpacity] Config atualizado: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] bgOpacity no config atualizado: 9
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔍 [bgOpacity] Novo valor do slider: 8
+ 🔍 [bgOpacity] Config atual: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] cardStyles atual: {bgOpacity: 9, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [bgOpacity] Config atualizado: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] bgOpacity no config atualizado: 8
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔍 [bgOpacity] Novo valor do slider: 7
+ 🔍 [bgOpacity] Config atual: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] cardStyles atual: {bgOpacity: 8, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [bgOpacity] Config atualizado: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] bgOpacity no config atualizado: 7
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔍 [bgOpacity] Novo valor do slider: 6
+ 🔍 [bgOpacity] Config atual: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] cardStyles atual: {bgOpacity: 7, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [bgOpacity] Config atualizado: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] bgOpacity no config atualizado: 6
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔍 [bgOpacity] Novo valor do slider: 5
+ 🔍 [bgOpacity] Config atual: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] cardStyles atual: {bgOpacity: 6, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [bgOpacity] Config atualizado: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] bgOpacity no config atualizado: 5
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔍 [bgOpacity] Novo valor do slider: 4
+ 🔍 [bgOpacity] Config atual: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] cardStyles atual: {bgOpacity: 5, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [bgOpacity] Config atualizado: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] bgOpacity no config atualizado: 4
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔍 [bgOpacity] Novo valor do slider: 3
+ 🔍 [bgOpacity] Config atual: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] cardStyles atual: {bgOpacity: 4, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [bgOpacity] Config atualizado: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] bgOpacity no config atualizado: 3
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔍 [bgOpacity] Novo valor do slider: 2
+ 🔍 [bgOpacity] Config atual: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] cardStyles atual: {bgOpacity: 3, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [bgOpacity] Config atualizado: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] bgOpacity no config atualizado: 2
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔍 [bgOpacity] Novo valor do slider: 8
+ 🔍 [bgOpacity] Config atual: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] cardStyles atual: {bgOpacity: 2, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [bgOpacity] Config atualizado: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔍 [bgOpacity] bgOpacity no config atualizado: 8
+ 🔵 [handleChange] Campo: megamenu_config
+ 🔵 [handleChange] Valor recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🔵 [handleChange] formData ANTES: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🔵 [handleChange] formData DEPOIS: {label: 'Muito prazer!', label_color_token: 'fc2afa74-571f-4f0f-ae58-da18fb98d67f', icon: 'Heart', megamenu_config: {…}}
+ 🎨 [MegamenuContent] Config recebido: {column: {…}, bgColor: '#FFFFFF', columns: Array(1), enabled: true, cardStyles: {…}, …}
+ 🎨 [MegamenuContent] cardStyles: {bgOpacity: 8, bgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697'}
+ 🔍 [hexToRgba] INPUT: hex="#16A34A", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "#16A34A"
+ 🎨 [Card 44444444-4444-4444-4444-444444444444] Valores finais: {finalBgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697', finalBgOpacity: 100, bgColor: '#16A34A', rgbaFinal: '#16A34A', finalBorderColorToken: undefined, …}
+ 🔍 [hexToRgba] INPUT: hex="#16A34A", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "#16A34A"
+ 🔍 [hexToRgba] INPUT: hex="transparent", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "transparent"
+ 🔍 [hexToRgba] INPUT: hex="#16A34A", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "#16A34A"
+ 🎨 [Card 22222222-2222-2222-2222-222222222221] Valores finais: {finalBgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697', finalBgOpacity: 100, bgColor: '#16A34A', rgbaFinal: '#16A34A', finalBorderColorToken: undefined, …}
+ 🔍 [hexToRgba] INPUT: hex="#16A34A", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "#16A34A"
+ 🔍 [hexToRgba] INPUT: hex="transparent", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "transparent"
+ 🔍 [hexToRgba] INPUT: hex="#16A34A", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "#16A34A"
+ 🎨 [Card 22222222-2222-2222-2222-222222222224] Valores finais: {finalBgColorToken: '67deb8ee-a67a-4264-8f64-a2ada976f697', finalBgOpacity: 100, bgColor: '#16A34A', rgbaFinal: '#16A34A', finalBorderColorToken: undefined, …}
+ 🔍 [hexToRgba] INPUT: hex="#16A34A", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "#16A34A"
+ 🔍 [hexToRgba] INPUT: hex="transparent", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "transparent"
+ 🎨 [MegamenuContent] Config recebido: {column: {…}, footer: {…}, bgColor: '#FFF1F3', columns: Array(1), enabled: true, …}
+ 🎨 [MegamenuContent] cardStyles: undefined
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🎨 [Card 11111111-1111-1111-1111-111111111116] Valores finais: {finalBgColorToken: undefined, finalBgOpacity: 100, bgColor: 'rgba(255, 255, 255, 0.5)', rgbaFinal: 'rgba(255, 255, 255, 0.5)', finalBorderColorToken: undefined, …}
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🔍 [hexToRgba] INPUT: hex="transparent", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "transparent"
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🎨 [Card 11111111-1111-1111-1111-111111111111] Valores finais: {finalBgColorToken: undefined, finalBgOpacity: 100, bgColor: 'rgba(255, 255, 255, 0.5)', rgbaFinal: 'rgba(255, 255, 255, 0.5)', finalBorderColorToken: undefined, …}
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🔍 [hexToRgba] INPUT: hex="transparent", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "transparent"
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🎨 [Card 22222222-2222-2222-2222-222222222224] Valores finais: {finalBgColorToken: undefined, finalBgOpacity: 100, bgColor: 'rgba(255, 255, 255, 0.5)', rgbaFinal: 'rgba(255, 255, 255, 0.5)', finalBorderColorToken: undefined, …}
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🔍 [hexToRgba] INPUT: hex="transparent", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "transparent"
+ 🎨 [MegamenuContent] Config recebido: {column: {…}, footer: {…}, bgColor: '#e5d4d4', columns: Array(2), enabled: true, …}
+ 🎨 [MegamenuContent] cardStyles: undefined
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🎨 [Card 11111111-1111-1111-1111-111111111116] Valores finais: {finalBgColorToken: undefined, finalBgOpacity: 100, bgColor: 'rgba(255, 255, 255, 0.5)', rgbaFinal: 'rgba(255, 255, 255, 0.5)', finalBorderColorToken: undefined, …}
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🔍 [hexToRgba] INPUT: hex="transparent", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "transparent"
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🎨 [Card 33333333-3333-3333-3333-333333333331] Valores finais: {finalBgColorToken: undefined, finalBgOpacity: 100, bgColor: 'rgba(255, 255, 255, 0.5)', rgbaFinal: 'rgba(255, 255, 255, 0.5)', finalBorderColorToken: undefined, …}
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🔍 [hexToRgba] INPUT: hex="transparent", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "transparent"
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🎨 [Card 11111111-1111-1111-1111-111111111111] Valores finais: {finalBgColorToken: undefined, finalBgOpacity: 100, bgColor: 'rgba(255, 255, 255, 0.5)', rgbaFinal: 'rgba(255, 255, 255, 0.5)', finalBorderColorToken: undefined, …}
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🔍 [hexToRgba] INPUT: hex="transparent", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "transparent"
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🎨 [Card 44444444-4444-4444-4444-444444444443] Valores finais: {finalBgColorToken: undefined, finalBgOpacity: 100, bgColor: 'rgba(255, 255, 255, 0.5)', rgbaFinal: 'rgba(255, 255, 255, 0.5)', finalBorderColorToken: undefined, …}
+ 🔍 [hexToRgba] INPUT: hex="rgba(255, 255, 255, 0.5)", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "rgba(255, 255, 255, 0.5)"
+ 🔍 [hexToRgba] INPUT: hex="transparent", opacity=100
+ 🔍 [hexToRgba] OUTPUT (100%): "transparent"
