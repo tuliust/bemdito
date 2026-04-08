@@ -36,7 +36,7 @@ Compressing objects: 100% (3/3), done.
 Writing objects: 100% (3/3), 345 bytes | 345.00 KiB/s, done.
 Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-To https://github.com/BemDito/bemdito.git
+To https://github.com/tuliust/bemdito.git
    debf974..6ae0e92  main -> main
 branch 'main' set up to track 'origin/main'.
 ```
@@ -75,7 +75,7 @@ Você deve ver:
 ## 🌐 Verificar no Github
 
 Após o push, acesse:
-**https://github.com/BemDito/bemdito**
+**https://github.com/tuliust/bemdito**
 
 Você deve ver:
 - ✅ Commit "docs: adicionar README inicial"
@@ -123,3 +123,4 @@ git push -u origin main
 ```
 
 Depois me confirme se funcionou! 🎉
+

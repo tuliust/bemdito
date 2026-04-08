@@ -1,6 +1,6 @@
 # 🚀 Configuração Rápida - Repositório Bemditocms
 
-**Novo Repositório:** https://github.com/bemdito/Bemditocms  
+**Novo Repositório:** https://github.com/tuliust/bemditocms  
 **Data:** 2026-02-27
 
 ---
@@ -15,7 +15,7 @@ git remote -v
 git remote remove origin
 
 # 3. Adicionar novo remote
-git remote add origin https://github.com/bemdito/Bemditocms.git
+git remote add origin https://github.com/tuliust/bemditocms.git
 
 # 4. Verificar se foi adicionado corretamente
 git remote -v
@@ -56,8 +56,8 @@ Após executar os comandos, você deve ver:
 
 **Passo 4 - Remote configurado:**
 ```
-origin  https://github.com/bemdito/Bemditocms.git (fetch)
-origin  https://github.com/bemdito/Bemditocms.git (push)
+origin  https://github.com/tuliust/bemditocms.git (fetch)
+origin  https://github.com/tuliust/bemditocms.git (push)
 ```
 
 **Passo 9 - Push bem-sucedido:**
@@ -65,7 +65,7 @@ origin  https://github.com/bemdito/Bemditocms.git (push)
 Enumerating objects: 250, done.
 Counting objects: 100% (250/250), done.
 ...
-To https://github.com/bemdito/Bemditocms.git
+To https://github.com/tuliust/bemditocms.git
  * [new branch]      main -> main
 branch 'main' set up to track 'origin/main'.
 ```
@@ -79,7 +79,7 @@ branch 'main' set up to track 'origin/main'.
 
 ## 🌐 Validar no Github
 
-Acesse: **https://github.com/bemdito/Bemditocms**
+Acesse: **https://github.com/tuliust/bemditocms**
 
 Você deve ver:
 - ✅ Pastas: `src/`, `guidelines/`, `migrations/`, `supabase/`
@@ -130,7 +130,7 @@ Se preferir, copie e cole TUDO de uma vez:
 
 ```bash
 git remote remove origin 2>/dev/null; \
-git remote add origin https://github.com/bemdito/Bemditocms.git; \
+git remote add origin https://github.com/tuliust/bemditocms.git; \
 git remote -v; \
 git add .; \
 git status; \
@@ -144,4 +144,5 @@ git ls-files | wc -l
 ## ✅ Pronto!
 
 Após executar, seu projeto estará em:
-**https://github.com/bemdito/Bemditocms** 🎉
+**https://github.com/tuliust/bemditocms** 🎉
+

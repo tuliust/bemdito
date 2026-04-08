@@ -271,3 +271,4 @@ A página segue todos os padrões do AdminThemeProvider:
 **Última atualização:** 2026-02-27  
 **Versão:** 1.0  
 **Autor:** BemDito CMS Team
+

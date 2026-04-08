@@ -472,3 +472,4 @@ WHERE megamenu_config->'column'->>'card_ids' IS NOT NULL;
 2. Implementar renderização no `MegamenuContent.tsx`
 3. Criar migration SQL (se necessário)
 4. Documentar no `Guidelines.md`
+

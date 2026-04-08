@@ -351,3 +351,4 @@ const toggleCardExpanded = (cardId: string) => {
 
 **Tempo de implementação:** ~10 minutos  
 **Benefício:** Interface 100% consistente com renderização pública
+

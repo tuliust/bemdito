@@ -459,3 +459,4 @@ Arquivada em `/docs/99-arquivo/padding/`:
 **Mantido por:** Equipe BemDito CMS  
 **Última atualização:** 2026-02-20  
 **Versão:** 1.1
+

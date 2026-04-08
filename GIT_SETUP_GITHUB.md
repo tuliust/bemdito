@@ -71,11 +71,11 @@ git commit -m "Initial commit - BemDito CMS"
 
 ## 🔗 Passo 5: Vincular Repositório Local ao Github
 
-Após criar o repositório no Github, copie a URL que aparece (algo como `https://github.com/BemDito/bemdito.git`) e execute:
+Após criar o repositório no Github, copie a URL que aparece (algo como `https://github.com/tuliust/bemdito.git`) e execute:
 
 ```bash
 # Adicionar repositório remoto
-git remote add origin https://github.com/BemDito/bemdito.git
+git remote add origin https://github.com/tuliust/bemdito.git
 
 # Verificar se foi adicionado corretamente
 git remote -v
@@ -246,7 +246,7 @@ Se você já tinha um repositório configurado com a conta "Bemdito2026":
 git remote remove origin
 
 # Adicionar novo remote
-git remote add origin https://github.com/BemDito/bemdito.git
+git remote add origin https://github.com/tuliust/bemdito.git
 
 # Atualizar configuração do usuário
 git config user.name "BemDito"
@@ -303,3 +303,4 @@ Após seguir os passos, valide:
 **Status:** ✅ Pronto para uso  
 **Última atualização:** 2026-02-27  
 **Próximos passos:** Seguir Passo 1 e executar comandos no terminal
+

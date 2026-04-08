@@ -232,3 +232,4 @@ WHERE label = 'Muito prazer!';
 **🎉 Feature 100% implementada e documentada!**
 
 **Próximo passo:** Testar no navegador em `/admin/menu-manager`
+

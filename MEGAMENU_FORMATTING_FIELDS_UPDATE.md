@@ -283,3 +283,4 @@ const cardStyle = {
 - 3 novos campos adicionados ✨
 - 4 campos existentes mantidos
 - Layout reorganizado em 4 linhas (grid 2 colunas)
+

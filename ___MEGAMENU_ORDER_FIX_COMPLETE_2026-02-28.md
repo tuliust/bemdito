@@ -253,3 +253,4 @@ Site Público:       1-2-3-4  ✅ (ordenado por card_ids)
 **Status Final:** ✅ **100% FUNCIONAL**  
 **Validado em:** 2026-02-28  
 **Testado por:** Usuário (drag-and-drop + save + verificação pública)
+

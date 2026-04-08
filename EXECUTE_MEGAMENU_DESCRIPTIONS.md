@@ -227,3 +227,4 @@ WHERE name IN ('body-small', 'body-base', 'dark', 'muted');
 
 **Tempo estimado:** 2 minutos  
 **Dificuldade:** Fácil (apenas copiar e colar SQL)
+

@@ -241,3 +241,4 @@ size={typeof formatting.iconSize === 'number'
 ```
 
 **🎉 3 problemas corrigidos com sucesso!**
+

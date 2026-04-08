@@ -1,7 +1,7 @@
 # ✅ Checklist de Validação - Git e Github Configurado
 
 **Data:** 2026-02-27  
-**Conta Github:** BemDito (https://github.com/BemDito/bemdito)  
+**Conta Github:** BemDito (https://github.com/tuliust/bemdito)  
 **Repositório:** bemdito
 
 ---
@@ -40,8 +40,8 @@ cat .gitignore | head -10
 
 **1. Remote atual:**
 ```
-origin  https://github.com/BemDito/bemdito.git (fetch)
-origin  https://github.com/BemDito/bemdito.git (push)
+origin  https://github.com/tuliust/bemdito.git (fetch)
+origin  https://github.com/tuliust/bemdito.git (push)
 ```
 ✅ **CORRETO:** URL usa "BemDito" com B maiúsculo
 
@@ -96,7 +96,7 @@ git commit -m "docs: adicionar README inicial"
 git push
 
 # 3. Verificar se apareceu no Github
-echo "Acesse: https://github.com/BemDito/bemdito"
+echo "Acesse: https://github.com/tuliust/bemdito"
 ```
 
 ---
@@ -143,7 +143,7 @@ Se o Git pedir usuário e senha ao fazer push:
 
 Após o push, valide no navegador:
 
-1. **Acesse:** https://github.com/BemDito/bemdito
+1. **Acesse:** https://github.com/tuliust/bemdito
 2. **Verifique:**
    - [ ] ✅ Repositório existe
    - [ ] ✅ Commits aparecem no histórico
@@ -215,7 +215,7 @@ git push
 
 Após executar os comandos de validação acima, você deve ver:
 
-- ✅ Remote aponta para `https://github.com/BemDito/bemdito.git`
+- ✅ Remote aponta para `https://github.com/tuliust/bemdito.git`
 - ✅ Usuário configurado como "BemDito"
 - ✅ Email configurado como "tuliust@gmail.com"
 - ✅ Branch `main` sincronizada
@@ -254,3 +254,4 @@ Após executar os comandos de validação acima, você deve ver:
 2. Fazer push de teste
 3. Verificar no Github
 4. Começar a usar o workflow diário
+

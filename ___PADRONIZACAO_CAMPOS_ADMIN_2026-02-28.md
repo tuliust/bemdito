@@ -198,3 +198,4 @@ Ao criar **qualquer novo campo de seleção** (select, button picker, etc.) no p
 **Data:** 2026-02-28  
 **Versão:** 1.0  
 **Status:** ✅ Concluído
+

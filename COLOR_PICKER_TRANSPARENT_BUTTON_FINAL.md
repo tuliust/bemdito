@@ -163,3 +163,4 @@ O botão transparente agora funciona **exatamente igual** aos outros botões de 
 - `/src/app/components/ColorTokenPicker.tsx` (linhas 75-121)
 
 **Data:** 2026-03-05
+

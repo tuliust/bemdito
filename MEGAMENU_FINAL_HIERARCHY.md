@@ -282,3 +282,4 @@ Artigos e novidades para impulsionar seu trabalho
 - ✅ Hierarquia visual clara
 - ✅ Modal e site público sincronizados
 - ✅ Fácil de entender e editar
+

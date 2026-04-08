@@ -1,7 +1,7 @@
 # 📦 Enviar Arquivos do Projeto para o Github
 
 **Data:** 2026-02-27  
-**Repositório:** https://github.com/bemdito/bemdito
+**Repositório:** https://github.com/tuliust/bemdito
 
 ---
 
@@ -11,7 +11,7 @@ O Github indicou que a URL correta é com "b" minúsculo. Vamos atualizar:
 
 ```bash
 # Atualizar URL do remote para a correta
-git remote set-url origin https://github.com/bemdito/bemdito.git
+git remote set-url origin https://github.com/tuliust/bemdito.git
 
 # Verificar se foi atualizado
 git remote -v
@@ -19,8 +19,8 @@ git remote -v
 
 **Resultado esperado:**
 ```
-origin  https://github.com/bemdito/bemdito.git (fetch)
-origin  https://github.com/bemdito/bemdito.git (push)
+origin  https://github.com/tuliust/bemdito.git (fetch)
+origin  https://github.com/tuliust/bemdito.git (push)
 ```
 
 ✅ Note o "b" minúsculo em "bemdito"
@@ -96,7 +96,7 @@ git push
 ```
 
 **O que vai acontecer:**
-- Todos os arquivos serão enviados para `https://github.com/bemdito/bemdito`
+- Todos os arquivos serão enviados para `https://github.com/tuliust/bemdito`
 - Pode demorar alguns segundos (depende do tamanho do projeto)
 - Você verá mensagens de progresso (Enumerating, Counting, Compressing, Writing)
 
@@ -109,7 +109,7 @@ Compressing objects: 100% (200/200), done.
 Writing objects: 100% (248/248), 150.00 KiB | 5.00 MiB/s, done.
 Total 248 (delta 50), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (50/50), done.
-To https://github.com/bemdito/bemdito.git
+To https://github.com/tuliust/bemdito.git
    6ae0e92..abc1234  main -> main
 ```
 
@@ -120,7 +120,7 @@ To https://github.com/bemdito/bemdito.git
 ## 🌐 PASSO 6: Verificar no Github
 
 Acesse no navegador:
-**https://github.com/bemdito/bemdito**
+**https://github.com/tuliust/bemdito**
 
 Você deve ver:
 
@@ -264,7 +264,7 @@ git push --force
 
 ```bash
 # 1. Corrigir URL do remote
-git remote set-url origin https://github.com/bemdito/bemdito.git
+git remote set-url origin https://github.com/tuliust/bemdito.git
 git remote -v
 
 # 2. Adicionar todos os arquivos
@@ -294,7 +294,7 @@ git check-ignore .env
 git ls-remote origin | grep .env
 
 # 7. Verificar no navegador
-echo "Acesse: https://github.com/bemdito/bemdito"
+echo "Acesse: https://github.com/tuliust/bemdito"
 ```
 
 ---
@@ -303,11 +303,11 @@ echo "Acesse: https://github.com/bemdito/bemdito"
 
 Após executar todos os comandos:
 
-- [ ] ✅ Remote URL corrigido para `https://github.com/bemdito/bemdito.git`
+- [ ] ✅ Remote URL corrigido para `https://github.com/tuliust/bemdito.git`
 - [ ] ✅ Comando `git add .` executado
 - [ ] ✅ Commit criado com mensagem descritiva
 - [ ] ✅ Push realizado sem erros
-- [ ] ✅ Repositório visível em https://github.com/bemdito/bemdito
+- [ ] ✅ Repositório visível em https://github.com/tuliust/bemdito
 - [ ] ✅ Estrutura de pastas correta no Github
 - [ ] ✅ Arquivo `.env` NÃO está no Github
 - [ ] ✅ `node_modules/` NÃO está no Github
@@ -327,3 +327,4 @@ Seu projeto BemDito CMS está completamente no Github!
 ---
 
 **Dúvidas?** Execute os comandos e me mostre o resultado! 🚀
+

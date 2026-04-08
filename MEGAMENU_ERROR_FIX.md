@@ -345,3 +345,4 @@ const config = {
 1. Testar no navegador
 2. Verificar que ambos os sistemas funcionam (inline + banco)
 3. Validar formatação compartilhada
+

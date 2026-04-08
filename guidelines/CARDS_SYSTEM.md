@@ -396,3 +396,4 @@ Arquivada em `/docs/99-arquivo/cards/`:
 **Mantido por:** Equipe BemDito CMS  
 **Última atualização:** 2026-02-17  
 **Versão:** 1.0
+
