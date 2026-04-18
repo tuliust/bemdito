@@ -8,9 +8,9 @@ interface GlobalBlocksListProps {
 }
 
 const TYPE_LABELS: Record<GlobalBlock['type'], string> = {
-  header: 'Header',
-  footer: 'Footer',
-  menu_overlay: 'Menu overlay',
+  header: 'Cabeçalho',
+  footer: 'Rodapé',
+  menu_overlay: 'Menu em overlay',
   support_modal: 'Modal de suporte',
   floating_button: 'Botão flutuante',
 };
@@ -25,7 +25,7 @@ export function GlobalBlocksList({
       <div className="border-b border-gray-200 px-5 py-4">
         <h2 className="text-lg font-semibold text-gray-900">Blocos globais</h2>
         <p className="mt-1 text-sm text-gray-500">
-          Header, footer, overlays e elementos de suporte.
+          Cabeçalho, rodapé, overlays e elementos de suporte.
         </p>
       </div>
 

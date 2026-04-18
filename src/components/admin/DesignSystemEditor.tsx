@@ -42,7 +42,7 @@ export function DesignSystemEditor() {
         setInputPresets(snapshot.inputPresets);
         setAnimationPresets(snapshot.animationPresets);
       } catch (error) {
-        console.error('Erro ao carregar snapshot do design system:', error);
+        console.error('Erro ao carregar snapshot do sistema de design:', error);
       } finally {
         setLoading(false);
       }
@@ -60,13 +60,13 @@ export function DesignSystemEditor() {
     () => [
       ...buttonPresets.map((preset) => ({
         name: preset.name,
-        component: 'button',
+        component: 'Botão',
         variant: preset.variant,
         size: preset.size,
       })),
       ...inputPresets.map((preset) => ({
         name: preset.name,
-        component: 'input',
+        component: 'Campo',
         variant: preset.variant,
         size: preset.size,
       })),
@@ -85,9 +85,9 @@ export function DesignSystemEditor() {
     <div className="space-y-6">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Design System</h1>
+          <h1 className="text-3xl font-bold text-foreground">Sistema de design</h1>
           <p className="mt-1 text-muted-foreground">
-            Snapshot dos tokens, da tipografia e dos presets que sustentam o admin e o runtime público.
+            Visão dos tokens, da tipografia e dos presets que sustentam o admin e o runtime público.
           </p>
         </div>
 
@@ -127,7 +127,7 @@ export function DesignSystemEditor() {
       {loading ? (
         <Card padding="lg" className="flex items-center gap-3">
           <Loader2 className="h-5 w-5 animate-spin" />
-          Carregando snapshot do design system...
+          Carregando snapshot do sistema de design...
         </Card>
       ) : (
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -198,7 +198,7 @@ export function DesignSystemEditor() {
                       <div className="grid grid-cols-1 gap-3 text-sm text-foreground md:grid-cols-3">
                         <div>Tamanho: {style.fontSize}</div>
                         <div>Peso: {style.fontWeight}</div>
-                        <div>Line-height: {style.lineHeight}</div>
+                        <div>Altura de linha: {style.lineHeight}</div>
                       </div>
                     </motion.div>
                   ))}
@@ -230,7 +230,7 @@ export function DesignSystemEditor() {
                       </div>
 
                       <div className="flex items-center justify-center rounded-lg bg-muted p-8">
-                        {preset.component === 'button' ? (
+                        {preset.component === 'Botão' ? (
                           <Button variant={preset.variant as any} pill>
                             Exemplo de botão
                           </Button>
@@ -255,7 +255,7 @@ export function DesignSystemEditor() {
               <Card padding="lg">
                 <div className="mb-6 flex items-center justify-between">
                   <h2 className="text-xl font-bold text-foreground">Biblioteca de ícones</h2>
-                  <Badge variant="outline">Lucide</Badge>
+                  <Badge variant="outline">Lucide Icons</Badge>
                 </div>
 
                 <div className="space-y-8">
@@ -304,7 +304,7 @@ export function DesignSystemEditor() {
                   <span className="text-foreground">{buttonPresets.length}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Inputs</span>
+                  <span className="text-muted-foreground">Campos</span>
                   <span className="text-foreground">{inputPresets.length}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">

@@ -80,7 +80,7 @@ export function SectionEditor({ section, onUpdate }: SectionEditorProps) {
     { id: 'items' as TabType, label: 'Itens', icon: Layout },
     { id: 'layout' as TabType, label: 'Layout', icon: MonitorSmartphone },
     { id: 'style' as TabType, label: 'Estilo', icon: Palette },
-    { id: 'breakpoints' as TabType, label: 'Breakpoints', icon: MonitorSmartphone },
+    { id: 'breakpoints' as TabType, label: 'Pontos de quebra', icon: MonitorSmartphone },
     { id: 'behavior' as TabType, label: 'Comportamento', icon: Wand2 },
     { id: 'preview' as TabType, label: 'Prévia', icon: Eye },
   ];
@@ -181,9 +181,9 @@ export function SectionEditor({ section, onUpdate }: SectionEditorProps) {
 
         {activeTab === 'breakpoints' && (
           <div className="p-6">
-            <h4 className="mb-2 text-base font-semibold text-gray-900">Breakpoints</h4>
+            <h4 className="mb-2 text-base font-semibold text-gray-900">Pontos de quebra</h4>
             <p className="text-sm text-gray-500">
-              Os ajustes por breakpoint podem ser configurados nos dados da seção.
+              Os ajustes por dispositivo podem ser configurados nos dados da seção.
             </p>
           </div>
         )}
