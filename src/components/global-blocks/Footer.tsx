@@ -104,7 +104,8 @@ export function Footer({
           },
         ]
       : linkGroups;
-  const resolvedLegalLinks = navigation?.legal && navigation.legal.length > 0 ? navigation.legal : legalLinks;
+  const resolvedLegalLinks =
+    navigation?.legal && navigation.legal.length > 0 ? navigation.legal : legalLinks;
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -129,9 +130,7 @@ export function Footer({
                         {resolvedNewsletterDescription}
                       </p>
                       {description && (
-                        <p className="text-sm text-muted-foreground mt-4">
-                          {description}
-                        </p>
+                        <p className="text-sm text-muted-foreground mt-4">{description}</p>
                       )}
                     </div>
 
@@ -142,7 +141,7 @@ export function Footer({
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="Your email"
-                          className="flex-1 h-12 px-6 rounded-full bg-input-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                          className="flex-1 h-12 rounded-full border border-border bg-input-background px-6 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                           required
                         />
                         <Button type="submit" variant="primary" pill size="md">
@@ -170,7 +169,7 @@ export function Footer({
                         href={socialItem.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center w-10 h-10 rounded border-2 border-border hover:bg-accent transition-all"
+                        className="flex h-10 w-10 items-center justify-center rounded border-2 border-border transition-all hover:bg-accent"
                         aria-label={socialItem.platform}
                       >
                         <SocialIcon platform={socialItem.platform} />
@@ -185,7 +184,7 @@ export function Footer({
                       <a
                         key={link.href}
                         href={link.href}
-                        className="text-sm text-foreground hover:text-muted-foreground transition-colors"
+                        className="text-sm text-foreground transition-colors hover:text-muted-foreground"
                       >
                         {link.label}
                       </a>
@@ -203,9 +202,7 @@ export function Footer({
                   <p className="text-sm text-muted-foreground">
                     Copyright {new Date().getFullYear()}. BetterMe.
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    All rights reserved
-                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">All rights reserved</p>
                 </div>
 
                 <div className="col-span-3">
@@ -214,7 +211,7 @@ export function Footer({
                       <a
                         key={link.href}
                         href={link.href}
-                        className="text-sm text-foreground hover:text-muted-foreground transition-colors"
+                        className="text-sm text-foreground transition-colors hover:text-muted-foreground"
                       >
                         {link.label}
                       </a>
@@ -223,7 +220,7 @@ export function Footer({
                       <a
                         key={link.href}
                         href={link.href}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                       >
                         {link.label}
                       </a>
@@ -245,9 +242,7 @@ export function Footer({
                     {resolvedNewsletterDescription}
                   </p>
                   {description && (
-                    <p className="text-sm text-muted-foreground mb-6">
-                      {description}
-                    </p>
+                    <p className="text-sm text-muted-foreground mb-6">{description}</p>
                   )}
 
                   <form onSubmit={handleNewsletterSubmit} className="flex gap-3">
@@ -256,7 +251,7 @@ export function Footer({
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Your email"
-                      className="flex-1 h-12 px-6 rounded-full bg-input-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="flex-1 h-12 rounded-full border border-border bg-input-background px-6 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                       required
                     />
                     <Button type="submit" variant="primary" pill size="md">
@@ -279,7 +274,7 @@ export function Footer({
                   <a
                     key={link.href}
                     href={link.href}
-                    className="text-sm text-foreground hover:text-muted-foreground transition-colors"
+                    className="text-sm text-foreground transition-colors hover:text-muted-foreground"
                   >
                     {link.label}
                   </a>
@@ -295,7 +290,7 @@ export function Footer({
                   <a
                     key={link.href}
                     href={link.href}
-                    className="text-sm text-foreground hover:text-muted-foreground transition-colors"
+                    className="text-sm text-foreground transition-colors hover:text-muted-foreground"
                   >
                     {link.label}
                   </a>
@@ -304,7 +299,7 @@ export function Footer({
                   <a
                     key={link.href}
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {link.label}
                   </a>
@@ -322,7 +317,7 @@ export function Footer({
                     href={socialItem.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-10 h-10 rounded border-2 border-border hover:bg-accent transition-all"
+                    className="flex h-10 w-10 items-center justify-center rounded border-2 border-border transition-all hover:bg-accent"
                     aria-label={socialItem.platform}
                   >
                     <SocialIcon platform={socialItem.platform} />
@@ -337,9 +332,7 @@ export function Footer({
               <p className="text-sm text-muted-foreground">
                 Copyright {new Date().getFullYear()}. BetterMe.
               </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                All rights reserved
-              </p>
+              <p className="text-xs text-muted-foreground mt-1">All rights reserved</p>
             </div>
           </>
         )}

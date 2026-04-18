@@ -37,9 +37,11 @@ export function GlobalBlocksPage() {
       setBlocks(data);
 
       if (data.length > 0) {
-        const nextSelectedId = selectedBlockId && data.some((block) => block.id === selectedBlockId)
-          ? selectedBlockId
-          : data[0].id;
+        const nextSelectedId =
+          selectedBlockId && data.some((block) => block.id === selectedBlockId)
+            ? selectedBlockId
+            : data[0].id;
+
         setSelectedBlockId(nextSelectedId);
         setDraftBlock(cloneBlock(data.find((block) => block.id === nextSelectedId) || data[0]));
       } else {
@@ -70,6 +72,7 @@ export function GlobalBlocksPage() {
 
     try {
       setSaving(true);
+
       const updated = await updateGlobalBlock(draftBlock.id, {
         name: draftBlock.name,
         slug: draftBlock.slug,
@@ -82,6 +85,7 @@ export function GlobalBlocksPage() {
         current.map((block) => (block.id === draftBlock.id ? { ...block, ...updated } : block))
       );
       setDraftBlock((current) => (current ? { ...current, ...updated } : current));
+
       toast.success('Global block saved successfully');
     } catch (error) {
       console.error('Error saving global block:', error);
@@ -93,7 +97,7 @@ export function GlobalBlocksPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
+      <div className="flex h-64 items-center justify-center">
         <div className="text-center">
           <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
           <p className="text-sm text-gray-500">Loading global blocks...</p>
@@ -119,7 +123,7 @@ export function GlobalBlocksPage() {
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Global Blocks</h1>
         <p className="mt-2 text-gray-600">
-          Edit the reusable blocks that power the public experience.
+          Edit reusable structural blocks such as header, footer, overlays and floating actions.
         </p>
       </div>
 

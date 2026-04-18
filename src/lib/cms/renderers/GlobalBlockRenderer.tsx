@@ -30,7 +30,7 @@ export interface GlobalBlockRendererProps {
 }
 
 export function GlobalBlockRenderer({ block, onAction }: GlobalBlockRendererProps) {
-  if (!block.visible) {
+  if (!block?.visible) {
     return null;
   }
 
@@ -42,8 +42,8 @@ export function GlobalBlockRenderer({ block, onAction }: GlobalBlockRendererProp
   }
 
   const props = {
-    ...block.content,
-    config: block.config,
+    ...(block.content ?? {}),
+    config: block.config ?? {},
     onAction,
   };
 

@@ -1,12 +1,49 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { PageRenderer } from '@/lib/cms/renderers/PageRenderer';
 import { getPageBySlug } from '@/lib/services/pages-service';
-import { getGlobalBlocks } from '@/lib/services/global-blocks-service';
+import {
+  getGlobalBlocks,
+  type GlobalBlock,
+} from '@/lib/services/global-blocks-service';
 import { GlobalBlockRenderer } from '@/lib/cms/renderers/GlobalBlockRenderer';
+
+function enhanceGlobalBlock(
+  block: GlobalBlock,
+  handlers: {
+    isMenuOpen: boolean;
+    isSupportModalOpen: boolean;
+    onOpenMenu: () => void;
+    onCloseMenu: () => void;
+    onOpenSupport: () => void;
+    onCloseSupport: () => void;
+  }
+): GlobalBlock {
+  const blockProps: Record<string, unknown> = {};
+
+  if (block.type === 'menu_overlay') {
+    blockProps.isOpen = handlers.isMenuOpen;
+    blockProps.onClose = handlers.onCloseMenu;
+  } else if (block.type === 'support_modal') {
+    blockProps.isOpen = handlers.isSupportModalOpen;
+    blockProps.onClose = handlers.onCloseSupport;
+  } else if (block.type === 'header') {
+    blockProps.onMenuToggle = handlers.onOpenMenu;
+  } else if (block.type === 'floating_button') {
+    blockProps.onClick = handlers.onOpenSupport;
+  }
+
+  return {
+    ...block,
+    content: {
+      ...(block.content ?? {}),
+      ...blockProps,
+    },
+  };
+}
 
 export function PublicHome() {
   const [page, setPage] = useState<any>(null);
-  const [globalBlocks, setGlobalBlocks] = useState<any[]>([]);
+  const [globalBlocks, setGlobalBlocks] = useState<GlobalBlock[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,6 +75,29 @@ export function PublicHome() {
     loadData();
   }, []);
 
+  const headerBlocks = useMemo(
+    () => globalBlocks.filter((block) => block.type === 'header'),
+    [globalBlocks]
+  );
+
+  const footerBlocks = useMemo(
+    () => globalBlocks.filter((block) => block.type === 'footer'),
+    [globalBlocks]
+  );
+
+  const overlayBlocks = useMemo(
+    () =>
+      globalBlocks.filter(
+        (block) => block.type === 'menu_overlay' || block.type === 'support_modal'
+      ),
+    [globalBlocks]
+  );
+
+  const floatingBlocks = useMemo(
+    () => globalBlocks.filter((block) => block.type === 'floating_button'),
+    [globalBlocks]
+  );
+
   const handleGlobalAction = (action: string) => {
     switch (action) {
       case 'open-menu':
@@ -52,14 +112,35 @@ export function PublicHome() {
       case 'close-support':
         setIsSupportModalOpen(false);
         break;
+      default:
+        break;
     }
+  };
+
+  const renderGlobalBlock = (block: GlobalBlock) => {
+    const enhancedBlock = enhanceGlobalBlock(block, {
+      isMenuOpen,
+      isSupportModalOpen,
+      onOpenMenu: () => handleGlobalAction('open-menu'),
+      onCloseMenu: () => handleGlobalAction('close-menu'),
+      onOpenSupport: () => handleGlobalAction('open-support'),
+      onCloseSupport: () => handleGlobalAction('close-support'),
+    });
+
+    return (
+      <GlobalBlockRenderer
+        key={block.id}
+        block={enhancedBlock}
+        onAction={handleGlobalAction}
+      />
+    );
   };
 
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
-          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent" />
           <p className="mt-4 text-foreground/60">Loading...</p>
         </div>
       </div>
@@ -104,32 +185,15 @@ export function PublicHome() {
 
   return (
     <div className="min-h-screen bg-background">
-      {globalBlocks.map((block) => {
-        const blockProps: Record<string, any> = {};
-        if (block.type === 'menu_overlay') {
-          blockProps.isOpen = isMenuOpen;
-          blockProps.onClose = () => handleGlobalAction('close-menu');
-        } else if (block.type === 'support_modal') {
-          blockProps.isOpen = isSupportModalOpen;
-          blockProps.onClose = () => handleGlobalAction('close-support');
-        } else if (block.type === 'header') {
-          blockProps.onMenuToggle = () => handleGlobalAction('open-menu');
-        } else if (block.type === 'floating_button') {
-          blockProps.onClick = () => handleGlobalAction('open-support');
-        }
-
-        return (
-          <GlobalBlockRenderer
-            key={block.id}
-            block={{ ...block, content: { ...block.content, ...blockProps } }}
-            onAction={handleGlobalAction}
-          />
-        );
-      })}
+      {headerBlocks.map(renderGlobalBlock)}
 
       <main>
         <PageRenderer page={page} />
       </main>
+
+      {footerBlocks.map(renderGlobalBlock)}
+      {overlayBlocks.map(renderGlobalBlock)}
+      {floatingBlocks.map(renderGlobalBlock)}
     </div>
   );
 }

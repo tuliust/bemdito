@@ -19,6 +19,26 @@ export interface GlobalBlock {
   updated_at: string;
 }
 
+const GLOBAL_BLOCK_DISPLAY_ORDER: Record<GlobalBlock['type'], number> = {
+  header: 0,
+  footer: 1,
+  menu_overlay: 2,
+  support_modal: 3,
+  floating_button: 4,
+};
+
+export function sortGlobalBlocks(blocks: GlobalBlock[]) {
+  return [...blocks].sort((a, b) => {
+    const typeOrder =
+      (GLOBAL_BLOCK_DISPLAY_ORDER[a.type] ?? Number.MAX_SAFE_INTEGER) -
+      (GLOBAL_BLOCK_DISPLAY_ORDER[b.type] ?? Number.MAX_SAFE_INTEGER);
+
+    if (typeOrder !== 0) return typeOrder;
+
+    return a.name.localeCompare(b.name);
+  });
+}
+
 /**
  * Get all visible global blocks for a site
  */
@@ -36,7 +56,7 @@ export async function getGlobalBlocks(siteId?: string) {
     return [];
   }
 
-  return data || [];
+  return sortGlobalBlocks((data || []) as GlobalBlock[]);
 }
 
 /**
