@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { ArrowUpRight } from 'lucide-react';
 import { Section, Container, Button } from '@/components/foundation';
 import { useIsDesktop } from '@/hooks/use-breakpoint';
 
@@ -29,146 +30,151 @@ export function ClosingCTASection({
     <Section spacing="xl" className="bg-[#f5f1eb]">
       <Container size="wide">
         {isDesktop && image ? (
-          // DESKTOP: Two-column layout (content left, image right)
-          <div className="grid grid-cols-2 gap-16 items-center">
-            {/* Left: Content */}
-            <div>
+          <div className="grid grid-cols-[0.9fr_1.1fr] items-center gap-10 lg:gap-16">
+            <div className="max-w-[560px]">
+              {tagline ? (
+                <motion.p
+                  className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-muted-foreground"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {tagline}
+                </motion.p>
+              ) : null}
+
               <motion.h2
-                className="text-4xl lg:text-5xl font-bold text-foreground leading-[1.1] text-balance mb-6"
-                initial={{ opacity: 0, y: 30 }}
+                className="text-4xl font-semibold leading-[0.98] tracking-[-0.06em] text-foreground md:text-5xl lg:text-[4rem]"
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.55, delay: 0.04 }}
               >
                 {title}
               </motion.h2>
 
-              {description && (
+              {description ? (
                 <motion.p
-                  className="text-xl text-muted-foreground mb-6"
-                  initial={{ opacity: 0, y: 30 }}
+                  className="mt-6 max-w-[48ch] text-lg leading-relaxed text-muted-foreground"
+                  initial={{ opacity: 0, y: 22 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
+                  transition={{ duration: 0.55, delay: 0.08 }}
                 >
                   {description}
                 </motion.p>
-              )}
-
-              {tagline && (
-                <motion.p
-                  className="text-lg font-medium text-foreground mb-8"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  {tagline}
-                </motion.p>
-              )}
+              ) : null}
 
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                className="mt-9"
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                transition={{ duration: 0.55, delay: 0.12 }}
               >
                 <Button
                   variant="primary"
                   size="xl"
                   pill
                   animated
-                  onClick={() => (window.location.href = cta.href)}
+                  className="min-w-[200px]"
+                  onClick={() => {
+                    window.location.href = cta.href;
+                  }}
                 >
-                  {cta.label}
+                  <span>{cta.label}</span>
+                  <ArrowUpRight className="ml-2 h-5 w-5" />
                 </Button>
               </motion.div>
             </div>
 
-            {/* Right: Image */}
             <motion.div
-              className="rounded-3xl overflow-hidden shadow-sm"
-              initial={{ opacity: 0, x: 40 }}
+              className="overflow-hidden rounded-[32px] shadow-[0_22px_60px_rgba(0,0,0,0.12)]"
+              initial={{ opacity: 0, x: 28 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
             >
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-auto object-cover"
+                className="h-full w-full object-cover"
               />
             </motion.div>
           </div>
         ) : (
-          // MOBILE: Centered single column
           <div className="text-center">
+            {tagline ? (
+              <motion.p
+                className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-muted-foreground"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                {tagline}
+              </motion.p>
+            ) : null}
+
             <motion.h2
-              className="text-4xl md:text-5xl font-bold text-foreground leading-[1.1] text-balance mb-6"
-              initial={{ opacity: 0, y: 30 }}
+              className="mx-auto max-w-[14ch] text-4xl font-semibold leading-[0.98] tracking-[-0.06em] text-foreground md:text-5xl"
+              initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.55, delay: 0.04 }}
             >
               {title}
             </motion.h2>
 
-            {description && (
+            {description ? (
               <motion.p
-                className="text-xl text-muted-foreground mb-6"
-                initial={{ opacity: 0, y: 30 }}
+                className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                transition={{ duration: 0.55, delay: 0.08 }}
               >
                 {description}
               </motion.p>
-            )}
-
-            {tagline && (
-              <motion.p
-                className="text-lg font-medium text-foreground mb-8"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                {tagline}
-              </motion.p>
-            )}
+            ) : null}
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              className="mt-8"
+              initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.55, delay: 0.12 }}
             >
               <Button
                 variant="primary"
                 size="xl"
                 pill
                 animated
-                onClick={() => (window.location.href = cta.href)}
+                onClick={() => {
+                  window.location.href = cta.href;
+                }}
               >
-                {cta.label}
+                <span>{cta.label}</span>
+                <ArrowUpRight className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
 
-            {image && (
+            {image ? (
               <motion.div
-                className="mt-12 rounded-3xl overflow-hidden shadow-sm"
-                initial={{ opacity: 0, y: 40 }}
+                className="mt-10 overflow-hidden rounded-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.12)]"
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.4 }}
+                transition={{ duration: 0.6, delay: 0.14 }}
               >
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-auto object-cover"
+                  className="h-full w-full object-cover"
                 />
               </motion.div>
-            )}
+            ) : null}
           </div>
         )}
       </Container>

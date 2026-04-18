@@ -17,15 +17,18 @@ export interface LogoMarqueeSectionProps {
 export function LogoMarqueeSection({
   title,
   logos = [],
-  animated = true,
 }: LogoMarqueeSectionProps) {
   const isDesktop = useIsDesktop();
 
-  if (!logos || logos.length === 0) {
+  if (!logos.length) {
     return (
       <Section spacing="md" background="muted">
         <Container size="wide">
-          {title && <h3 className="text-lg font-medium text-center text-muted-foreground mb-4">{title}</h3>}
+          {title ? (
+            <h3 className="mb-4 text-center text-sm font-medium uppercase tracking-[0.12em] text-muted-foreground">
+              {title}
+            </h3>
+          ) : null}
           <p className="text-center text-muted-foreground">Nenhum logo disponível.</p>
         </Container>
       </Section>
@@ -35,66 +38,59 @@ export function LogoMarqueeSection({
   return (
     <Section spacing="md" background="muted">
       <Container size="wide">
-        {title && (
+        {title ? (
           <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
+            className="mb-10 text-center md:mb-12"
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
-            <h3 className="text-lg font-medium text-muted-foreground">{title}</h3>
+            <h3 className="text-sm font-medium uppercase tracking-[0.12em] text-muted-foreground">
+              {title}
+            </h3>
           </motion.div>
-        )}
+        ) : null}
 
         {isDesktop ? (
-          // DESKTOP: Centered flex-wrap grid
-          <div className="overflow-hidden">
-            <motion.div
-              className="flex gap-16 items-center justify-center flex-wrap"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
+          <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
+            {logos.map((logo, index) => (
+              <motion.div
+                key={logo.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.04 }}
+                className="flex items-center justify-center"
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="h-7 w-auto max-w-[140px] object-contain grayscale opacity-55 transition-all duration-300 hover:grayscale-0 hover:opacity-100"
+                />
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <div className="-mx-6 overflow-x-auto px-6">
+            <div className="flex min-w-max items-center gap-10">
               {logos.map((logo, index) => (
                 <motion.div
                   key={logo.id}
-                  className="flex-shrink-0"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, x: 10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  transition={{ duration: 0.35, delay: index * 0.03 }}
+                  className="flex items-center justify-center"
                 >
                   <img
                     src={logo.src}
                     alt={logo.alt}
-                    className="h-10 grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
+                    className="h-7 w-auto max-w-[140px] object-contain grayscale opacity-60"
                   />
                 </motion.div>
               ))}
-            </motion.div>
-          </div>
-        ) : (
-          // MOBILE: Horizontal scroll
-          <div className="overflow-x-auto -mx-6 px-6 scrollbar-hide">
-            <motion.div
-              className="flex gap-8 items-center min-w-max"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              {logos.map((logo) => (
-                <div key={logo.id} className="flex-shrink-0">
-                  <img
-                    src={logo.src}
-                    alt={logo.alt}
-                    className="h-8 grayscale opacity-60"
-                  />
-                </div>
-              ))}
-            </motion.div>
+            </div>
           </div>
         )}
       </Container>

@@ -40,79 +40,74 @@ export function SingleFeaturePromoSection({
   const isDesktop = useIsDesktop();
 
   if (isDesktop) {
-    // DESKTOP: Two-column layout (image left 50%, benefits right 50%)
     return (
-      <Section spacing="lg" background="white">
+      <Section spacing="lg">
         <Container size="wide">
-          <div className="grid grid-cols-2 gap-16 items-center">
-            {/* Left: Image */}
-            {image && (
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16">
+            {image ? (
               <motion.div
-                className="rounded-3xl overflow-hidden"
-                initial={{ opacity: 0, x: -40 }}
+                className="overflow-hidden rounded-[32px]"
+                initial={{ opacity: 0, x: -28 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.7 }}
               >
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-auto object-cover"
+                  className="h-full w-full object-cover"
                 />
               </motion.div>
-            )}
+            ) : null}
 
-            {/* Right: Content + Benefits */}
             <div>
-              {subtitle && (
+              {subtitle ? (
                 <motion.p
-                  className="text-sm font-semibold text-primary mb-3"
-                  initial={{ opacity: 0, y: 20 }}
+                  className="mb-3 text-sm font-semibold uppercase tracking-[0.12em] text-muted-foreground"
+                  initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.5 }}
                 >
                   {subtitle}
                 </motion.p>
-              )}
+              ) : null}
 
-              {title && (
+              {title ? (
                 <motion.h2
-                  className="text-4xl lg:text-5xl font-bold text-foreground mb-8 leading-tight text-balance"
-                  initial={{ opacity: 0, y: 20 }}
+                  className="max-w-[13ch] text-3xl font-semibold leading-[1] tracking-[-0.05em] text-foreground md:text-4xl lg:text-[3.2rem]"
+                  initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
+                  transition={{ duration: 0.55, delay: 0.04 }}
                 >
                   {title}
                 </motion.h2>
-              )}
+              ) : null}
 
-              {/* Benefits with circular checkmarks */}
-              <div className="space-y-6">
+              <div className="mt-8 space-y-6">
                 {benefits.map((benefit, index) => (
                   <motion.div
                     key={benefit.id}
-                    className="flex gap-4 items-start"
-                    initial={{ opacity: 0, y: 20 }}
+                    className="flex items-start gap-4"
+                    initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+                    transition={{ duration: 0.48, delay: 0.08 + index * 0.06 }}
                   >
-                    {/* Circular navy checkmark */}
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                      <Check className="w-5 h-5 text-white" strokeWidth={3} />
+                    <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                      <Check className="h-5 w-5" strokeWidth={2.6} />
                     </div>
 
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-foreground mb-1">
+                    <div>
+                      <h3 className="text-lg font-semibold tracking-[-0.03em] text-foreground">
                         {benefit.title}
                       </h3>
-                      {benefit.description && (
-                        <p className="text-muted-foreground">
+                      {benefit.description ? (
+                        <p className="mt-1 text-[15px] leading-relaxed text-muted-foreground md:text-base">
                           {benefit.description}
                         </p>
-                      )}
+                      ) : null}
                     </div>
                   </motion.div>
                 ))}
@@ -124,35 +119,30 @@ export function SingleFeaturePromoSection({
     );
   }
 
-  // MOBILE: 3 cards vertical (each with image + title + description)
   return (
-    <Section spacing="lg" background="white">
+    <Section spacing="lg">
       <Container size="wide">
         <div className="space-y-8">
           {featureCards.map((card, index) => (
             <motion.div
               key={card.id}
-              className="overflow-hidden"
-              initial={{ opacity: 0, y: 30 }}
+              className="overflow-hidden rounded-[28px] border border-border/70 bg-card"
+              initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.55, delay: index * 0.06 }}
             >
-              {/* Image */}
-              <div className="rounded-3xl overflow-hidden mb-6">
-                <img
-                  src={card.image.src}
-                  alt={card.image.alt}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
+              <img
+                src={card.image.src}
+                alt={card.image.alt}
+                className="h-auto w-full object-cover"
+              />
 
-              {/* Content */}
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-3">
+              <div className="p-6">
+                <h3 className="text-xl font-semibold tracking-[-0.03em] text-foreground">
                   {card.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
                   {card.description}
                 </p>
               </div>

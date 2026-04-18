@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { Section, Container } from '@/components/foundation';
 import { ChevronDown } from 'lucide-react';
-import { cn } from '@/app/components/ui/utils';
 import { useIsDesktop } from '@/hooks/use-breakpoint';
+import { cn } from '@/app/components/ui/utils';
 
 export interface FAQItem {
   id: string;
@@ -17,103 +17,198 @@ export interface FAQSectionProps {
   items: FAQItem[];
 }
 
-export function FAQSection({ title, description, items = [] }: FAQSectionProps) {
-  const [openId, setOpenId] = useState<string | null>(items[0]?.id || null);
+export function FAQSection({
+  title,
+  description,
+  items = [],
+}: FAQSectionProps) {
   const isDesktop = useIsDesktop();
+  const [openId, setOpenId] = useState<string | null>(items[0]?.id ?? null);
 
-  const toggle = (id: string) => {
-    setOpenId(openId === id ? null : id);
-  };
-
-  // Handle empty items array
-  if (!items || items.length === 0) {
+  if (!items.length) {
     return (
       <Section spacing="lg" background="muted">
         <Container size="wide">
-          {title && <h2 className="text-3xl font-bold text-center mb-4">{title}</h2>}
-          {description && <p className="text-center text-muted-foreground mb-8">{description}</p>}
+          {title ? (
+            <h2 className="mb-4 text-center text-3xl font-semibold tracking-[-0.04em] text-foreground">
+              {title}
+            </h2>
+          ) : null}
+          {description ? (
+            <p className="mb-8 text-center text-muted-foreground">{description}</p>
+          ) : null}
           <p className="text-center text-muted-foreground">Nenhuma pergunta disponível.</p>
         </Container>
       </Section>
     );
   }
 
+  const toggleItem = (id: string) => {
+    setOpenId((prev) => (prev === id ? null : id));
+  };
+
   return (
     <Section spacing="lg" background="muted">
       <Container size="wide">
-        {(title || description) && (
-          <div className="text-center mb-16">
-            {title && (
-              <motion.h2
-                className="text-3xl md:text-4xl font-bold text-foreground mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                {title}
-              </motion.h2>
+        {isDesktop ? (
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
+            <div>
+              {title ? (
+                <motion.h2
+                  className="max-w-[12ch] text-3xl font-semibold leading-[1] tracking-[-0.05em] text-foreground md:text-4xl lg:text-[3rem]"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.55 }}
+                >
+                  {title}
+                </motion.h2>
+              ) : null}
+
+              {description ? (
+                <motion.p
+                  className="mt-5 max-w-[42ch] text-base leading-relaxed text-muted-foreground md:text-lg"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.55, delay: 0.06 }}
+                >
+                  {description}
+                </motion.p>
+              ) : null}
+            </div>
+
+            <div className="space-y-4">
+              {items.map((item, index) => {
+                const isOpen = openId === item.id;
+
+                return (
+                  <motion.div
+                    key={item.id}
+                    className="overflow-hidden rounded-[24px] border border-border/70 bg-card"
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: index * 0.05 }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => toggleItem(item.id)}
+                      className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-accent/45"
+                    >
+                      <span className="pr-4 text-[1.02rem] font-semibold leading-snug text-foreground">
+                        {item.question}
+                      </span>
+
+                      <ChevronDown
+                        className={cn(
+                          'h-5 w-5 flex-shrink-0 text-muted-foreground transition-transform',
+                          isOpen && 'rotate-180',
+                        )}
+                      />
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                      {isOpen ? (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.22 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="border-t border-border/60 px-6 py-5 text-[15px] leading-relaxed text-muted-foreground md:text-base">
+                            {item.answer}
+                          </div>
+                        </motion.div>
+                      ) : null}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <div>
+            {(title || description) && (
+              <div className="mb-10 text-center">
+                {title ? (
+                  <motion.h2
+                    className="mx-auto max-w-[14ch] text-3xl font-semibold leading-[1] tracking-[-0.05em] text-foreground md:text-4xl"
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.55 }}
+                  >
+                    {title}
+                  </motion.h2>
+                ) : null}
+
+                {description ? (
+                  <motion.p
+                    className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground"
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.55, delay: 0.06 }}
+                  >
+                    {description}
+                  </motion.p>
+                ) : null}
+              </div>
             )}
-            {description && (
-              <motion.p
-                className="text-lg text-muted-foreground max-w-3xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                {description}
-              </motion.p>
-            )}
+
+            <div className="space-y-4">
+              {items.map((item, index) => {
+                const isOpen = openId === item.id;
+
+                return (
+                  <motion.div
+                    key={item.id}
+                    className="overflow-hidden rounded-[22px] border border-border/70 bg-card"
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: index * 0.05 }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => toggleItem(item.id)}
+                      className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-accent/45"
+                    >
+                      <span className="pr-4 text-base font-semibold leading-snug text-foreground">
+                        {item.question}
+                      </span>
+
+                      <ChevronDown
+                        className={cn(
+                          'h-5 w-5 flex-shrink-0 text-muted-foreground transition-transform',
+                          isOpen && 'rotate-180',
+                        )}
+                      />
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                      {isOpen ? (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.22 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="border-t border-border/60 px-5 py-4 text-[15px] leading-relaxed text-muted-foreground">
+                            {item.answer}
+                          </div>
+                        </motion.div>
+                      ) : null}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         )}
-
-        <div className={isDesktop ? 'grid grid-cols-2 gap-6' : 'space-y-4'}>
-          {items.map((item, index) => {
-            const isOpen = openId === item.id;
-
-            return (
-              <motion.div
-                key={item.id}
-                className="bg-card rounded-2xl overflow-hidden border border-border"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-              >
-                <button
-                  onClick={() => toggle(item.id)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-accent/50 transition-colors"
-                >
-                  <span className="font-semibold text-foreground pr-4">
-                    {item.question}
-                  </span>
-                  <ChevronDown
-                    className={cn(
-                      'w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform',
-                      isOpen && 'rotate-180'
-                    )}
-                  />
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
-                    >
-                      <div className="px-6 pb-5 text-muted-foreground leading-relaxed">
-                        {item.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
-        </div>
       </Container>
     </Section>
   );
