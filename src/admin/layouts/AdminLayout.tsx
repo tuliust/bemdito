@@ -11,27 +11,33 @@ import {
   Menu,
   X,
   Home,
+  LogOut,
+  ShieldCheck,
 } from 'lucide-react';
+import { Badge } from '@/components/foundation';
+import { useAuth } from '@/lib/auth/AuthContext';
 
 interface NavItem {
   label: string;
   path: string;
   icon: React.ComponentType<{ className?: string }>;
+  permission?: 'cms:pages' | 'cms:content' | 'cms:media' | 'cms:design-system' | 'cms:settings';
 }
 
 const navItems: NavItem[] = [
   { label: 'Dashboard', path: '/admin', icon: LayoutDashboard },
-  { label: 'Pages', path: '/admin/pages', icon: FileText },
-  { label: 'Global Blocks', path: '/admin/global-blocks', icon: Globe },
-  { label: 'Content', path: '/admin/content', icon: FolderKanban },
-  { label: 'Media', path: '/admin/media', icon: Image },
-  { label: 'Design System', path: '/admin/design-system', icon: Palette },
-  { label: 'Settings', path: '/admin/settings', icon: Settings },
+  { label: 'Pages', path: '/admin/pages', icon: FileText, permission: 'cms:pages' },
+  { label: 'Global Blocks', path: '/admin/global-blocks', icon: Globe, permission: 'cms:pages' },
+  { label: 'Content', path: '/admin/content', icon: FolderKanban, permission: 'cms:content' },
+  { label: 'Media', path: '/admin/media', icon: Image, permission: 'cms:media' },
+  { label: 'Design System', path: '/admin/design-system', icon: Palette, permission: 'cms:design-system' },
+  { label: 'Settings', path: '/admin/settings', icon: Settings, permission: 'cms:settings' },
 ];
 
 export function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const location = useLocation();
+  const { user, role, can, signOut } = useAuth();
 
   const isActive = (path: string) => {
     if (path === '/admin') {
@@ -39,6 +45,8 @@ export function AdminLayout() {
     }
     return location.pathname.startsWith(path);
   };
+
+  const allowedItems = navItems.filter((item) => !item.permission || can(item.permission));
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -58,6 +66,10 @@ export function AdminLayout() {
         <h1 className="text-lg font-semibold text-gray-900">CMS Admin</h1>
 
         <div className="ml-auto flex items-center gap-3">
+          <div className="hidden items-center gap-2 rounded-full bg-gray-100 px-3 py-2 md:flex">
+            <ShieldCheck className="h-4 w-4 text-primary" />
+            <span className="text-xs font-medium uppercase tracking-wide text-gray-700">{role}</span>
+          </div>
           <Link
             to="/"
             className="flex items-center gap-2 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg"
@@ -65,6 +77,14 @@ export function AdminLayout() {
             <Home className="w-4 h-4" />
             View Site
           </Link>
+          <button
+            onClick={() => void signOut()}
+            className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            title={user?.email || 'Sign out'}
+          >
+            <LogOut className="h-4 w-4" />
+            Sair
+          </button>
         </div>
       </div>
 
@@ -75,7 +95,15 @@ export function AdminLayout() {
         }`}
       >
         <nav className="p-4 space-y-1">
-          {navItems.map((item) => {
+          <div className="mb-4 rounded-2xl bg-gray-50 p-3">
+            <p className="text-xs uppercase tracking-[0.2em] text-gray-500">Conta</p>
+            <p className="mt-2 truncate text-sm font-medium text-gray-900">{user?.email || 'usuario autenticado'}</p>
+            <div className="mt-3">
+              <Badge variant="secondary" size="sm">{role}</Badge>
+            </div>
+          </div>
+
+          {allowedItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
 

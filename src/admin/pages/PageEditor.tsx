@@ -15,6 +15,7 @@ import {
   duplicateSection,
   toggleSectionVisibility,
 } from '@/lib/services/sections-service';
+import { useUnsavedChanges } from '@/hooks/use-unsaved-changes';
 
 interface EditorSection {
   id: string;
@@ -51,6 +52,12 @@ export function PageEditor() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [pageName, setPageName] = useState('');
+  const [pendingMutations, setPendingMutations] = useState(0);
+
+  const { hasUnsavedChanges, setUnsavedChanges, confirmNavigation } = useUnsavedChanges({
+    message: 'Existe uma operacao em andamento no editor. Deseja sair mesmo assim?',
+    when: true,
+  });
 
   const selectedSection = useMemo(
     () => sections.find((section) => section.id === selectedSectionId),
@@ -121,6 +128,8 @@ export function PageEditor() {
         section.id === sectionId ? { ...section, ...normalizedUpdates } : section
       )
     );
+    setPendingMutations((current) => current + 1);
+    setUnsavedChanges(true);
 
     try {
       await updateSection(sectionId, normalizedUpdates as any);
@@ -129,12 +138,17 @@ export function PageEditor() {
       console.error('Error updating section:', error);
       setSections(previousSections);
       toast.error('Failed to save section');
+    } finally {
+      setPendingMutations((current) => Math.max(0, current - 1));
+      setUnsavedChanges(false);
     }
   };
 
   const handleSectionReorder = async (reorderedSections: EditorSection[]) => {
     const previousSections = sections;
     setSections(reorderedSections);
+    setPendingMutations((current) => current + 1);
+    setUnsavedChanges(true);
 
     try {
       await reorderSections(
@@ -146,11 +160,16 @@ export function PageEditor() {
       console.error('Error reordering sections:', error);
       setSections(previousSections);
       toast.error('Failed to reorder sections');
+    } finally {
+      setPendingMutations((current) => Math.max(0, current - 1));
+      setUnsavedChanges(false);
     }
   };
 
   const handleSectionDelete = async (sectionId: string) => {
     try {
+      setPendingMutations((current) => current + 1);
+      setUnsavedChanges(true);
       await deleteSection(sectionId);
       const nextSections = sections.filter((section) => section.id !== sectionId);
       setSections(nextSections);
@@ -164,17 +183,25 @@ export function PageEditor() {
     } catch (error) {
       console.error('Error deleting section:', error);
       toast.error('Failed to delete section');
+    } finally {
+      setPendingMutations((current) => Math.max(0, current - 1));
+      setUnsavedChanges(false);
     }
   };
 
   const handleSectionDuplicate = async (sectionId: string) => {
     try {
+      setPendingMutations((current) => current + 1);
+      setUnsavedChanges(true);
       await duplicateSection(sectionId);
       await loadPageData();
       toast.success('Section duplicated successfully');
     } catch (error) {
       console.error('Error duplicating section:', error);
       toast.error('Failed to duplicate section');
+    } finally {
+      setPendingMutations((current) => Math.max(0, current - 1));
+      setUnsavedChanges(false);
     }
   };
 
@@ -190,6 +217,8 @@ export function PageEditor() {
         entry.id === sectionId ? { ...entry, visible: nextVisible } : entry
       )
     );
+    setPendingMutations((current) => current + 1);
+    setUnsavedChanges(true);
 
     try {
       await toggleSectionVisibility(sectionId, nextVisible);
@@ -198,12 +227,18 @@ export function PageEditor() {
       console.error('Error toggling visibility:', error);
       setSections(previousSections);
       toast.error('Failed to update section visibility');
+    } finally {
+      setPendingMutations((current) => Math.max(0, current - 1));
+      setUnsavedChanges(false);
     }
   };
 
   const handleSave = async () => {
     setSaving(true);
-    setTimeout(() => setSaving(false), 400);
+    setTimeout(() => {
+      setSaving(false);
+      setUnsavedChanges(false);
+    }, 400);
   };
 
   if (loading) {
@@ -224,7 +259,10 @@ export function PageEditor() {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => navigate('/admin/pages')}
+            onClick={() => {
+              if (hasUnsavedChanges && !confirmNavigation()) return;
+              navigate('/admin/pages');
+            }}
           >
             <ChevronLeft className="w-4 h-4 mr-2" />
             Back to Pages
@@ -241,7 +279,7 @@ export function PageEditor() {
             disabled={saving}
           >
             <Save className="w-4 h-4 mr-2" />
-            {saving ? 'Saving...' : 'Saved'}
+            {saving ? 'Saving...' : pendingMutations > 0 ? 'Syncing...' : 'Saved'}
           </Button>
         </div>
       </div>
