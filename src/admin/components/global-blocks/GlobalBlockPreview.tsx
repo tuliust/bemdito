@@ -20,7 +20,7 @@ export function GlobalBlockPreview({ block }: GlobalBlockPreviewProps) {
   if (!block) {
     return (
       <div className="flex h-full items-center justify-center text-sm text-gray-500">
-        Select a block to preview it.
+        Selecione um bloco para visualizar.
       </div>
     );
   }
@@ -52,12 +52,12 @@ export function GlobalBlockPreview({ block }: GlobalBlockPreviewProps) {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
+    <div className="flex h-full flex-col">
+      <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">Live Preview</h2>
+          <h2 className="text-lg font-semibold text-gray-900">Pré-visualização</h2>
           <p className="mt-1 text-sm text-gray-500">
-            Preview uses the same runtime block components.
+            A prévia usa os mesmos componentes de runtime dos blocos globais.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export function GlobalBlockPreview({ block }: GlobalBlockPreviewProps) {
               onClick={() => setMenuOpen((current) => !current)}
             >
               {menuOpen ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              {menuOpen ? 'Close menu' : 'Open menu'}
+              {menuOpen ? 'Fechar menu' : 'Abrir menu'}
             </Button>
           )}
 
@@ -80,7 +80,7 @@ export function GlobalBlockPreview({ block }: GlobalBlockPreviewProps) {
               onClick={() => setSupportOpen((current) => !current)}
             >
               {supportOpen ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              {supportOpen ? 'Close modal' : 'Open modal'}
+              {supportOpen ? 'Fechar modal' : 'Abrir modal'}
             </Button>
           )}
 
@@ -94,17 +94,17 @@ export function GlobalBlockPreview({ block }: GlobalBlockPreviewProps) {
               }}
             >
               <RefreshCw className="w-4 h-4" />
-              Reset
+              Restaurar
             </Button>
           )}
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-5 bg-gray-50">
-        <div className="relative min-h-[520px] rounded-2xl border border-gray-200 bg-white overflow-hidden">
+      <div className="flex-1 overflow-y-auto bg-gray-50 p-5">
+        <div className="relative min-h-[520px] overflow-hidden rounded-2xl border border-gray-200 bg-white">
           {!block.visible && (
             <div className="absolute left-4 top-4 z-[60] rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-700">
-              Hidden block
+              Bloco oculto
             </div>
           )}
 

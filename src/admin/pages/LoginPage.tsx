@@ -9,6 +9,7 @@ export function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { signInWithPassword, isAuthenticated, role } = useAuth();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -23,8 +24,8 @@ export function LoginPage() {
         (role === 'company'
           ? '/portal/company'
           : role === 'professional'
-          ? '/portal/professional'
-          : '/admin'),
+            ? '/portal/professional'
+            : '/admin'),
       { replace: true }
     );
   }, [isAuthenticated, navigate, nextPath, role]);
@@ -35,11 +36,11 @@ export function LoginPage() {
     try {
       setSubmitting(true);
       await signInWithPassword(email, password);
-      toast.success('Sessao iniciada com sucesso');
+      toast.success('Sessão iniciada com sucesso');
       navigate(nextPath || '/admin', { replace: true });
     } catch (error) {
-      console.error('Error signing in:', error);
-      toast.error('Nao foi possivel entrar. Verifique email, senha e role no Supabase.');
+      console.error('Erro ao fazer login:', error);
+      toast.error('Não foi possível entrar. Verifique email, senha e role no Supabase.');
     } finally {
       setSubmitting(false);
     }
@@ -52,9 +53,10 @@ export function LoginPage() {
           <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-white">
             <LockKeyhole className="h-6 w-6" />
           </div>
-          <h1 className="text-3xl font-bold text-foreground">Admin Access</h1>
+
+          <h1 className="text-3xl font-bold text-foreground">Acesso ao painel</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Entre com uma conta Supabase que tenha role `viewer`, `editor` ou `admin`.
+            Entre com uma conta do Supabase que tenha a role <code>viewer</code>, <code>editor</code> ou <code>admin</code>.
           </p>
         </div>
 
@@ -78,7 +80,7 @@ export function LoginPage() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               className="h-12 w-full rounded-xl border border-border bg-background px-4 text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-              placeholder="Sua senha"
+              placeholder="Digite sua senha"
               required
             />
           </label>

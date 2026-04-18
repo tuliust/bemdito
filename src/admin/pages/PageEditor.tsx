@@ -32,7 +32,7 @@ export function PageEditor() {
   const [pendingMutations, setPendingMutations] = useState(0);
 
   const { hasUnsavedChanges, setUnsavedChanges, confirmNavigation } = useUnsavedChanges({
-    message: 'Existe uma operacao em andamento no editor. Deseja sair mesmo assim?',
+    message: 'Existe uma operação em andamento no editor. Deseja sair mesmo assim?',
     when: true,
   });
 
@@ -52,10 +52,13 @@ export function PageEditor() {
     try {
       setLoading(true);
 
-      const [pageData, sectionsData] = await Promise.all([getPageById(pageId), getSectionsByPageId(pageId)]);
+      const [pageData, sectionsData] = await Promise.all([
+        getPageById(pageId),
+        getSectionsByPageId(pageId),
+      ]);
 
       if (!pageData) {
-        toast.error('Page not found');
+        toast.error('Página não encontrada');
         navigate('/admin/pages');
         return;
       }
@@ -65,7 +68,7 @@ export function PageEditor() {
         visible: section.visible ?? true,
       }));
 
-      setPageName(pageData.title || pageData.slug || 'Untitled Page');
+      setPageName(pageData.title || pageData.slug || 'Página sem título');
       setSections(normalizedSections);
 
       if (normalizedSections.length > 0) {
@@ -78,8 +81,8 @@ export function PageEditor() {
         setSelectedSectionId(null);
       }
     } catch (error) {
-      console.error('Error loading page data:', error);
-      toast.error('Failed to load page editor');
+      console.error('Erro ao carregar dados da página:', error);
+      toast.error('Não foi possível carregar o editor da página');
     } finally {
       setLoading(false);
     }
@@ -113,19 +116,22 @@ export function PageEditor() {
           : section
       )
     );
+
     setPendingMutations((current) => current + 1);
     setUnsavedChanges(true);
 
     try {
       const refreshedSection = await updateSection(sectionId, normalizedUpdates as any);
+
       setSections((current) =>
         current.map((section) => (section.id === sectionId ? refreshedSection : section))
       );
-      toast.success('Section saved successfully');
+
+      toast.success('Seção salva com sucesso');
     } catch (error) {
-      console.error('Error updating section:', error);
+      console.error('Erro ao atualizar seção:', error);
       setSections(previousSections);
-      toast.error('Failed to save section');
+      toast.error('Não foi possível salvar a seção');
     } finally {
       setPendingMutations((current) => Math.max(0, current - 1));
       setUnsavedChanges(false);
@@ -143,11 +149,11 @@ export function PageEditor() {
         pageId || '',
         reorderedSections.map((section) => section.id)
       );
-      toast.success('Section order updated');
+      toast.success('Ordem das seções atualizada');
     } catch (error) {
-      console.error('Error reordering sections:', error);
+      console.error('Erro ao reordenar seções:', error);
       setSections(previousSections);
-      toast.error('Failed to reorder sections');
+      toast.error('Não foi possível reordenar as seções');
     } finally {
       setPendingMutations((current) => Math.max(0, current - 1));
       setUnsavedChanges(false);
@@ -158,7 +164,9 @@ export function PageEditor() {
     try {
       setPendingMutations((current) => current + 1);
       setUnsavedChanges(true);
+
       await deleteSection(sectionId);
+
       const nextSections = sections.filter((section) => section.id !== sectionId);
       setSections(nextSections);
 
@@ -167,10 +175,10 @@ export function PageEditor() {
         return nextSections[0]?.id || null;
       });
 
-      toast.success('Section deleted successfully');
+      toast.success('Seção excluída com sucesso');
     } catch (error) {
-      console.error('Error deleting section:', error);
-      toast.error('Failed to delete section');
+      console.error('Erro ao excluir seção:', error);
+      toast.error('Não foi possível excluir a seção');
     } finally {
       setPendingMutations((current) => Math.max(0, current - 1));
       setUnsavedChanges(false);
@@ -181,12 +189,14 @@ export function PageEditor() {
     try {
       setPendingMutations((current) => current + 1);
       setUnsavedChanges(true);
+
       await duplicateSection(sectionId);
       await loadPageData();
-      toast.success('Section duplicated successfully');
+
+      toast.success('Seção duplicada com sucesso');
     } catch (error) {
-      console.error('Error duplicating section:', error);
-      toast.error('Failed to duplicate section');
+      console.error('Erro ao duplicar seção:', error);
+      toast.error('Não foi possível duplicar a seção');
     } finally {
       setPendingMutations((current) => Math.max(0, current - 1));
       setUnsavedChanges(false);
@@ -205,16 +215,17 @@ export function PageEditor() {
         entry.id === sectionId ? { ...entry, visible: nextVisible } : entry
       )
     );
+
     setPendingMutations((current) => current + 1);
     setUnsavedChanges(true);
 
     try {
       await toggleSectionVisibility(sectionId, nextVisible);
-      toast.success(nextVisible ? 'Section shown' : 'Section hidden');
+      toast.success(nextVisible ? 'Seção exibida' : 'Seção ocultada');
     } catch (error) {
-      console.error('Error toggling visibility:', error);
+      console.error('Erro ao alterar visibilidade da seção:', error);
       setSections(previousSections);
-      toast.error('Failed to update section visibility');
+      toast.error('Não foi possível atualizar a visibilidade da seção');
     } finally {
       setPendingMutations((current) => Math.max(0, current - 1));
       setUnsavedChanges(false);
@@ -223,6 +234,7 @@ export function PageEditor() {
 
   const handleSave = async () => {
     setSaving(true);
+
     setTimeout(() => {
       setSaving(false);
       setUnsavedChanges(false);
@@ -233,8 +245,8 @@ export function PageEditor() {
     return (
       <div className="flex h-screen items-center justify-center">
         <div className="text-center">
-          <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
-          <p className="text-sm text-muted-foreground">Loading page...</p>
+          <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <p className="text-sm text-muted-foreground">Carregando página...</p>
         </div>
       </div>
     );
@@ -253,8 +265,9 @@ export function PageEditor() {
             }}
           >
             <ChevronLeft className="mr-2 h-4 w-4" />
-            Back to Pages
+            Voltar para páginas
           </Button>
+
           <div className="h-6 w-px bg-gray-300" />
           <h1 className="text-lg font-semibold text-gray-900">{pageName}</h1>
         </div>
@@ -262,7 +275,7 @@ export function PageEditor() {
         <div className="flex items-center gap-3">
           <Button variant="primary" size="md" onClick={handleSave} disabled={saving}>
             <Save className="mr-2 h-4 w-4" />
-            {saving ? 'Saving...' : pendingMutations > 0 ? 'Syncing...' : 'Saved'}
+            {saving ? 'Salvando...' : pendingMutations > 0 ? 'Sincronizando...' : 'Salvo'}
           </Button>
         </div>
       </div>
@@ -290,7 +303,7 @@ export function PageEditor() {
             />
           ) : (
             <div className="flex flex-1 items-center justify-center">
-              <p className="text-sm text-muted-foreground">Select a section to edit</p>
+              <p className="text-sm text-muted-foreground">Selecione uma seção para editar</p>
             </div>
           )}
         </div>

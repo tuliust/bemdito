@@ -66,7 +66,7 @@ export function GlobalBlockEditor({
   if (!block) {
     return (
       <div className="flex h-full items-center justify-center text-sm text-gray-500">
-        Select a block to edit it.
+        Selecione um bloco para editar.
       </div>
     );
   }
@@ -114,9 +114,9 @@ export function GlobalBlockEditor({
       case 'header':
         return (
           <>
-            <SectionTitle title="Header Content" />
+            <SectionTitle title="Conteúdo do header" />
             <TextField
-              label="Logo URL"
+              label="URL da logo"
               value={block.content?.logo?.src || ''}
               onChange={(value) =>
                 updateContent((content) => ({
@@ -126,7 +126,7 @@ export function GlobalBlockEditor({
               }
             />
             <TextField
-              label="Logo Alt"
+              label="Texto alternativo da logo"
               value={block.content?.logo?.alt || ''}
               onChange={(value) =>
                 updateContent((content) => ({
@@ -136,7 +136,7 @@ export function GlobalBlockEditor({
               }
             />
             <LinkListEditor
-              title="Navigation"
+              title="Navegação"
               items={headerNavigation}
               onChange={(items) =>
                 updateContent((content) => ({
@@ -146,7 +146,7 @@ export function GlobalBlockEditor({
               }
             />
             <TextField
-              label="CTA Label"
+              label="Texto do CTA"
               value={block.content?.cta?.label || ''}
               onChange={(value) =>
                 updateContent((content) => ({
@@ -156,7 +156,7 @@ export function GlobalBlockEditor({
               }
             />
             <TextField
-              label="CTA Link"
+              label="Link do CTA"
               value={block.content?.cta?.href || ''}
               onChange={(value) =>
                 updateContent((content) => ({
@@ -166,14 +166,14 @@ export function GlobalBlockEditor({
               }
             />
             <ToggleField
-              label="Sticky"
+              label="Fixo no topo"
               checked={Boolean(block.config?.sticky)}
               onChange={(checked) =>
                 updateConfig((config) => ({ ...config, sticky: checked }))
               }
             />
             <ToggleField
-              label="Hide on Scroll"
+              label="Ocultar ao rolar"
               checked={block.config?.hideOnScroll !== false}
               onChange={(checked) =>
                 updateConfig((config) => ({ ...config, hideOnScroll: checked }))
@@ -185,9 +185,9 @@ export function GlobalBlockEditor({
       case 'menu_overlay':
         return (
           <>
-            <SectionTitle title="Menu Content" />
+            <SectionTitle title="Conteúdo do menu" />
             <LinkListEditor
-              title="Primary Navigation"
+              title="Navegação principal"
               items={menuNavigation}
               onChange={(items) =>
                 updateContent((content) => ({
@@ -197,7 +197,7 @@ export function GlobalBlockEditor({
               }
             />
             <LinkListEditor
-              title="Secondary Links"
+              title="Links secundários"
               items={menuSecondary}
               onChange={(items) =>
                 updateContent((content) => ({
@@ -207,7 +207,7 @@ export function GlobalBlockEditor({
               }
             />
             <SocialListEditor
-              title="Social Links"
+              title="Links sociais"
               items={menuSocial}
               onChange={(items) =>
                 updateContent((content) => ({
@@ -218,21 +218,21 @@ export function GlobalBlockEditor({
               mode="name"
             />
             <TextField
-              label="Background Image URL"
+              label="URL da imagem de fundo"
               value={block.content?.backgroundImage || ''}
               onChange={(value) =>
                 updateContent((content) => ({ ...content, backgroundImage: value }))
               }
             />
             <TextField
-              label="Language Label"
+              label="Rótulo do idioma"
               value={block.content?.currentLanguage || 'PT'}
               onChange={(value) =>
                 updateContent((content) => ({ ...content, currentLanguage: value }))
               }
             />
             <TextField
-              label="CTA Label"
+              label="Texto do CTA"
               value={block.content?.cta?.label || ''}
               onChange={(value) =>
                 updateContent((content) => ({
@@ -242,7 +242,7 @@ export function GlobalBlockEditor({
               }
             />
             <TextField
-              label="CTA Link"
+              label="Link do CTA"
               value={block.content?.cta?.href || ''}
               onChange={(value) =>
                 updateContent((content) => ({
@@ -257,16 +257,16 @@ export function GlobalBlockEditor({
       case 'footer':
         return (
           <>
-            <SectionTitle title="Footer Content" />
+            <SectionTitle title="Conteúdo do footer" />
             <TextField
-              label="Description"
+              label="Descrição"
               value={block.content?.description || ''}
               onChange={(value) =>
                 updateContent((content) => ({ ...content, description: value }))
               }
             />
             <TextField
-              label="Logo URL"
+              label="URL da logo"
               value={block.content?.logo?.src || ''}
               onChange={(value) =>
                 updateContent((content) => ({
@@ -276,7 +276,7 @@ export function GlobalBlockEditor({
               }
             />
             <TextField
-              label="Logo Alt"
+              label="Texto alternativo da logo"
               value={block.content?.logo?.alt || ''}
               onChange={(value) =>
                 updateContent((content) => ({
@@ -286,7 +286,7 @@ export function GlobalBlockEditor({
               }
             />
             <LinkListEditor
-              title="Product Links"
+              title="Links de produto"
               items={footerProduct}
               onChange={(items) =>
                 updateContent((content) => ({
@@ -296,7 +296,7 @@ export function GlobalBlockEditor({
               }
             />
             <LinkListEditor
-              title="Company Links"
+              title="Links institucionais"
               items={footerCompany}
               onChange={(items) =>
                 updateContent((content) => ({
@@ -306,7 +306,7 @@ export function GlobalBlockEditor({
               }
             />
             <LinkListEditor
-              title="Legal Links"
+              title="Links legais"
               items={footerLegal}
               onChange={(items) =>
                 updateContent((content) => ({
@@ -316,7 +316,7 @@ export function GlobalBlockEditor({
               }
             />
             <SocialListEditor
-              title="Social Links"
+              title="Links sociais"
               items={footerSocial}
               onChange={(items) =>
                 updateContent((content) => ({ ...content, social: items }))
@@ -324,7 +324,7 @@ export function GlobalBlockEditor({
               mode="platform"
             />
             <TextField
-              label="Newsletter Title"
+              label="Título da newsletter"
               value={block.content?.newsletter?.title || ''}
               onChange={(value) =>
                 updateContent((content) => ({
@@ -334,7 +334,7 @@ export function GlobalBlockEditor({
               }
             />
             <TextField
-              label="Newsletter Description"
+              label="Descrição da newsletter"
               value={block.content?.newsletter?.description || ''}
               onChange={(value) =>
                 updateContent((content) => ({
@@ -349,16 +349,16 @@ export function GlobalBlockEditor({
       case 'support_modal':
         return (
           <>
-            <SectionTitle title="Support Modal Content" />
+            <SectionTitle title="Conteúdo do modal de suporte" />
             <TextField
-              label="Title"
+              label="Título"
               value={block.content?.title || ''}
               onChange={(value) =>
                 updateContent((content) => ({ ...content, title: value }))
               }
             />
             <TextField
-              label="Logo URL"
+              label="URL da logo"
               value={block.content?.logo?.src || ''}
               onChange={(value) =>
                 updateContent((content) => ({
@@ -368,7 +368,7 @@ export function GlobalBlockEditor({
               }
             />
             <TextField
-              label="Logo Alt"
+              label="Texto alternativo da logo"
               value={block.content?.logo?.alt || ''}
               onChange={(value) =>
                 updateContent((content) => ({
@@ -393,16 +393,16 @@ export function GlobalBlockEditor({
       case 'floating_button':
         return (
           <>
-            <SectionTitle title="Floating Button Content" />
+            <SectionTitle title="Conteúdo do botão flutuante" />
             <TextField
-              label="Label"
+              label="Rótulo"
               value={block.content?.label || ''}
               onChange={(value) =>
                 updateContent((content) => ({ ...content, label: value }))
               }
             />
             <SelectField
-              label="Icon"
+              label="Ícone"
               value={block.content?.icon || 'MessageCircle'}
               options={FLOATING_ICONS}
               onChange={(value) =>
@@ -410,11 +410,11 @@ export function GlobalBlockEditor({
               }
             />
             <SelectField
-              label="Position"
+              label="Posição"
               value={block.config?.position || 'bottom-right'}
               options={[
-                { label: 'Bottom Right', value: 'bottom-right' },
-                { label: 'Bottom Left', value: 'bottom-left' },
+                { label: 'Inferior direita', value: 'bottom-right' },
+                { label: 'Inferior esquerda', value: 'bottom-left' },
               ]}
               onChange={(value) =>
                 updateConfig((config) => ({ ...config, position: value }))
@@ -429,31 +429,31 @@ export function GlobalBlockEditor({
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
+    <div className="flex h-full flex-col">
+      <div className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900">Edit Block</h2>
+          <h2 className="text-lg font-semibold text-gray-900">Editar bloco</h2>
           <p className="mt-1 text-sm text-gray-500">
-            Save changes directly to the global blocks table.
+            Salve as alterações diretamente na tabela de blocos globais.
           </p>
         </div>
 
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="sm" onClick={onReset} disabled={saving}>
             <RotateCcw className="w-4 h-4" />
-            Reset
+            Restaurar
           </Button>
           <Button variant="primary" size="sm" onClick={onSave} disabled={saving}>
             <Save className="w-4 h-4" />
-            {saving ? 'Saving...' : 'Save'}
+            {saving ? 'Salvando...' : 'Salvar'}
           </Button>
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-5 space-y-6">
-        <SectionTitle title="Block Metadata" />
+      <div className="flex-1 space-y-6 overflow-y-auto p-5">
+        <SectionTitle title="Metadados do bloco" />
         <TextField
-          label="Name"
+          label="Nome"
           value={block.name}
           onChange={(value) => setBlockField('name', value)}
         />
@@ -463,14 +463,14 @@ export function GlobalBlockEditor({
           onChange={(value) => setBlockField('slug', value)}
         />
         <ToggleField
-          label="Visible"
+          label="Visível"
           checked={block.visible}
           onChange={(checked) => setBlockField('visible', checked)}
         />
 
         {renderBlockSpecificFields()}
 
-        <SectionTitle title="Advanced JSON" />
+        <SectionTitle title="JSON avançado" />
         <textarea
           value={jsonValue}
           onChange={(event) => {
@@ -485,11 +485,11 @@ export function GlobalBlockEditor({
                 config: parsed.config ?? block.config,
               });
             } catch (error) {
-              console.error('Invalid block JSON', error);
+              console.error('JSON inválido do bloco', error);
             }
           }}
           rows={14}
-          className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-xs font-mono text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/20"
+          className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 font-mono text-xs text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/20"
         />
       </div>
 
@@ -616,27 +616,27 @@ function LinkListEditor({
           onClick={() => onChange([...items, { label: '', href: '' }])}
         >
           <Plus className="w-4 h-4" />
-          Add
+          Adicionar
         </Button>
       </div>
 
       {items.length === 0 && (
         <div className="rounded-xl border border-dashed border-gray-200 px-4 py-6 text-sm text-gray-500">
-          No items yet.
+          Nenhum item ainda.
         </div>
       )}
 
       {items.map((item, index) => (
-        <div key={`${title}-${index}`} className="rounded-xl border border-gray-200 p-4 space-y-3">
+        <div key={`${title}-${index}`} className="space-y-3 rounded-xl border border-gray-200 p-4">
           <TextField
-            label="Label"
+            label="Rótulo"
             value={item.label}
             onChange={(value) =>
               onChange(items.map((entry, itemIndex) => (itemIndex === index ? { ...entry, label: value } : entry)))
             }
           />
           <TextField
-            label="Href"
+            label="Link"
             value={item.href}
             onChange={(value) =>
               onChange(items.map((entry, itemIndex) => (itemIndex === index ? { ...entry, href: value } : entry)))
@@ -650,7 +650,7 @@ function LinkListEditor({
               onClick={() => onChange(items.filter((_, itemIndex) => itemIndex !== index))}
             >
               <Trash2 className="w-4 h-4" />
-              Remove
+              Remover
             </Button>
           </div>
         </div>
@@ -688,15 +688,15 @@ function SocialListEditor({
           }
         >
           <Plus className="w-4 h-4" />
-          Add
+          Adicionar
         </Button>
       </div>
 
       {items.map((item, index) => (
-        <div key={`${title}-${index}`} className="rounded-xl border border-gray-200 p-4 space-y-3">
+        <div key={`${title}-${index}`} className="space-y-3 rounded-xl border border-gray-200 p-4">
           {mode === 'name' ? (
             <TextField
-              label="Name"
+              label="Nome"
               value={item.name || ''}
               onChange={(value) =>
                 onChange(items.map((entry, itemIndex) => (itemIndex === index ? { ...entry, name: value } : entry)))
@@ -704,7 +704,7 @@ function SocialListEditor({
             />
           ) : (
             <SelectField
-              label="Platform"
+              label="Plataforma"
               value={item.platform || 'instagram'}
               options={[
                 { label: 'Instagram', value: 'instagram' },
@@ -719,7 +719,7 @@ function SocialListEditor({
             />
           )}
           <TextField
-            label="Href"
+            label="Link"
             value={item.href}
             onChange={(value) =>
               onChange(items.map((entry, itemIndex) => (itemIndex === index ? { ...entry, href: value } : entry)))
@@ -733,7 +733,7 @@ function SocialListEditor({
               onClick={() => onChange(items.filter((_, itemIndex) => itemIndex !== index))}
             >
               <Trash2 className="w-4 h-4" />
-              Remove
+              Remover
             </Button>
           </div>
         </div>
@@ -754,7 +754,7 @@ function SupportOptionsEditor({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <h4 className="text-sm font-medium text-gray-700">Support Options</h4>
+        <h4 className="text-sm font-medium text-gray-700">Opções de suporte</h4>
         <Button
           type="button"
           variant="ghost"
@@ -772,14 +772,14 @@ function SupportOptionsEditor({
           }
         >
           <Plus className="w-4 h-4" />
-          Add
+          Adicionar
         </Button>
       </div>
 
       {items.map((item, index) => (
-        <div key={item.id || index} className="rounded-xl border border-gray-200 p-4 space-y-3">
+        <div key={item.id || index} className="space-y-3 rounded-xl border border-gray-200 p-4">
           <TextField
-            label="Title"
+            label="Título"
             value={item.title || item.label || ''}
             onChange={(value) =>
               onChange(
@@ -790,7 +790,7 @@ function SupportOptionsEditor({
             }
           />
           <TextField
-            label="Description"
+            label="Descrição"
             value={item.description}
             onChange={(value) =>
               onChange(items.map((entry, itemIndex) => (itemIndex === index ? { ...entry, description: value } : entry)))
@@ -799,7 +799,7 @@ function SupportOptionsEditor({
           <div className="flex items-end gap-3">
             <div className="flex-1">
               <TextField
-                label="Icon"
+                label="Ícone"
                 value={item.icon || ''}
                 onChange={(value) =>
                   onChange(items.map((entry, itemIndex) => (itemIndex === index ? { ...entry, icon: value } : entry)))
@@ -812,7 +812,7 @@ function SupportOptionsEditor({
               size="sm"
               onClick={() => onPickIcon(`support-option:${index}`)}
             >
-              Pick icon
+              Escolher ícone
             </Button>
           </div>
           <div className="flex justify-end">
@@ -823,7 +823,7 @@ function SupportOptionsEditor({
               onClick={() => onChange(items.filter((_, itemIndex) => itemIndex !== index))}
             >
               <Trash2 className="w-4 h-4" />
-              Remove
+              Remover
             </Button>
           </div>
         </div>

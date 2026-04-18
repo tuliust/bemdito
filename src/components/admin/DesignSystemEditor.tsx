@@ -28,7 +28,7 @@ export function DesignSystemEditor() {
     { id: 'colors' as EditorTab, label: 'Cores', icon: Palette },
     { id: 'typography' as EditorTab, label: 'Tipografia', icon: Type },
     { id: 'components' as EditorTab, label: 'Componentes', icon: Sliders },
-    { id: 'icons' as EditorTab, label: 'Icones', icon: Sparkles },
+    { id: 'icons' as EditorTab, label: 'Ícones', icon: Sparkles },
   ];
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export function DesignSystemEditor() {
         setInputPresets(snapshot.inputPresets);
         setAnimationPresets(snapshot.animationPresets);
       } catch (error) {
-        console.error('Error loading design system snapshot:', error);
+        console.error('Erro ao carregar snapshot do design system:', error);
       } finally {
         setLoading(false);
       }
@@ -76,9 +76,9 @@ export function DesignSystemEditor() {
 
   const iconCategories = {
     Interface: ['Home', 'Settings', 'Search', 'Menu', 'X', 'Check'],
-    Navegacao: ['ChevronRight', 'ChevronLeft', 'ArrowRight', 'ArrowLeft'],
-    Comunicacao: ['Mail', 'MessageCircle', 'Phone', 'Send'],
-    Midia: ['Image', 'Video', 'Music', 'Camera'],
+    Navegação: ['ChevronRight', 'ChevronLeft', 'ArrowRight', 'ArrowLeft'],
+    Comunicação: ['Mail', 'MessageCircle', 'Phone', 'Send'],
+    Mídia: ['Image', 'Video', 'Music', 'Camera'],
   };
 
   return (
@@ -87,7 +87,7 @@ export function DesignSystemEditor() {
         <div>
           <h1 className="text-3xl font-bold text-foreground">Design System</h1>
           <p className="mt-1 text-muted-foreground">
-            Snapshot dos tokens, tipografia e presets que sustentam o admin e o runtime publico.
+            Snapshot dos tokens, da tipografia e dos presets que sustentam o admin e o runtime público.
           </p>
         </div>
 
@@ -134,7 +134,7 @@ export function DesignSystemEditor() {
           <div className="lg:col-span-2">
             {activeTab === 'colors' && (
               <Card padding="lg">
-                <h2 className="mb-6 text-xl font-bold text-foreground">Tokens de Cor</h2>
+                <h2 className="mb-6 text-xl font-bold text-foreground">Tokens de cor</h2>
 
                 <div className="space-y-4">
                   {colorTokens.map((token, index) => (
@@ -169,7 +169,7 @@ export function DesignSystemEditor() {
 
             {activeTab === 'typography' && (
               <Card padding="lg">
-                <h2 className="mb-6 text-xl font-bold text-foreground">Estilos Tipograficos</h2>
+                <h2 className="mb-6 text-xl font-bold text-foreground">Estilos tipográficos</h2>
 
                 <div className="space-y-6">
                   {typographyStyles.map((style, index) => (
@@ -208,7 +208,7 @@ export function DesignSystemEditor() {
 
             {activeTab === 'components' && (
               <Card padding="lg">
-                <h2 className="mb-6 text-xl font-bold text-foreground">Presets de Componentes</h2>
+                <h2 className="mb-6 text-xl font-bold text-foreground">Presets de componentes</h2>
 
                 <div className="space-y-6">
                   {componentPresets.map((preset, index) => (
@@ -232,7 +232,7 @@ export function DesignSystemEditor() {
                       <div className="flex items-center justify-center rounded-lg bg-muted p-8">
                         {preset.component === 'button' ? (
                           <Button variant={preset.variant as any} pill>
-                            Exemplo de botao
+                            Exemplo de botão
                           </Button>
                         ) : (
                           <input
@@ -254,7 +254,7 @@ export function DesignSystemEditor() {
             {activeTab === 'icons' && (
               <Card padding="lg">
                 <div className="mb-6 flex items-center justify-between">
-                  <h2 className="text-xl font-bold text-foreground">Biblioteca de Icones</h2>
+                  <h2 className="text-xl font-bold text-foreground">Biblioteca de ícones</h2>
                   <Badge variant="outline">Lucide</Badge>
                 </div>
 
@@ -300,7 +300,7 @@ export function DesignSystemEditor() {
                   <span className="text-foreground">{typographyStyles.length}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Botoes</span>
+                  <span className="text-muted-foreground">Botões</span>
                   <span className="text-foreground">{buttonPresets.length}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
@@ -308,14 +308,14 @@ export function DesignSystemEditor() {
                   <span className="text-foreground">{inputPresets.length}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Animacoes</span>
+                  <span className="text-muted-foreground">Animações</span>
                   <span className="text-foreground">{animationPresets.length}</span>
                 </div>
               </div>
 
               <div className="mt-6 border-t border-border pt-6">
                 <Button variant="primary" className="w-full" pill>
-                  Publicar alteracoes
+                  Publicar alterações
                 </Button>
               </div>
             </Card>

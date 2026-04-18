@@ -13,18 +13,22 @@ export function Dashboard() {
 
   useEffect(() => {
     async function loadStats() {
-      const [pages, sections, blocks] = await Promise.all([
-        db.pages().select('id', { count: 'exact', head: true }),
-        db.pageSections().select('id', { count: 'exact', head: true }),
-        db.globalBlocks().select('id', { count: 'exact', head: true }),
-      ]);
+      try {
+        const [pages, sections, blocks] = await Promise.all([
+          db.pages().select('id', { count: 'exact', head: true }),
+          db.pageSections().select('id', { count: 'exact', head: true }),
+          db.globalBlocks().select('id', { count: 'exact', head: true }),
+        ]);
 
-      setStats({
-        pages: pages.count || 0,
-        sections: sections.count || 0,
-        globalBlocks: blocks.count || 0,
-        mediaAssets: 0,
-      });
+        setStats({
+          pages: pages.count || 0,
+          sections: sections.count || 0,
+          globalBlocks: blocks.count || 0,
+          mediaAssets: 0,
+        });
+      } catch (error) {
+        console.error('Erro ao carregar estatísticas do dashboard:', error);
+      }
     }
 
     loadStats();
@@ -32,28 +36,28 @@ export function Dashboard() {
 
   const statCards = [
     {
-      label: 'Pages',
+      label: 'Páginas',
       value: stats.pages,
       icon: FileText,
       link: '/admin/pages',
       color: 'bg-blue-500',
     },
     {
-      label: 'Sections',
+      label: 'Seções',
       value: stats.sections,
       icon: Activity,
       link: '/admin/pages',
       color: 'bg-green-500',
     },
     {
-      label: 'Global Blocks',
+      label: 'Blocos globais',
       value: stats.globalBlocks,
       icon: Globe,
       link: '/admin/global-blocks',
       color: 'bg-purple-500',
     },
     {
-      label: 'Media Assets',
+      label: 'Arquivos de mídia',
       value: stats.mediaAssets,
       icon: Image,
       link: '/admin/media',
@@ -64,66 +68,67 @@ export function Dashboard() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <p className="mt-2 text-gray-600">Welcome to the CMS admin panel</p>
+        <h1 className="text-3xl font-bold text-gray-900">Painel</h1>
+        <p className="mt-2 text-gray-600">Bem-vindo ao painel administrativo do CMS</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {statCards.map((stat) => {
           const Icon = stat.icon;
+
           return (
             <Link
               key={stat.label}
               to={stat.link}
-              className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow"
+              className="rounded-lg border border-gray-200 bg-white p-6 transition-shadow hover:shadow-lg"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className={`p-3 rounded-lg ${stat.color}`}>
-                  <Icon className="w-6 h-6 text-white" />
+              <div className="mb-4 flex items-center justify-between">
+                <div className={`rounded-lg p-3 ${stat.color}`}>
+                  <Icon className="h-6 w-6 text-white" />
                 </div>
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-1">
-                {stat.value}
-              </div>
+
+              <div className="mb-1 text-3xl font-bold text-gray-900">{stat.value}</div>
               <div className="text-sm text-gray-600">{stat.label}</div>
             </Link>
           );
         })}
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="rounded-lg border border-gray-200 bg-white p-6">
+        <h2 className="mb-4 text-xl font-semibold text-gray-900">Ações rápidas</h2>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <Link
             to="/admin/pages"
-            className="p-4 border border-gray-200 rounded-lg hover:border-primary hover:bg-gray-50 transition-colors"
+            className="rounded-lg border border-gray-200 p-4 transition-colors hover:border-primary hover:bg-gray-50"
           >
-            <FileText className="w-5 h-5 text-primary mb-2" />
-            <div className="font-medium text-gray-900">Manage Pages</div>
-            <div className="text-sm text-gray-600 mt-1">
-              Create, edit and manage pages
+            <FileText className="mb-2 h-5 w-5 text-primary" />
+            <div className="font-medium text-gray-900">Gerenciar páginas</div>
+            <div className="mt-1 text-sm text-gray-600">
+              Criar, editar e organizar as páginas do site
             </div>
           </Link>
 
           <Link
             to="/admin/global-blocks"
-            className="p-4 border border-gray-200 rounded-lg hover:border-primary hover:bg-gray-50 transition-colors"
+            className="rounded-lg border border-gray-200 p-4 transition-colors hover:border-primary hover:bg-gray-50"
           >
-            <Globe className="w-5 h-5 text-primary mb-2" />
-            <div className="font-medium text-gray-900">Global Blocks</div>
-            <div className="text-sm text-gray-600 mt-1">
-              Edit header, footer and modals
+            <Globe className="mb-2 h-5 w-5 text-primary" />
+            <div className="font-medium text-gray-900">Blocos globais</div>
+            <div className="mt-1 text-sm text-gray-600">
+              Editar header, footer, overlays e elementos reutilizáveis
             </div>
           </Link>
 
           <Link
-            to="/admin/design-system"
-            className="p-4 border border-gray-200 rounded-lg hover:border-primary hover:bg-gray-50 transition-colors"
+            to="/admin/media"
+            className="rounded-lg border border-gray-200 p-4 transition-colors hover:border-primary hover:bg-gray-50"
           >
-            <Image className="w-5 h-5 text-primary mb-2" />
-            <div className="font-medium text-gray-900">Design System</div>
-            <div className="text-sm text-gray-600 mt-1">
-              Manage tokens and presets
+            <Image className="mb-2 h-5 w-5 text-primary" />
+            <div className="font-medium text-gray-900">Biblioteca de mídia</div>
+            <div className="mt-1 text-sm text-gray-600">
+              Gerenciar imagens e outros arquivos do projeto
             </div>
           </Link>
         </div>

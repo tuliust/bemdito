@@ -28,14 +28,13 @@ export function ContentTab({ section, onUpdate }: ContentTabProps) {
   const [currentImageField, setCurrentImageField] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
-  // Reset form when section changes
   useEffect(() => {
     setFormData(section.content || {});
     setHasChanges(false);
-  }, [section.id]);
+  }, [section.id, section.content]);
 
   const handleChange = (field: string, value: any) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev: Record<string, any>) => ({ ...prev, [field]: value }));
     setHasChanges(true);
   };
 
@@ -44,10 +43,10 @@ export function ContentTab({ section, onUpdate }: ContentTabProps) {
       setSaving(true);
       await onUpdate(formData);
       setHasChanges(false);
-      toast.success('Content saved successfully');
+      toast.success('Conteúdo salvo com sucesso');
     } catch (error) {
-      console.error('Error saving content:', error);
-      toast.error('Failed to save content');
+      console.error('Erro ao salvar conteúdo:', error);
+      toast.error('Não foi possível salvar o conteúdo');
     } finally {
       setSaving(false);
     }
@@ -58,13 +57,12 @@ export function ContentTab({ section, onUpdate }: ContentTabProps) {
     setHasChanges(false);
   };
 
-  // Common fields that appear in most sections
   const commonFields = [
-    { key: 'title', label: 'Title', type: 'text' },
-    { key: 'subtitle', label: 'Subtitle', type: 'text' },
-    { key: 'description', label: 'Description', type: 'textarea' },
-    { key: 'eyebrow', label: 'Eyebrow', type: 'text' },
-    { key: 'badge', label: 'Badge', type: 'text' },
+    { key: 'title', label: 'Título', type: 'text' },
+    { key: 'subtitle', label: 'Subtítulo', type: 'text' },
+    { key: 'description', label: 'Descrição', type: 'textarea' },
+    { key: 'eyebrow', label: 'Linha de apoio', type: 'text' },
+    { key: 'badge', label: 'Selo', type: 'text' },
     { key: 'tagline', label: 'Tagline', type: 'text' },
   ];
 
@@ -74,15 +72,13 @@ export function ContentTab({ section, onUpdate }: ContentTabProps) {
     if (field.type === 'textarea') {
       return (
         <div key={field.key} className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            {field.label}
-          </label>
+          <label className="mb-2 block text-sm font-medium text-gray-700">{field.label}</label>
           <textarea
             value={value}
             onChange={(e) => handleChange(field.key, e.target.value)}
             rows={4}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none"
-            placeholder={`Enter ${field.label.toLowerCase()}...`}
+            className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/20"
+            placeholder={`Digite ${field.label.toLowerCase()}...`}
           />
         </div>
       );
@@ -90,15 +86,13 @@ export function ContentTab({ section, onUpdate }: ContentTabProps) {
 
     return (
       <div key={field.key} className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          {field.label}
-        </label>
+        <label className="mb-2 block text-sm font-medium text-gray-700">{field.label}</label>
         <input
           type="text"
           value={value}
           onChange={(e) => handleChange(field.key, e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20"
-          placeholder={`Enter ${field.label.toLowerCase()}...`}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/20"
+          placeholder={`Digite ${field.label.toLowerCase()}...`}
         />
       </div>
     );
@@ -107,29 +101,32 @@ export function ContentTab({ section, onUpdate }: ContentTabProps) {
   return (
     <div className="p-6">
       <div className="mb-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-1">Section Content</h3>
+        <h3 className="mb-1 text-lg font-semibold text-gray-900">Conteúdo da seção</h3>
         <p className="text-sm text-gray-500">
-          Edit the main content fields for this section
+          Edite os campos principais de conteúdo desta seção
         </p>
       </div>
 
-      <form onSubmit={(e) => { e.preventDefault(); handleSave(); }}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSave();
+        }}
+      >
         {commonFields.map(renderField)}
 
-        {/* Image Field */}
-        <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-          <label className="block text-sm font-medium text-gray-900 mb-3">
-            Featured Image
-          </label>
+        <div className="mb-6 rounded-lg bg-gray-50 p-4">
+          <label className="mb-3 block text-sm font-medium text-gray-900">Imagem de destaque</label>
 
           {formData.image?.src ? (
-            <div className="relative group">
+            <div className="group relative">
               <img
                 src={formData.image.src}
-                alt={formData.image.alt || 'Preview'}
-                className="w-full h-48 object-cover rounded-lg border-2 border-gray-200"
+                alt={formData.image.alt || 'Prévia'}
+                className="h-48 w-full rounded-lg border-2 border-gray-200 object-cover"
               />
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-3">
+
+              <div className="absolute inset-0 flex items-center justify-center gap-3 rounded-lg bg-black/60 opacity-0 transition-opacity group-hover:opacity-100">
                 <Button
                   type="button"
                   variant="outline"
@@ -140,9 +137,10 @@ export function ContentTab({ section, onUpdate }: ContentTabProps) {
                     setShowMediaPicker(true);
                   }}
                 >
-                  <Image className="w-4 h-4 mr-2" />
-                  Change
+                  <Image className="mr-2 h-4 w-4" />
+                  Alterar
                 </Button>
+
                 <Button
                   type="button"
                   variant="ghost"
@@ -150,7 +148,7 @@ export function ContentTab({ section, onUpdate }: ContentTabProps) {
                   className="bg-white text-red-600 hover:bg-red-50"
                   onClick={() => handleChange('image', null)}
                 >
-                  Remove
+                  Remover
                 </Button>
               </div>
             </div>
@@ -161,20 +159,16 @@ export function ContentTab({ section, onUpdate }: ContentTabProps) {
                 setCurrentImageField('image');
                 setShowMediaPicker(true);
               }}
-              className="w-full h-48 border-2 border-dashed border-gray-300 rounded-lg hover:border-primary hover:bg-primary/5 transition-all flex flex-col items-center justify-center gap-2"
+              className="flex h-48 w-full flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-gray-300 transition-all hover:border-primary hover:bg-primary/5"
             >
-              <Image className="w-8 h-8 text-gray-400" />
-              <span className="text-sm font-medium text-gray-600">
-                Click to select image
-              </span>
+              <Image className="h-8 w-8 text-gray-400" />
+              <span className="text-sm font-medium text-gray-600">Clique para selecionar uma imagem</span>
             </button>
           )}
 
           {formData.image?.src && (
             <div className="mt-3">
-              <label className="block text-xs font-medium text-gray-700 mb-1">
-                Image Alt Text
-              </label>
+              <label className="mb-1 block text-xs font-medium text-gray-700">Texto alternativo da imagem</label>
               <input
                 type="text"
                 value={formData.image?.alt || ''}
@@ -184,45 +178,39 @@ export function ContentTab({ section, onUpdate }: ContentTabProps) {
                     alt: e.target.value,
                   })
                 }
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20"
-                placeholder="Describe the image for accessibility"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
+                placeholder="Descreva a imagem para acessibilidade"
               />
             </div>
           )}
         </div>
 
-        {/* Icon Field */}
         {formData.icon !== undefined && (
-          <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-            <label className="block text-sm font-medium text-gray-900 mb-3">
-              Icon
-            </label>
+          <div className="mb-6 rounded-lg bg-gray-50 p-4">
+            <label className="mb-3 block text-sm font-medium text-gray-900">Ícone</label>
 
             {formData.icon ? (
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-lg border-2 border-gray-200 flex items-center justify-center bg-white">
+                <div className="flex h-16 w-16 items-center justify-center rounded-lg border-2 border-gray-200 bg-white">
                   {(() => {
                     const IconComponent = (Icons as any)[formData.icon];
                     return IconComponent ? (
-                      <IconComponent className="w-8 h-8 text-gray-700" />
+                      <IconComponent className="h-8 w-8 text-gray-700" />
                     ) : (
-                      <Sparkles className="w-8 h-8 text-gray-400" />
+                      <Sparkles className="h-8 w-8 text-gray-400" />
                     );
                   })()}
                 </div>
 
                 <div className="flex-1">
                   <p className="text-sm font-medium text-gray-900">{formData.icon}</p>
-                  <div className="flex items-center gap-2 mt-2">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setShowIconPicker(true)}
-                    >
-                      <Sparkles className="w-4 h-4 mr-2" />
-                      Change Icon
+
+                  <div className="mt-2 flex items-center gap-2">
+                    <Button type="button" variant="outline" size="sm" onClick={() => setShowIconPicker(true)}>
+                      <Sparkles className="mr-2 h-4 w-4" />
+                      Alterar ícone
                     </Button>
+
                     <Button
                       type="button"
                       variant="ghost"
@@ -230,7 +218,7 @@ export function ContentTab({ section, onUpdate }: ContentTabProps) {
                       className="text-red-600 hover:bg-red-50"
                       onClick={() => handleChange('icon', null)}
                     >
-                      Remove
+                      Remover
                     </Button>
                   </div>
                 </div>
@@ -239,125 +227,54 @@ export function ContentTab({ section, onUpdate }: ContentTabProps) {
               <button
                 type="button"
                 onClick={() => setShowIconPicker(true)}
-                className="w-full h-24 border-2 border-dashed border-gray-300 rounded-lg hover:border-primary hover:bg-primary/5 transition-all flex flex-col items-center justify-center gap-2"
+                className="flex h-24 w-full flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-gray-300 transition-all hover:border-primary hover:bg-primary/5"
               >
-                <Sparkles className="w-8 h-8 text-gray-400" />
-                <span className="text-sm font-medium text-gray-600">
-                  Click to select icon
-                </span>
+                <Sparkles className="h-8 w-8 text-gray-400" />
+                <span className="text-sm font-medium text-gray-600">Clique para selecionar um ícone</span>
               </button>
             )}
           </div>
         )}
 
-        {/* CTA Fields */}
-        {(formData.primaryCTA || formData.secondaryCTA) && (
-          <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-            <h4 className="text-sm font-semibold text-gray-900 mb-3">Call to Action</h4>
+        <div className="mt-8 flex items-center justify-end gap-3">
+          <Button type="button" variant="ghost" onClick={handleCancel} disabled={!hasChanges}>
+            Cancelar alterações
+          </Button>
 
-            {formData.primaryCTA && (
-              <div className="mb-3">
-                <label className="block text-xs font-medium text-gray-700 mb-1">
-                  Primary CTA Label
-                </label>
-                <input
-                  type="text"
-                  value={formData.primaryCTA?.label || ''}
-                  onChange={(e) =>
-                    handleChange('primaryCTA', {
-                      ...formData.primaryCTA,
-                      label: e.target.value,
-                    })
-                  }
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20"
-                  placeholder="Button text"
-                />
-              </div>
-            )}
-
-            {formData.secondaryCTA && (
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
-                  Secondary CTA Label
-                </label>
-                <input
-                  type="text"
-                  value={formData.secondaryCTA?.label || ''}
-                  onChange={(e) =>
-                    handleChange('secondaryCTA', {
-                      ...formData.secondaryCTA,
-                      label: e.target.value,
-                    })
-                  }
-                  className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20"
-                  placeholder="Button text"
-                />
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* JSON Editor for advanced users */}
-        <details className="mb-6">
-          <summary className="text-sm font-medium text-gray-700 cursor-pointer mb-2">
-            Advanced: Edit JSON
-          </summary>
-          <textarea
-            value={JSON.stringify(formData, null, 2)}
-            onChange={(e) => {
-              try {
-                const parsed = JSON.parse(e.target.value);
-                setFormData(parsed);
-                setHasChanges(true);
-              } catch (error) {
-                // Invalid JSON, ignore
-              }
-            }}
-            rows={10}
-            className="w-full px-3 py-2 text-xs font-mono border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none"
-          />
-        </details>
-
-        {/* Save/Cancel Buttons */}
-        {hasChanges && (
-          <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
-            <Button type="submit" variant="primary" size="sm" disabled={saving}>
-              <Save className="w-4 h-4 mr-2" />
-              {saving ? 'Saving...' : 'Save Changes'}
-            </Button>
-            <Button type="button" variant="ghost" size="sm" onClick={handleCancel} disabled={saving}>
-              Cancel
-            </Button>
-          </div>
-        )}
+          <Button type="submit" variant="primary" disabled={!hasChanges || saving}>
+            <Save className="mr-2 h-4 w-4" />
+            {saving ? 'Salvando...' : 'Salvar conteúdo'}
+          </Button>
+        </div>
       </form>
 
-      {/* Modals */}
       {showMediaPicker && (
         <MediaPicker
-          onSelect={(url) => {
-            if (currentImageField === 'image') {
-              handleChange('image', { src: url, alt: formData.image?.alt || '' });
-            }
-            setShowMediaPicker(false);
-            setCurrentImageField(null);
-          }}
           onClose={() => {
             setShowMediaPicker(false);
             setCurrentImageField(null);
           }}
-          selectedUrl={formData.image?.src}
+          onSelect={(media: any) => {
+            if (!currentImageField) return;
+
+            handleChange(currentImageField, {
+              src: media.url || media.src,
+              alt: media.alt || '',
+            });
+
+            setShowMediaPicker(false);
+            setCurrentImageField(null);
+          }}
         />
       )}
 
       {showIconPicker && (
         <IconPicker
-          onSelect={(iconName) => {
+          onClose={() => setShowIconPicker(false)}
+          onSelect={(iconName: string) => {
             handleChange('icon', iconName);
             setShowIconPicker(false);
           }}
-          onClose={() => setShowIconPicker(false)}
-          selectedIcon={formData.icon}
         />
       )}
     </div>

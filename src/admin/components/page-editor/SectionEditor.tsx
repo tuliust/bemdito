@@ -1,5 +1,12 @@
 import { useMemo, useState } from 'react';
-import { Settings, Layout, Palette, Eye, Wand2, MonitorSmartphone } from 'lucide-react';
+import {
+  Settings,
+  Layout,
+  Palette,
+  Eye,
+  Wand2,
+  MonitorSmartphone,
+} from 'lucide-react';
 import { ContentTab } from './editor-tabs/ContentTab';
 import { ItemsTab } from './editor-tabs/ItemsTab';
 import type { PageSection } from '@/types/cms';
@@ -9,7 +16,14 @@ interface SectionEditorProps {
   onUpdate: (updates: Partial<PageSection>) => void;
 }
 
-type TabType = 'content' | 'items' | 'layout' | 'style' | 'breakpoints' | 'behavior' | 'preview';
+type TabType =
+  | 'content'
+  | 'items'
+  | 'layout'
+  | 'style'
+  | 'breakpoints'
+  | 'behavior'
+  | 'preview';
 
 function JsonConfigEditor({
   label,
@@ -45,12 +59,12 @@ function JsonConfigEditor({
             try {
               onSave(JSON.parse(draft));
             } catch (error) {
-              console.error(`Invalid ${label} JSON`, error);
+              console.error(`JSON inválido em ${label}`, error);
             }
           }}
           className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white"
         >
-          Save {label}
+          Salvar {label.toLowerCase()}
         </button>
       </div>
     </div>
@@ -62,13 +76,13 @@ export function SectionEditor({ section, onUpdate }: SectionEditorProps) {
   const sectionConfig = useMemo(() => section.config ?? {}, [section.config]);
 
   const tabs = [
-    { id: 'content' as TabType, label: 'Content', icon: Settings },
-    { id: 'items' as TabType, label: 'Items', icon: Layout },
+    { id: 'content' as TabType, label: 'Conteúdo', icon: Settings },
+    { id: 'items' as TabType, label: 'Itens', icon: Layout },
     { id: 'layout' as TabType, label: 'Layout', icon: MonitorSmartphone },
-    { id: 'style' as TabType, label: 'Style', icon: Palette },
+    { id: 'style' as TabType, label: 'Estilo', icon: Palette },
     { id: 'breakpoints' as TabType, label: 'Breakpoints', icon: MonitorSmartphone },
-    { id: 'behavior' as TabType, label: 'Behavior', icon: Wand2 },
-    { id: 'preview' as TabType, label: 'Preview', icon: Eye },
+    { id: 'behavior' as TabType, label: 'Comportamento', icon: Wand2 },
+    { id: 'preview' as TabType, label: 'Prévia', icon: Eye },
   ];
 
   const handleContentUpdate = (content: Record<string, any>) => {
@@ -93,6 +107,7 @@ export function SectionEditor({ section, onUpdate }: SectionEditorProps) {
         <div className="flex flex-wrap items-center px-4">
           {tabs.map((tab) => {
             const Icon = tab.icon;
+
             return (
               <button
                 key={tab.id}
@@ -115,16 +130,17 @@ export function SectionEditor({ section, onUpdate }: SectionEditorProps) {
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-sm font-medium text-gray-900">
-              {section.template?.name || 'Unknown Template'}
+              {section.template?.name || 'Template desconhecido'}
             </h3>
             <p className="text-xs text-gray-500">{section.template?.slug}</p>
           </div>
+
           <span
             className={`rounded px-2 py-1 text-xs font-medium ${
               section.visible ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
             }`}
           >
-            {section.visible ? 'Visible' : 'Hidden'}
+            {section.visible ? 'Visível' : 'Oculta'}
           </span>
         </div>
       </div>
@@ -140,47 +156,43 @@ export function SectionEditor({ section, onUpdate }: SectionEditorProps) {
           <JsonConfigEditor
             label="Layout"
             value={sectionConfig.layout}
-            description="Configure container, spacing, alignment and structural layout rules."
-            onSave={(layout) => handleConfigUpdate('layout', layout)}
+            description="Configure container, espaçamento, alinhamento e regras estruturais da seção."
+            onSave={(value) => handleConfigUpdate('layout', value)}
           />
         )}
 
         {activeTab === 'style' && (
           <JsonConfigEditor
-            label="Style"
+            label="Estilo"
             value={sectionConfig.style}
-            description="Manage colors, decorative tokens, surfaces and visual overrides for this section."
-            onSave={(style) => handleConfigUpdate('style', style)}
-          />
-        )}
-
-        {activeTab === 'breakpoints' && (
-          <JsonConfigEditor
-            label="Breakpoints"
-            value={{ overrides: section.breakpointOverrides ?? [] }}
-            description="Store mobile, tablet and desktop overrides using the same shape consumed by the runtime renderer."
-            onSave={(breakpointData) =>
-              onUpdate({
-                breakpointOverrides: breakpointData.overrides ?? [],
-                breakpoint_overrides: breakpointData.overrides ?? [],
-              })
-            }
+            description="Ajuste cores, tipografia, bordas e variações visuais da seção."
+            onSave={(value) => handleConfigUpdate('style', value)}
           />
         )}
 
         {activeTab === 'behavior' && (
           <JsonConfigEditor
-            label="Behavior"
+            label="Comportamento"
             value={sectionConfig.behavior}
-            description="Configure animation, sticky logic, interactions and runtime behavior flags."
-            onSave={(behavior) => handleConfigUpdate('behavior', behavior)}
+            description="Defina animações, interações e outras regras comportamentais."
+            onSave={(value) => handleConfigUpdate('behavior', value)}
           />
+        )}
+
+        {activeTab === 'breakpoints' && (
+          <div className="p-6">
+            <h4 className="mb-2 text-base font-semibold text-gray-900">Breakpoints</h4>
+            <p className="text-sm text-gray-500">
+              Os ajustes por breakpoint podem ser configurados nos dados da seção.
+            </p>
+          </div>
         )}
 
         {activeTab === 'preview' && (
           <div className="p-6">
+            <h4 className="mb-2 text-base font-semibold text-gray-900">Prévia</h4>
             <p className="text-sm text-gray-500">
-              Preview responsivo disponivel na coluna da direita com overrides por breakpoint.
+              Use o painel lateral direito para visualizar a seção em diferentes dispositivos.
             </p>
           </div>
         )}

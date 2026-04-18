@@ -29,8 +29,8 @@ export function MediaLibrary() {
       setLoading(true);
       setAssets(await listMediaAssets());
     } catch (error) {
-      console.error('Error loading media assets:', error);
-      toast.error('Falha ao carregar a biblioteca de midia');
+      console.error('Erro ao carregar arquivos de mídia:', error);
+      toast.error('Falha ao carregar a biblioteca de mídia');
     } finally {
       setLoading(false);
     }
@@ -81,7 +81,7 @@ export function MediaLibrary() {
         inputRef.current.value = '';
       }
     } catch (error) {
-      console.error('Error uploading files:', error);
+      console.error('Erro ao enviar arquivos:', error);
       toast.error('Falha ao enviar arquivos');
     } finally {
       setUploading(false);
@@ -95,7 +95,7 @@ export function MediaLibrary() {
       setSelectedAssets((current) => current.filter((id) => id !== assetId));
       toast.success('Arquivo removido com sucesso');
     } catch (error) {
-      console.error('Error deleting asset:', error);
+      console.error('Erro ao remover arquivo:', error);
       toast.error('Falha ao remover arquivo');
     }
   }
@@ -104,8 +104,8 @@ export function MediaLibrary() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Biblioteca de Midia</h1>
-          <p className="text-muted-foreground mt-1">
+          <h1 className="text-3xl font-bold text-foreground">Biblioteca de mídia</h1>
+          <p className="mt-1 text-muted-foreground">
             {assets.length} arquivo{assets.length !== 1 && 's'}
           </p>
         </div>
@@ -132,22 +132,22 @@ export function MediaLibrary() {
 
       <Card padding="md">
         <div className="flex items-center gap-4">
-          <div className="flex-1 relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+          <div className="relative flex-1">
+            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="Buscar arquivos, mime type ou legenda..."
-              className="w-full h-12 pl-12 pr-4 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              placeholder="Buscar arquivos, tipo MIME ou legenda..."
+              className="h-12 w-full rounded-lg border border-border bg-background pl-12 pr-4 text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             />
           </div>
 
-          <div className="flex gap-1 bg-muted rounded-lg p-1">
+          <div className="flex gap-1 rounded-lg bg-muted p-1">
             <button
               onClick={() => setViewMode('grid')}
               className={cn(
-                'p-2 rounded transition-colors',
+                'rounded p-2 transition-colors',
                 viewMode === 'grid'
                   ? 'bg-background text-foreground'
                   : 'text-muted-foreground hover:text-foreground'
@@ -158,7 +158,7 @@ export function MediaLibrary() {
             <button
               onClick={() => setViewMode('list')}
               className={cn(
-                'p-2 rounded transition-colors',
+                'rounded p-2 transition-colors',
                 viewMode === 'list'
                   ? 'bg-background text-foreground'
                   : 'text-muted-foreground hover:text-foreground'
@@ -171,9 +171,9 @@ export function MediaLibrary() {
       </Card>
 
       <div className="flex items-center gap-3">
-        <Badge variant="secondary">{filteredAssets.length} visiveis</Badge>
+        <Badge variant="secondary">{filteredAssets.length} visíveis</Badge>
         {selectedAssets.length > 0 && (
-          <Badge variant="outline">{selectedAssets.length} selecionados</Badge>
+          <Badge variant="outline">{selectedAssets.length} selecionado(s)</Badge>
         )}
       </div>
 
@@ -185,7 +185,7 @@ export function MediaLibrary() {
         <Card padding="lg" className="text-center">
           <ImageIcon className="mx-auto mb-4 h-10 w-10 text-muted-foreground" />
           <p className="text-sm text-muted-foreground">
-            {searchQuery ? 'Nenhum arquivo corresponde a busca atual.' : 'Nenhum arquivo cadastrado ainda.'}
+            {searchQuery ? 'Nenhum arquivo corresponde à busca atual.' : 'Nenhum arquivo cadastrado ainda.'}
           </p>
         </Card>
       ) : viewMode === 'grid' ? (

@@ -33,10 +33,11 @@ export function LivePreview({ section }: LivePreviewProps) {
     return (
       <div className="flex h-full flex-col">
         <div className="flex h-14 items-center justify-between border-b border-gray-200 bg-white px-4">
-          <h3 className="text-sm font-semibold text-gray-900">Preview</h3>
+          <h3 className="text-sm font-semibold text-gray-900">Pré-visualização</h3>
         </div>
+
         <div className="flex flex-1 items-center justify-center bg-gray-50">
-          <p className="text-sm text-gray-500">No section selected</p>
+          <p className="text-sm text-gray-500">Nenhuma seção selecionada</p>
         </div>
       </div>
     );
@@ -45,7 +46,7 @@ export function LivePreview({ section }: LivePreviewProps) {
   return (
     <div className="flex h-full flex-col">
       <div className="flex h-14 items-center justify-between border-b border-gray-200 bg-white px-4">
-        <h3 className="text-sm font-semibold text-gray-900">Preview</h3>
+        <h3 className="text-sm font-semibold text-gray-900">Pré-visualização</h3>
 
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 rounded-lg bg-gray-100 p-1">
@@ -56,10 +57,11 @@ export function LivePreview({ section }: LivePreviewProps) {
                   ? 'bg-white text-primary shadow-sm'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
-              title="Desktop view"
+              title="Visualização desktop"
             >
               <Monitor className="h-4 w-4" />
             </button>
+
             <button
               onClick={() => setDevice('tablet')}
               className={`rounded p-1.5 transition-colors ${
@@ -67,10 +69,11 @@ export function LivePreview({ section }: LivePreviewProps) {
                   ? 'bg-white text-primary shadow-sm'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
-              title="Tablet view"
+              title="Visualização tablet"
             >
               <Tablet className="h-4 w-4" />
             </button>
+
             <button
               onClick={() => setDevice('mobile')}
               className={`rounded p-1.5 transition-colors ${
@@ -78,7 +81,7 @@ export function LivePreview({ section }: LivePreviewProps) {
                   ? 'bg-white text-primary shadow-sm'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
-              title="Mobile view"
+              title="Visualização mobile"
             >
               <Smartphone className="h-4 w-4" />
             </button>
@@ -87,7 +90,7 @@ export function LivePreview({ section }: LivePreviewProps) {
           <button
             onClick={handleRefresh}
             className="rounded p-1.5 transition-colors hover:bg-gray-100"
-            title="Refresh preview"
+            title="Atualizar pré-visualização"
           >
             <RotateCcw className="h-4 w-4 text-gray-600" />
           </button>
@@ -101,20 +104,15 @@ export function LivePreview({ section }: LivePreviewProps) {
         >
           <div key={key} className="preview-wrapper">
             {section.template?.slug ? (
-              <SectionRenderer section={section} currentBreakpoint={breakpointMap[device]} />
+              <SectionRenderer
+                section={section}
+                currentBreakpoint={breakpointMap[device] as any}
+              />
             ) : (
-              <div className="p-8 text-center">
-                <p className="text-sm text-gray-500">No template selected</p>
-              </div>
+              <div className="p-6 text-sm text-gray-500">Template da seção não encontrado.</div>
             )}
           </div>
         </div>
-      </div>
-
-      <div className="flex h-10 items-center justify-center border-t border-gray-200 bg-gray-50">
-        <p className="text-xs text-gray-500">
-          {section.template?.name || 'Unknown Template'} • {device} view
-        </p>
       </div>
     </div>
   );

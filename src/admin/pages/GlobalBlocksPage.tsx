@@ -49,8 +49,8 @@ export function GlobalBlocksPage() {
         setDraftBlock(null);
       }
     } catch (error) {
-      console.error('Error loading global blocks:', error);
-      toast.error('Failed to load global blocks');
+      console.error('Erro ao carregar blocos globais:', error);
+      toast.error('Não foi possível carregar os blocos globais');
     } finally {
       setLoading(false);
     }
@@ -86,10 +86,10 @@ export function GlobalBlocksPage() {
       );
       setDraftBlock((current) => (current ? { ...current, ...updated } : current));
 
-      toast.success('Global block saved successfully');
+      toast.success('Bloco global salvo com sucesso');
     } catch (error) {
-      console.error('Error saving global block:', error);
-      toast.error('Failed to save global block');
+      console.error('Erro ao salvar bloco global:', error);
+      toast.error('Não foi possível salvar o bloco global');
     } finally {
       setSaving(false);
     }
@@ -100,7 +100,7 @@ export function GlobalBlocksPage() {
       <div className="flex h-64 items-center justify-center">
         <div className="text-center">
           <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-          <p className="text-sm text-gray-500">Loading global blocks...</p>
+          <p className="text-sm text-gray-500">Carregando blocos globais...</p>
         </div>
       </div>
     );
@@ -110,9 +110,9 @@ export function GlobalBlocksPage() {
     return (
       <div className="rounded-2xl border border-dashed border-gray-300 bg-white p-12 text-center">
         <Globe className="mx-auto mb-4 h-12 w-12 text-gray-400" />
-        <h1 className="text-2xl font-bold text-gray-900">No global blocks found</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Nenhum bloco global encontrado</h1>
         <p className="mt-2 text-gray-500">
-          Seed the database or create initial blocks before editing this module.
+          Faça o seed do banco ou crie os blocos iniciais antes de editar este módulo.
         </p>
       </div>
     );
@@ -121,9 +121,9 @@ export function GlobalBlocksPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Global Blocks</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Blocos globais</h1>
         <p className="mt-2 text-gray-600">
-          Edit reusable structural blocks such as header, footer, overlays and floating actions.
+          Edite os blocos estruturais reutilizáveis, como header, footer, overlays e ações flutuantes.
         </p>
       </div>
 

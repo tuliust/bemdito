@@ -14,25 +14,25 @@ const moduleCards = [
   {
     key: 'blogPosts',
     title: 'Blog',
-    description: 'Posts, status editorial e categorias para grids e destaques.',
+    description: 'Posts, status editorial e categorias para grades e destaques.',
     icon: FileText,
   },
   {
     key: 'testimonials',
-    title: 'Testimonials',
-    description: 'Depoimentos reutilizaveis para secoes e blocos globais.',
+    title: 'Depoimentos',
+    description: 'Depoimentos reutilizáveis para seções e blocos globais.',
     icon: MessageSquareQuote,
   },
   {
     key: 'awards',
-    title: 'Awards',
+    title: 'Premiações',
     description: 'Reconhecimentos e logos institucionais ordenados por prioridade.',
     icon: Trophy,
   },
   {
     key: 'faqGroups',
     title: 'FAQs',
-    description: 'Grupos de perguntas com itens vinculados para secoes accordion.',
+    description: 'Grupos de perguntas com itens vinculados para seções em accordion.',
     icon: CircleHelp,
   },
 ] as const;
@@ -44,6 +44,7 @@ export function ContentModulesPage() {
     awards: [],
     faqGroups: [],
   });
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export function ContentModulesPage() {
         setLoading(true);
         setSnapshot(await getContentModulesSnapshot());
       } catch (error) {
-        console.error('Error loading content modules snapshot:', error);
+        console.error('Erro ao carregar módulos de conteúdo:', error);
       } finally {
         setLoading(false);
       }
@@ -64,15 +65,15 @@ export function ContentModulesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Content Modules</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Módulos de conteúdo</h1>
         <p className="mt-2 text-gray-600">
-          Sprint 8 organizado sobre a mesma camada normalizada usada pelo editor e pelo runtime publico.
+          Visão consolidada dos módulos estruturados usados pelo editor e pelo runtime público.
         </p>
       </div>
 
       {loading ? (
         <Card padding="lg" className="text-muted-foreground">
-          Carregando modulos...
+          Carregando módulos...
         </Card>
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
@@ -87,11 +88,13 @@ export function ContentModulesPage() {
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                       <Icon className="h-5 w-5" />
                     </div>
+
                     <div>
                       <h2 className="text-xl font-semibold text-gray-900">{moduleCard.title}</h2>
                       <p className="text-sm text-gray-600">{moduleCard.description}</p>
                     </div>
                   </div>
+
                   <Badge variant="secondary">{items.length}</Badge>
                 </div>
 
@@ -110,19 +113,17 @@ export function ContentModulesPage() {
                               {item.title || item.name || item.organization || 'Registro'}
                             </div>
                             <div className="truncate text-xs text-gray-500">
-                              {item.slug || item.company || item.role || `${item.items?.length || 0} itens`}
+                              {item.slug || item.category || item.status || 'Sem metadados'}
                             </div>
                           </div>
-                          {'status' in item && item.status ? (
-                            <Badge
-                              variant={item.status === 'published' ? 'success' : item.status === 'draft' ? 'warning' : 'outline'}
-                              size="sm"
-                            >
-                              {item.status}
-                            </Badge>
-                          ) : null}
                         </div>
                       ))}
+
+                      {items.length > 3 && (
+                        <p className="pt-1 text-xs text-gray-500">
+                          + {items.length - 3} registro(s) adicional(is)
+                        </p>
+                      )}
                     </div>
                   )}
                 </div>

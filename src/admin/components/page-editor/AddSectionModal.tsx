@@ -35,8 +35,8 @@ export function AddSectionModal({ pageId, onClose, onSuccess }: AddSectionModalP
       const data = await getTemplates();
       setTemplates(data || []);
     } catch (error) {
-      console.error('Error loading templates:', error);
-      toast.error('Failed to load templates');
+      console.error('Erro ao carregar templates:', error);
+      toast.error('Não foi possível carregar os templates');
     } finally {
       setLoading(false);
     }
@@ -64,8 +64,8 @@ export function AddSectionModal({ pageId, onClose, onSuccess }: AddSectionModalP
 
       onSuccess();
     } catch (error) {
-      console.error('Error creating section:', error);
-      toast.error('Failed to create section');
+      console.error('Erro ao criar seção:', error);
+      toast.error('Não foi possível criar a seção');
     } finally {
       setCreating(false);
     }
@@ -81,42 +81,40 @@ export function AddSectionModal({ pageId, onClose, onSuccess }: AddSectionModalP
   });
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[80vh] flex flex-col">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Add Section</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+      <div className="flex max-h-[80vh] w-full max-w-3xl flex-col rounded-xl bg-white shadow-2xl">
+        <div className="flex items-center justify-between border-b border-gray-200 p-6">
+          <h2 className="text-xl font-semibold text-gray-900">Adicionar seção</h2>
+
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="rounded-lg p-2 transition-colors hover:bg-gray-100"
           >
-            <X className="w-5 h-5 text-gray-500" />
+            <X className="h-5 w-5 text-gray-500" />
           </button>
         </div>
 
-        {/* Search */}
-        <div className="p-6 border-b border-gray-200">
+        <div className="border-b border-gray-200 p-6">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
-              placeholder="Search templates..."
+              placeholder="Buscar templates..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20"
+              className="w-full rounded-lg border border-gray-300 py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
           </div>
         </div>
 
-        {/* Templates Grid */}
         <div className="flex-1 overflow-y-auto p-6">
           {loading ? (
             <div className="flex items-center justify-center py-12">
-              <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+              <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
             </div>
           ) : filteredTemplates.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-sm text-gray-500">No templates found</p>
+            <div className="py-12 text-center">
+              <p className="text-sm text-gray-500">Nenhum template encontrado</p>
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-4">
@@ -124,23 +122,21 @@ export function AddSectionModal({ pageId, onClose, onSuccess }: AddSectionModalP
                 <button
                   key={template.id}
                   onClick={() => setSelectedTemplateId(template.id)}
-                  className={`text-left p-4 border-2 rounded-lg transition-all ${
+                  className={`rounded-lg border-2 p-4 text-left transition-all ${
                     selectedTemplateId === template.id
                       ? 'border-primary bg-primary/5'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
-                  <h3 className="font-medium text-gray-900 mb-1">{template.name}</h3>
-                  <p className="text-xs text-gray-500 mb-2">{template.slug}</p>
+                  <h3 className="font-medium text-gray-900">{template.name}</h3>
+                  <p className="mt-1 text-sm text-gray-500">{template.slug}</p>
                   {template.description && (
-                    <p className="text-sm text-gray-600 line-clamp-2">
-                      {template.description}
-                    </p>
+                    <p className="mt-3 text-sm text-gray-600">{template.description}</p>
                   )}
                   {template.category && (
-                    <span className="inline-block mt-2 px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">
+                    <div className="mt-3 text-xs font-medium uppercase tracking-wide text-primary">
                       {template.category}
-                    </span>
+                    </div>
                   )}
                 </button>
               ))}
@@ -148,17 +144,17 @@ export function AddSectionModal({ pageId, onClose, onSuccess }: AddSectionModalP
           )}
         </div>
 
-        {/* Footer */}
-        <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200">
+        <div className="flex items-center justify-between border-t border-gray-200 p-6">
           <Button variant="ghost" onClick={onClose}>
-            Cancel
+            Cancelar
           </Button>
+
           <Button
             variant="primary"
             onClick={handleCreate}
             disabled={!selectedTemplateId || creating}
           >
-            {creating ? 'Creating...' : 'Add Section'}
+            {creating ? 'Adicionando...' : 'Adicionar seção'}
           </Button>
         </div>
       </div>
