@@ -87,13 +87,21 @@ export function SectionRenderer({ section, currentBreakpoint }: SectionRendererP
     ? resolveVariant(templateSlug, variantSlug)
     : null;
 
-  // Get config from database structure
+  // Keep the CMS contract centered on the single config column from Supabase.
   const baseConfig = {
     ...(section.config || {}),
-    ...(section as any).content_config,
-    ...(section as any).style_config,
-    ...(section as any).layout_config,
-    ...(section as any).behavior_config,
+    layout: {
+      ...((section.config as any)?.layout || {}),
+      ...((section as any).layout_config || {}),
+    },
+    style: {
+      ...((section.config as any)?.style || {}),
+      ...((section as any).style_config || {}),
+    },
+    behavior: {
+      ...((section.config as any)?.behavior || {}),
+      ...((section as any).behavior_config || {}),
+    },
   };
 
   // Merge variant config with base config

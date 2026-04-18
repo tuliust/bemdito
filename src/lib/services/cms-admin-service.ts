@@ -2,6 +2,7 @@ import type {
   BreakpointOverride,
   Page,
   PageSection,
+  SectionConfig,
   SectionItem,
   SectionTemplate,
   SectionVariant,
@@ -12,6 +13,20 @@ export interface CmsEditorSnapshot {
   sections: PageSection[];
 }
 
+function normalizeSectionConfig(raw: any): SectionConfig & Record<string, any> {
+  const source = raw?.config ?? raw ?? {};
+  const layout = source.layout ?? raw?.layout_config ?? {};
+  const style = source.style ?? raw?.style_config ?? {};
+  const behavior = source.behavior ?? raw?.behavior_config ?? {};
+
+  return {
+    ...(source || {}),
+    layout,
+    style,
+    behavior,
+  };
+}
+
 export function normalizePage(raw: any): Page {
   return {
     id: raw.id,
@@ -20,10 +35,7 @@ export function normalizePage(raw: any): Page {
     slug: raw.slug,
     title: raw.title ?? raw.name ?? 'Untitled page',
     name: raw.name ?? raw.title,
-    description: raw.description ?? raw.meta_description ?? undefined,
-    meta_title: raw.meta_title ?? undefined,
-    meta_description: raw.meta_description ?? undefined,
-    meta_image: raw.meta_image ?? undefined,
+    description: raw.description ?? undefined,
     status: raw.status ?? 'draft',
     created_at: raw.created_at,
     updated_at: raw.updated_at,
@@ -45,6 +57,7 @@ export function normalizeTemplate(raw: any): SectionTemplate | undefined {
     category: source.category ?? undefined,
     description: source.description ?? undefined,
     schema: source.schema ?? undefined,
+    default_config: source.default_config ?? undefined,
     preview_image: source.preview_image ?? undefined,
     created_at: source.created_at,
     updated_at: source.updated_at,
@@ -64,8 +77,8 @@ export function normalizeVariant(raw: any): SectionVariant | undefined {
     name: source.name,
     slug: source.slug,
     description: source.description ?? undefined,
-    config_overrides: source.config_overrides ?? undefined,
-    schemaOverrides: source.schema_overrides ?? undefined,
+    schema_overrides: source.schema_overrides ?? source.config_overrides ?? undefined,
+    schemaOverrides: source.schema_overrides ?? source.config_overrides ?? undefined,
     stylePreset: source.style_preset ?? undefined,
     preview_image: source.preview_image ?? undefined,
     created_at: source.created_at,
@@ -94,14 +107,23 @@ export function normalizeBreakpointOverride(raw: any): BreakpointOverride {
   return {
     id: raw.id,
     section_id: raw.section_id,
+    sectionId: raw.section_id,
     breakpoint: raw.breakpoint,
     config: raw.config ?? raw.config_overrides ?? {},
-    config_overrides: raw.config_overrides ?? raw.config ?? {},
     visible: raw.visible,
+    created_at: raw.created_at,
+    updated_at: raw.updated_at,
   };
 }
 
 export function normalizePageSection(raw: any): PageSection {
+  const config = normalizeSectionConfig(raw);
+  const breakpointOverrides = Array.isArray(raw.breakpointOverrides)
+    ? raw.breakpointOverrides.map(normalizeBreakpointOverride)
+    : Array.isArray(raw.breakpoint_overrides)
+    ? raw.breakpoint_overrides.map(normalizeBreakpointOverride)
+    : [];
+
   return {
     id: raw.id,
     page_id: raw.page_id ?? raw.pageId,
@@ -113,26 +135,14 @@ export function normalizePageSection(raw: any): PageSection {
     order_index: raw.order_index ?? raw.order ?? 0,
     order: raw.order_index ?? raw.order ?? 0,
     content: raw.content ?? {},
-    config: raw.config ?? {
-      layout: raw.layout_config ?? {},
-      style: raw.style_config ?? {},
-      behavior: raw.behavior_config ?? {},
-    },
+    config,
     content_config: raw.content_config ?? {},
-    style_config: raw.style_config ?? {},
-    layout_config: raw.layout_config ?? {},
-    behavior_config: raw.behavior_config ?? {},
+    style_config: config.style ?? {},
+    layout_config: config.layout ?? {},
+    behavior_config: config.behavior ?? {},
     items: Array.isArray(raw.items) ? raw.items.map(normalizeSectionItem) : [],
-    breakpointOverrides: Array.isArray(raw.breakpointOverrides)
-      ? raw.breakpointOverrides.map(normalizeBreakpointOverride)
-      : Array.isArray(raw.breakpoint_overrides)
-      ? raw.breakpoint_overrides.map(normalizeBreakpointOverride)
-      : [],
-    breakpoint_overrides: Array.isArray(raw.breakpoint_overrides)
-      ? raw.breakpoint_overrides.map(normalizeBreakpointOverride)
-      : Array.isArray(raw.breakpointOverrides)
-      ? raw.breakpointOverrides.map(normalizeBreakpointOverride)
-      : [],
+    breakpointOverrides,
+    breakpoint_overrides: breakpointOverrides,
     visible: raw.visible ?? raw.is_visible ?? true,
     template: normalizeTemplate(raw.template),
     variant: normalizeVariant(raw.variant),
@@ -142,13 +152,17 @@ export function normalizePageSection(raw: any): PageSection {
 }
 
 export function toSectionUpdatePayload(section: Partial<PageSection>) {
+  const config = normalizeSectionConfig({
+    config: section.config,
+    layout_config: section.layout_config,
+    style_config: section.style_config,
+    behavior_config: section.behavior_config,
+  });
+
   return {
     content: section.content,
     visible: section.visible,
-    content_config: section.content_config,
-    style_config: section.style_config,
-    layout_config: section.layout_config,
-    behavior_config: section.behavior_config,
+    config,
     variant_id: section.variant_id ?? section.variantId ?? null,
   };
 }

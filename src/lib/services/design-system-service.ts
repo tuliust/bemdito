@@ -10,52 +10,75 @@ import type {
 function normalizeToken(raw: any): DesignToken {
   return {
     id: raw.id,
+    site_id: raw.site_id ?? undefined,
+    siteId: raw.site_id ?? undefined,
     category: raw.category,
     name: raw.name,
-    value: typeof raw.value === 'string' ? raw.value : JSON.stringify(raw.value),
+    slug: raw.slug,
+    value: raw.value,
     description: raw.slug,
+    created_at: raw.created_at,
+    updated_at: raw.updated_at,
   };
 }
 
 function normalizeButtonPreset(raw: any): ButtonPreset {
   return {
     id: raw.id,
+    site_id: raw.site_id,
+    siteId: raw.site_id,
     name: raw.name,
-    variant: raw.variant === 'tertiary' ? 'secondary' : raw.variant,
+    variant: raw.variant,
     size: raw.size,
-    style: raw.style_config ?? {},
+    style: raw.style ?? {},
+    created_at: raw.created_at,
+    updated_at: raw.updated_at,
   };
 }
 
 function normalizeInputPreset(raw: any): InputPreset {
   return {
     id: raw.id,
+    site_id: raw.site_id,
+    siteId: raw.site_id,
     name: raw.name,
-    variant: raw.variant === 'filled' ? 'default' : raw.variant,
+    variant: raw.variant,
     size: raw.size,
-    style: raw.style_config ?? {},
+    style: raw.style ?? {},
+    created_at: raw.created_at,
+    updated_at: raw.updated_at,
   };
 }
 
 function normalizeTypographyStyle(raw: any): TypographyStyle {
   return {
     id: raw.id,
+    site_id: raw.site_id,
+    siteId: raw.site_id,
     name: raw.name,
-    slot: raw.role === 'title' || raw.role === 'caption' ? 'metadata' : raw.role,
-    fontFamily: raw.font_family ?? 'inherit',
-    fontSize: raw.size,
-    fontWeight: Number(raw.weight ?? 400),
+    slot: raw.slot,
+    font_family_id: raw.font_family_id ?? undefined,
+    fontFamilyId: raw.font_family_id ?? undefined,
+    fontFamily: 'inherit',
+    fontSize: raw.font_size,
+    fontWeight: Number(raw.font_weight ?? 400),
     lineHeight: raw.line_height ?? '1.4',
     letterSpacing: raw.letter_spacing ?? undefined,
+    created_at: raw.created_at,
+    updated_at: raw.updated_at,
   };
 }
 
 function normalizeAnimationPreset(raw: any): AnimationPreset {
   return {
     id: raw.id,
+    site_id: raw.site_id,
+    siteId: raw.site_id,
     name: raw.name,
     type: raw.type,
     config: raw.config ?? {},
+    created_at: raw.created_at,
+    updated_at: raw.updated_at,
   };
 }
 

@@ -14,6 +14,7 @@ export interface SectionTemplate {
   category?: string;
   preview_image?: string;
   schema: Record<string, any>;
+  default_config?: Record<string, any>;
   created_at: string;
   updated_at: string;
 }
@@ -24,10 +25,24 @@ export interface SectionVariant {
   name: string;
   slug: string;
   description?: string;
-  preview_image?: string;
-  config_overrides: Record<string, any>;
+  schema_overrides: Record<string, any>;
+  style_preset?: Record<string, any>;
   created_at: string;
   updated_at: string;
+}
+
+function normalizeVariant(raw: any): SectionVariant {
+  return {
+    id: raw.id,
+    template_id: raw.template_id,
+    name: raw.name,
+    slug: raw.slug,
+    description: raw.description ?? undefined,
+    schema_overrides: raw.schema_overrides ?? {},
+    style_preset: raw.style_preset ?? undefined,
+    created_at: raw.created_at,
+    updated_at: raw.updated_at,
+  };
 }
 
 /**
@@ -69,7 +84,7 @@ export async function getVariantsByTemplate(templateId: string) {
     return [];
   }
 
-  return data || [];
+  return (data || []).map(normalizeVariant);
 }
 
 /**
@@ -91,7 +106,7 @@ export async function getVariantBySlug(templateSlug: string, variantSlug: string
     return null;
   }
 
-  return data as SectionVariant;
+  return normalizeVariant(data);
 }
 
 /**

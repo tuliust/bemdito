@@ -17,25 +17,13 @@ export function PublicHome() {
       try {
         setLoading(true);
 
-        // Load home page
         const pageData = await getPageBySlug('/');
         if (!pageData) {
           setError('Home page not found in database');
           return;
         }
 
-        console.log('Page loaded successfully:', {
-          title: pageData.title,
-          sections_count: pageData.sections?.length || 0,
-        });
-
-        // Load global blocks
         const blocksData = await getGlobalBlocks();
-
-        console.log('Global blocks loaded:', {
-          count: blocksData.length,
-          types: blocksData.map(b => b.type),
-        });
 
         setPage(pageData);
         setGlobalBlocks(blocksData);
@@ -50,7 +38,7 @@ export function PublicHome() {
     loadData();
   }, []);
 
-  const handleGlobalAction = (action: string, data?: any) => {
+  const handleGlobalAction = (action: string) => {
     switch (action) {
       case 'open-menu':
         setIsMenuOpen(true);
@@ -69,7 +57,7 @@ export function PublicHome() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent"></div>
           <p className="mt-4 text-foreground/60">Loading...</p>
@@ -80,50 +68,34 @@ export function PublicHome() {
 
   if (error || !page) {
     return (
-      <div className="flex items-center justify-center min-h-screen p-8">
+      <div className="flex min-h-screen items-center justify-center p-8">
         <div className="max-w-2xl">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
-            <h2 className="text-red-700 font-bold text-lg mb-2">⚠️ Database Not Configured</h2>
-            <p className="text-red-600 mb-4">
-              {error || 'Home page not found in database'}
-            </p>
+          <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-6">
+            <h2 className="mb-2 text-lg font-bold text-red-700">Database Not Configured</h2>
+            <p className="mb-4 text-red-600">{error || 'Home page not found in database'}</p>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-            <h3 className="text-blue-900 font-semibold mb-3">📋 Setup Instructions:</h3>
-            <ol className="text-blue-800 space-y-2 text-sm list-decimal list-inside">
+          <div className="rounded-lg border border-blue-200 bg-blue-50 p-6">
+            <h3 className="mb-3 font-semibold text-blue-900">Setup Instructions</h3>
+            <ol className="list-inside list-decimal space-y-2 text-sm text-blue-800">
               <li>
                 Open Supabase SQL Editor:{' '}
                 <a
                   href="https://supabase.com/dashboard/project/ttxaaagqtihwapvtgxtc/sql"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline text-blue-600 hover:text-blue-700"
+                  className="text-blue-600 underline hover:text-blue-700"
                 >
                   Click here
                 </a>
               </li>
               <li>
                 Copy and execute the contents of{' '}
-                <code className="bg-blue-100 px-1 rounded">database-seed-fixed.sql</code>
+                <code className="rounded bg-blue-100 px-1">database-seed-fixed.sql</code>
               </li>
-              <li>
-                Wait for the SQL to complete (should create 1 site, 12 templates, 1 home page, 12 sections)
-              </li>
-              <li>
-                Refresh this page
-              </li>
+              <li>Wait for the SQL to complete.</li>
+              <li>Refresh this page.</li>
             </ol>
-          </div>
-
-          <div className="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
-            <h4 className="font-semibold text-gray-900 mb-2">🔍 Troubleshooting:</h4>
-            <ul className="text-gray-700 text-sm space-y-1">
-              <li>• Check if tables exist in Supabase Table Editor</li>
-              <li>• Verify the SQL executed without errors</li>
-              <li>• Look for a page with slug "/" and status "published"</li>
-              <li>• Check browser console for detailed error messages</li>
-            </ul>
           </div>
         </div>
       </div>
@@ -132,10 +104,8 @@ export function PublicHome() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Render global blocks */}
       {globalBlocks.map((block) => {
-        // Add state props for interactive blocks
-        const blockProps: any = {};
+        const blockProps: Record<string, any> = {};
         if (block.type === 'menu_overlay') {
           blockProps.isOpen = isMenuOpen;
           blockProps.onClose = () => handleGlobalAction('close-menu');
@@ -157,7 +127,6 @@ export function PublicHome() {
         );
       })}
 
-      {/* Render page content */}
       <main>
         <PageRenderer page={page} />
       </main>

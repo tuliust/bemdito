@@ -7,10 +7,15 @@ export type Breakpoint = 'mobile' | 'tablet' | 'desktop';
 
 export interface DesignToken {
   id: string;
-  category: 'color' | 'typography' | 'spacing' | 'radius' | 'shadow';
+  site_id?: string;
+  siteId?: string;
+  category: 'color' | 'typography' | 'spacing' | 'radius' | 'shadow' | 'animation';
   name: string;
-  value: string;
+  slug?: string;
+  value: string | Record<string, any> | any[];
   description?: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface ColorPalette {
@@ -28,14 +33,20 @@ export interface PaletteColor {
 
 export interface TypographyStyle {
   id: string;
+  site_id?: string;
+  siteId?: string;
   name: string;
   slot: 'display' | 'heading' | 'subheading' | 'body' | 'supporting' | 'label' | 'metadata';
+  font_family_id?: string;
+  fontFamilyId?: string;
   fontFamily: string;
   fontSize: string;
   fontWeight: number;
   lineHeight: string;
   letterSpacing?: string;
   breakpoints?: TypographyBreakpoint[];
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface TypographyBreakpoint {
@@ -46,25 +57,37 @@ export interface TypographyBreakpoint {
 
 export interface ButtonPreset {
   id: string;
+  site_id?: string;
+  siteId?: string;
   name: string;
   variant: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link';
   size: 'sm' | 'md' | 'lg' | 'xl';
-  style: Record<string, string>;
+  style: Record<string, any>;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface InputPreset {
   id: string;
+  site_id?: string;
+  siteId?: string;
   name: string;
   variant: 'default' | 'pill' | 'underline';
   size: 'sm' | 'md' | 'lg';
-  style: Record<string, string>;
+  style: Record<string, any>;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface AnimationPreset {
   id: string;
+  site_id?: string;
+  siteId?: string;
   name: string;
   type: 'entrance' | 'exit' | 'hover' | 'scroll' | 'layout';
   config: Record<string, any>;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface Page {
@@ -75,9 +98,6 @@ export interface Page {
   title: string;
   name?: string;
   description?: string;
-  meta_title?: string;
-  meta_description?: string;
-  meta_image?: string;
   status: 'draft' | 'published' | 'archived' | string;
   sections?: PageSection[];
   globalBlocks?: GlobalBlock[];
@@ -97,6 +117,7 @@ export interface SectionTemplate {
   description?: string;
   schema?: Record<string, any>;
   defaultConfig?: Record<string, any>;
+  default_config?: Record<string, any>;
   preview_image?: string;
   variants?: SectionVariant[];
   created_at?: string;
@@ -111,8 +132,8 @@ export interface SectionVariant {
   slug: string;
   description?: string;
   schemaOverrides?: Record<string, any>;
+  schema_overrides?: Record<string, any>;
   stylePreset?: Record<string, any>;
-  config_overrides?: Record<string, any>;
   preview_image?: string;
   created_at?: string;
   updated_at?: string;
@@ -129,7 +150,7 @@ export interface PageSection {
   order_index?: number;
   order?: number;
   content: Record<string, any>;
-  config?: SectionConfig;
+  config?: SectionConfig & Record<string, any>;
   content_config?: Record<string, any>;
   style_config?: Record<string, any>;
   layout_config?: Record<string, any>;
@@ -185,10 +206,12 @@ export interface SectionItem {
 export interface BreakpointOverride {
   id?: string;
   section_id?: string;
+  sectionId?: string;
   breakpoint: Breakpoint;
   config?: Record<string, any>;
-  config_overrides?: Record<string, any>;
   visible?: boolean;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface GlobalBlock {
@@ -210,7 +233,10 @@ export interface NavigationMenu {
   id: string;
   site_id?: string;
   siteId?: string;
+  name?: string;
   location: 'primary' | 'footer' | 'mobile' | 'legal';
+  created_at?: string;
+  updated_at?: string;
   items?: NavigationItem[];
 }
 
@@ -222,9 +248,15 @@ export interface NavigationItem {
   parentId?: string;
   label: string;
   type: 'page' | 'url' | 'section' | 'action';
+  url?: string;
+  page_id?: string;
+  pageId?: string;
+  order_index?: number;
   target?: string;
   icon?: string;
   order?: number;
+  created_at?: string;
+  updated_at?: string;
   children?: NavigationItem[];
 }
 
@@ -308,6 +340,9 @@ export interface Testimonial {
   rating?: number;
   featured: boolean;
   order?: number;
+  order_index?: number;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface Award {
@@ -320,6 +355,9 @@ export interface Award {
   logo?: string;
   description?: string;
   order?: number;
+  order_index?: number;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface FAQGroup {
@@ -328,6 +366,9 @@ export interface FAQGroup {
   siteId?: string;
   name: string;
   order?: number;
+  order_index?: number;
+  created_at?: string;
+  updated_at?: string;
   items?: FAQItem[];
 }
 
@@ -338,4 +379,7 @@ export interface FAQItem {
   question: string;
   answer: string;
   order?: number;
+  order_index?: number;
+  created_at?: string;
+  updated_at?: string;
 }

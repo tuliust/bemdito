@@ -6,6 +6,7 @@
 
 import { createServerDb } from '@/lib/supabase/server';
 import { PageRenderer } from '@/lib/cms/renderers/PageRenderer';
+import { normalizePage } from '@/lib/services/cms-admin-service';
 import { notFound } from 'next/navigation';
 
 export default async function HomePage() {
@@ -34,5 +35,5 @@ export default async function HomePage() {
     notFound();
   }
 
-  return <PageRenderer page={page} />;
+  return <PageRenderer page={normalizePage(page)} />;
 }

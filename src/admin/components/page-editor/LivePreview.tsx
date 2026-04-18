@@ -1,28 +1,10 @@
 import { useState } from 'react';
 import { Monitor, Tablet, Smartphone, RotateCcw } from 'lucide-react';
 import { SectionRenderer } from '@/lib/cms/renderers/SectionRenderer';
-
-interface Section {
-  id: string;
-  template?: {
-    slug: string;
-    name: string;
-  };
-  content: Record<string, any>;
-  visible: boolean;
-  items?: any[];
-  variant?: {
-    slug: string;
-  };
-  breakpointOverrides?: any[];
-  content_config?: Record<string, any>;
-  style_config?: Record<string, any>;
-  layout_config?: Record<string, any>;
-  behavior_config?: Record<string, any>;
-}
+import type { PageSection } from '@/types/cms';
 
 interface LivePreviewProps {
-  section: Section | undefined;
+  section: PageSection | undefined;
 }
 
 type DeviceType = 'desktop' | 'tablet' | 'mobile';
@@ -49,11 +31,11 @@ export function LivePreview({ section }: LivePreviewProps) {
 
   if (!section) {
     return (
-      <div className="flex flex-col h-full">
-        <div className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-4">
+      <div className="flex h-full flex-col">
+        <div className="flex h-14 items-center justify-between border-b border-gray-200 bg-white px-4">
           <h3 className="text-sm font-semibold text-gray-900">Preview</h3>
         </div>
-        <div className="flex-1 flex items-center justify-center bg-gray-50">
+        <div className="flex flex-1 items-center justify-center bg-gray-50">
           <p className="text-sm text-gray-500">No section selected</p>
         </div>
       </div>
@@ -61,61 +43,57 @@ export function LivePreview({ section }: LivePreviewProps) {
   }
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Preview Toolbar */}
-      <div className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-4">
+    <div className="flex h-full flex-col">
+      <div className="flex h-14 items-center justify-between border-b border-gray-200 bg-white px-4">
         <h3 className="text-sm font-semibold text-gray-900">Preview</h3>
 
         <div className="flex items-center gap-2">
-          {/* Device Selector */}
-          <div className="flex items-center gap-1 p-1 bg-gray-100 rounded-lg">
+          <div className="flex items-center gap-1 rounded-lg bg-gray-100 p-1">
             <button
               onClick={() => setDevice('desktop')}
-              className={`p-1.5 rounded transition-colors ${
+              className={`rounded p-1.5 transition-colors ${
                 device === 'desktop'
                   ? 'bg-white text-primary shadow-sm'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
               title="Desktop view"
             >
-              <Monitor className="w-4 h-4" />
+              <Monitor className="h-4 w-4" />
             </button>
             <button
               onClick={() => setDevice('tablet')}
-              className={`p-1.5 rounded transition-colors ${
+              className={`rounded p-1.5 transition-colors ${
                 device === 'tablet'
                   ? 'bg-white text-primary shadow-sm'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
               title="Tablet view"
             >
-              <Tablet className="w-4 h-4" />
+              <Tablet className="h-4 w-4" />
             </button>
             <button
               onClick={() => setDevice('mobile')}
-              className={`p-1.5 rounded transition-colors ${
+              className={`rounded p-1.5 transition-colors ${
                 device === 'mobile'
                   ? 'bg-white text-primary shadow-sm'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
               title="Mobile view"
             >
-              <Smartphone className="w-4 h-4" />
+              <Smartphone className="h-4 w-4" />
             </button>
           </div>
 
-          {/* Refresh */}
           <button
             onClick={handleRefresh}
-            className="p-1.5 hover:bg-gray-100 rounded transition-colors"
+            className="rounded p-1.5 transition-colors hover:bg-gray-100"
             title="Refresh preview"
           >
-            <RotateCcw className="w-4 h-4 text-gray-600" />
+            <RotateCcw className="h-4 w-4 text-gray-600" />
           </button>
         </div>
       </div>
 
-      {/* Preview Frame */}
       <div className="flex-1 overflow-auto bg-gray-100 p-4">
         <div
           className="mx-auto bg-white shadow-lg transition-all duration-300"
@@ -123,16 +101,7 @@ export function LivePreview({ section }: LivePreviewProps) {
         >
           <div key={key} className="preview-wrapper">
             {section.template?.slug ? (
-              <SectionRenderer
-                section={{
-                  ...section,
-                  template: {
-                    ...(section.template || {}),
-                    slug: section.template.slug,
-                  },
-                } as any}
-                currentBreakpoint={breakpointMap[device]}
-              />
+              <SectionRenderer section={section} currentBreakpoint={breakpointMap[device]} />
             ) : (
               <div className="p-8 text-center">
                 <p className="text-sm text-gray-500">No template selected</p>
@@ -142,8 +111,7 @@ export function LivePreview({ section }: LivePreviewProps) {
         </div>
       </div>
 
-      {/* Info Bar */}
-      <div className="h-10 bg-gray-50 border-t border-gray-200 flex items-center justify-center">
+      <div className="flex h-10 items-center justify-center border-t border-gray-200 bg-gray-50">
         <p className="text-xs text-gray-500">
           {section.template?.name || 'Unknown Template'} • {device} view
         </p>

@@ -8,6 +8,17 @@ import { db } from '../supabase/client';
 import { normalizePageSection, toSectionUpdatePayload } from './cms-admin-service';
 import type { PageSection } from '@/types/cms';
 
+function buildConfigPatch(
+  configType: 'layout' | 'style' | 'behavior',
+  config: Record<string, any>
+) {
+  return {
+    config: {
+      [configType]: config,
+    },
+  };
+}
+
 /**
  * Get sections for a page
  */
@@ -60,7 +71,11 @@ export async function getSectionById(id: string) {
  * Create a new section
  */
 export async function createSection(section: Partial<PageSection>) {
-  const { data, error } = await db.pageSections().insert(section).select().single();
+  const { data, error } = await db
+    .pageSections()
+    .insert(toSectionUpdatePayload(section) as any)
+    .select()
+    .single();
 
   if (error) {
     console.error('Error creating section:', error);
@@ -77,7 +92,7 @@ export async function updateSection(id: string, updates: Partial<PageSection>) {
   const breakpointOverrides =
     updates.breakpointOverrides ?? updates.breakpoint_overrides ?? undefined;
 
-  const { data, error } = await db.pageSections().update(toSectionUpdatePayload(updates)).eq('id', id);
+  const { error } = await db.pageSections().update(toSectionUpdatePayload(updates) as any).eq('id', id);
 
   if (error) {
     console.error('Error updating section:', error);
@@ -98,7 +113,7 @@ export async function updateSection(id: string, updates: Partial<PageSection>) {
           section_id: id,
           breakpoint: override.breakpoint,
           visible: override.visible,
-          config_overrides: override.config_overrides ?? override.config ?? {},
+          config: override.config ?? {},
         }))
       );
 
@@ -149,10 +164,7 @@ export async function duplicateSection(id: string) {
     order_index: (sectionAny.order_index || 0) + 1,
     visible: sectionAny.visible ?? true,
     content: sectionAny.content || {},
-    content_config: sectionAny.content_config || {},
-    style_config: sectionAny.style_config || {},
-    layout_config: sectionAny.layout_config || {},
-    behavior_config: sectionAny.behavior_config || {},
+    config: sectionAny.config || {},
   });
 
   return newSection;
@@ -194,8 +206,8 @@ export async function updateSectionContent(id: string, content: Record<string, a
  */
 export async function updateSectionConfig(
   id: string,
-  configType: 'content_config' | 'style_config' | 'layout_config' | 'behavior_config',
+  configType: 'layout' | 'style' | 'behavior',
   config: Record<string, any>
 ) {
-  return updateSection(id, { [configType]: config });
+  return updateSection(id, buildConfigPatch(configType, config) as Partial<PageSection>);
 }

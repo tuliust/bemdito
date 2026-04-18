@@ -16,32 +16,9 @@ import {
   toggleSectionVisibility,
 } from '@/lib/services/sections-service';
 import { useUnsavedChanges } from '@/hooks/use-unsaved-changes';
+import type { PageSection } from '@/types/cms';
 
-interface EditorSection {
-  id: string;
-  page_id: string;
-  template_id: string;
-  variant_id?: string;
-  order_index: number;
-  visible: boolean;
-  content: Record<string, any>;
-  content_config?: Record<string, any>;
-  style_config?: Record<string, any>;
-  layout_config?: Record<string, any>;
-  behavior_config?: Record<string, any>;
-  items?: any[];
-  breakpointOverrides?: any[];
-  template?: {
-    id: string;
-    slug: string;
-    name: string;
-  };
-  variant?: {
-    id: string;
-    slug: string;
-    name: string;
-  };
-}
+type EditorSection = PageSection;
 
 export function PageEditor() {
   const { pageId } = useParams<{ pageId: string }>();
@@ -75,10 +52,7 @@ export function PageEditor() {
     try {
       setLoading(true);
 
-      const [pageData, sectionsData] = await Promise.all([
-        getPageById(pageId),
-        getSectionsByPageId(pageId),
-      ]);
+      const [pageData, sectionsData] = await Promise.all([getPageById(pageId), getSectionsByPageId(pageId)]);
 
       if (!pageData) {
         toast.error('Page not found');
@@ -86,9 +60,9 @@ export function PageEditor() {
         return;
       }
 
-      const normalizedSections = (sectionsData || []).map((section: any) => ({
+      const normalizedSections = (sectionsData || []).map((section) => ({
         ...section,
-        visible: section.visible ?? section.is_visible ?? true,
+        visible: section.visible ?? true,
       }));
 
       setPageName(pageData.title || pageData.slug || 'Untitled Page');
@@ -125,14 +99,28 @@ export function PageEditor() {
 
     setSections((current) =>
       current.map((section) =>
-        section.id === sectionId ? { ...section, ...normalizedUpdates } : section
+        section.id === sectionId
+          ? {
+              ...section,
+              ...normalizedUpdates,
+              config: normalizedUpdates.config
+                ? {
+                    ...(section.config ?? {}),
+                    ...normalizedUpdates.config,
+                  }
+                : section.config,
+            }
+          : section
       )
     );
     setPendingMutations((current) => current + 1);
     setUnsavedChanges(true);
 
     try {
-      await updateSection(sectionId, normalizedUpdates as any);
+      const refreshedSection = await updateSection(sectionId, normalizedUpdates as any);
+      setSections((current) =>
+        current.map((section) => (section.id === sectionId ? refreshedSection : section))
+      );
       toast.success('Section saved successfully');
     } catch (error) {
       console.error('Error updating section:', error);
@@ -243,9 +231,9 @@ export function PageEditor() {
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center">
+      <div className="flex h-screen items-center justify-center">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
           <p className="text-sm text-muted-foreground">Loading page...</p>
         </div>
       </div>
@@ -253,8 +241,8 @@ export function PageEditor() {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-gray-50">
-      <div className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
+    <div className="flex h-screen flex-col bg-gray-50">
+      <div className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-6">
         <div className="flex items-center gap-4">
           <Button
             variant="ghost"
@@ -264,7 +252,7 @@ export function PageEditor() {
               navigate('/admin/pages');
             }}
           >
-            <ChevronLeft className="w-4 h-4 mr-2" />
+            <ChevronLeft className="mr-2 h-4 w-4" />
             Back to Pages
           </Button>
           <div className="h-6 w-px bg-gray-300" />
@@ -272,20 +260,15 @@ export function PageEditor() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button
-            variant="primary"
-            size="md"
-            onClick={handleSave}
-            disabled={saving}
-          >
-            <Save className="w-4 h-4 mr-2" />
+          <Button variant="primary" size="md" onClick={handleSave} disabled={saving}>
+            <Save className="mr-2 h-4 w-4" />
             {saving ? 'Saving...' : pendingMutations > 0 ? 'Syncing...' : 'Saved'}
           </Button>
         </div>
       </div>
 
-      <div className="flex-1 flex overflow-hidden">
-        <div className="w-[30%] bg-white border-r border-gray-200 flex flex-col">
+      <div className="flex flex-1 overflow-hidden">
+        <div className="flex w-[30%] flex-col border-r border-gray-200 bg-white">
           <SectionList
             sections={sections}
             selectedSectionId={selectedSectionId}
@@ -299,22 +282,20 @@ export function PageEditor() {
           />
         </div>
 
-        <div className="w-[40%] bg-gray-50 border-r border-gray-200 flex flex-col overflow-hidden">
+        <div className="flex w-[40%] flex-col overflow-hidden border-r border-gray-200 bg-gray-50">
           {selectedSection ? (
             <SectionEditor
               section={selectedSection}
               onUpdate={(updates) => handleSectionUpdate(selectedSection.id, updates)}
             />
           ) : (
-            <div className="flex-1 flex items-center justify-center">
-              <p className="text-sm text-muted-foreground">
-                Select a section to edit
-              </p>
+            <div className="flex flex-1 items-center justify-center">
+              <p className="text-sm text-muted-foreground">Select a section to edit</p>
             </div>
           )}
         </div>
 
-        <div className="w-[30%] bg-white flex flex-col">
+        <div className="flex w-[30%] flex-col bg-white">
           <LivePreview section={selectedSection} />
         </div>
       </div>

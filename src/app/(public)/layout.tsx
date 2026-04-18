@@ -8,15 +8,11 @@
 import { ReactNode } from 'react';
 import { createServerDb } from '@/lib/supabase/server';
 import { PublicLayoutClient } from '@/components/layouts/PublicLayoutClient';
+import { getGlobalBlocks } from '@/lib/services/global-blocks-service';
 
 export default async function PublicLayout({ children }: { children: ReactNode }) {
-  // Fetch global blocks from database
-  const db = await createServerDb();
+  await createServerDb();
+  const globalBlocks = await getGlobalBlocks();
 
-  const { data: globalBlocks } = await db
-    .globalBlocks()
-    .select('*')
-    .eq('visible', true);
-
-  return <PublicLayoutClient globalBlocks={globalBlocks || []}>{children}</PublicLayoutClient>;
+  return <PublicLayoutClient globalBlocks={globalBlocks}>{children}</PublicLayoutClient>;
 }

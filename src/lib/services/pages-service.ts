@@ -10,6 +10,15 @@ import type { Page } from '@/types/cms';
 
 export type PageWithSections = Page;
 
+function normalizePagePayload(data: any) {
+  return normalizePage({
+    ...data,
+    sections: Array.isArray(data?.sections)
+      ? data.sections.map(normalizePageSection)
+      : [],
+  });
+}
+
 /**
  * Get page by slug with all sections, items, and overrides
  */
@@ -20,9 +29,10 @@ export async function getPageBySlug(slug: string) {
       *,
       sections:page_sections!inner(
         *,
-        template:section_templates!inner(id, slug, name, category),
-        variant:section_variants(id, slug, name),
-        items:section_items(*)
+        template:section_templates!inner(*),
+        variant:section_variants(*),
+        items:section_items(*),
+        breakpointOverrides:section_breakpoint_overrides(*)
       )
     `)
     .eq('slug', slug)
@@ -39,33 +49,7 @@ export async function getPageBySlug(slug: string) {
     return null;
   }
 
-  // Debug: Log the structure to see how Supabase returns it
-  if (data.sections && data.sections.length > 0) {
-    console.log('Sample section structure:', {
-      id: data.sections[0].id,
-      template_id: data.sections[0].template_id,
-      template: data.sections[0].template,
-      template_type: typeof data.sections[0].template,
-      template_is_array: Array.isArray(data.sections[0].template),
-      items: data.sections[0].items,
-      items_type: typeof data.sections[0].items,
-      items_is_array: Array.isArray(data.sections[0].items),
-      items_count: data.sections[0].items?.length || 0,
-    });
-
-    // Log sections with items
-    const sectionsWithItems = data.sections.filter((s: any) => s.items && s.items.length > 0);
-    console.log(`Sections with items: ${sectionsWithItems.length}/${data.sections.length}`);
-    if (sectionsWithItems.length > 0) {
-      console.log('First section with items:', {
-        template: sectionsWithItems[0].template,
-        items_count: sectionsWithItems[0].items.length,
-        first_item: sectionsWithItems[0].items[0],
-      });
-    }
-  }
-
-  return normalizePage(data);
+  return normalizePagePayload(data);
 }
 
 /**
@@ -92,12 +76,7 @@ export async function getPageById(id: string) {
     return null;
   }
 
-  return normalizePage({
-    ...data,
-    sections: Array.isArray((data as any)?.sections)
-      ? (data as any).sections.map(normalizePageSection)
-      : [],
-  });
+  return normalizePagePayload(data);
 }
 
 /**
@@ -124,28 +103,50 @@ export async function listPages(siteId?: string) {
  * Create a new page
  */
 export async function createPage(page: Partial<PageWithSections>) {
-  const { data, error } = await db.pages().insert(page).select().single();
+  const pagePayload = {
+    site_id: page.site_id ?? page.siteId,
+    slug: page.slug,
+    title: page.title,
+    description: page.description ?? null,
+    status: page.status,
+    published_at: page.published_at ?? null,
+  };
+
+  const { data, error } = await db.pages().insert(pagePayload as any).select().single();
 
   if (error) {
     console.error('Error creating page:', error);
     throw error;
   }
 
-  return data;
+  return normalizePage(data);
 }
 
 /**
  * Update a page
  */
 export async function updatePage(id: string, updates: Partial<PageWithSections>) {
-  const { data, error } = await db.pages().update(updates).eq('id', id).select().single();
+  const pagePayload = {
+    site_id: updates.site_id ?? updates.siteId,
+    slug: updates.slug,
+    title: updates.title,
+    description: updates.description,
+    status: updates.status,
+    published_at: updates.published_at,
+  };
+
+  const sanitizedPayload = Object.fromEntries(
+    Object.entries(pagePayload).filter(([, value]) => value !== undefined)
+  );
+
+  const { data, error } = await db.pages().update(sanitizedPayload as any).eq('id', id).select().single();
 
   if (error) {
     console.error('Error updating page:', error);
     throw error;
   }
 
-  return data;
+  return normalizePage(data);
 }
 
 /**

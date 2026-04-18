@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Settings, Layout, Palette, Eye, Wand2, MonitorSmartphone } from 'lucide-react';
 import { ContentTab } from './editor-tabs/ContentTab';
 import { ItemsTab } from './editor-tabs/ItemsTab';
@@ -59,6 +59,7 @@ function JsonConfigEditor({
 
 export function SectionEditor({ section, onUpdate }: SectionEditorProps) {
   const [activeTab, setActiveTab] = useState<TabType>('content');
+  const sectionConfig = useMemo(() => section.config ?? {}, [section.config]);
 
   const tabs = [
     { id: 'content' as TabType, label: 'Content', icon: Settings },
@@ -74,6 +75,18 @@ export function SectionEditor({ section, onUpdate }: SectionEditorProps) {
     onUpdate({ content });
   };
 
+  const handleConfigUpdate = (
+    configKey: 'layout' | 'style' | 'behavior',
+    nextValue: Record<string, any>
+  ) => {
+    onUpdate({
+      config: {
+        ...sectionConfig,
+        [configKey]: nextValue,
+      },
+    });
+  };
+
   return (
     <div className="flex h-full flex-col">
       <div className="border-b border-gray-200 bg-white">
@@ -84,13 +97,13 @@ export function SectionEditor({ section, onUpdate }: SectionEditorProps) {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
+                className={`flex items-center gap-2 border-b-2 px-4 py-3 text-sm font-medium transition-colors ${
                   activeTab === tab.id
                     ? 'border-primary text-primary'
                     : 'border-transparent text-gray-600 hover:text-gray-900'
                 }`}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="h-4 w-4" />
                 {tab.label}
               </button>
             );
@@ -117,32 +130,27 @@ export function SectionEditor({ section, onUpdate }: SectionEditorProps) {
       </div>
 
       <div className="flex-1 overflow-y-auto">
-        {activeTab === 'content' && (
-          <ContentTab section={section} onUpdate={handleContentUpdate} />
-        )}
+        {activeTab === 'content' && <ContentTab section={section} onUpdate={handleContentUpdate} />}
 
         {activeTab === 'items' && (
-          <ItemsTab
-            sectionId={section.id}
-            templateSlug={section.template?.slug || ''}
-          />
+          <ItemsTab sectionId={section.id} templateSlug={section.template?.slug || ''} />
         )}
 
         {activeTab === 'layout' && (
           <JsonConfigEditor
             label="Layout"
-            value={section.layout_config}
+            value={sectionConfig.layout}
             description="Configure container, spacing, alignment and structural layout rules."
-            onSave={(layout_config) => onUpdate({ layout_config })}
+            onSave={(layout) => handleConfigUpdate('layout', layout)}
           />
         )}
 
         {activeTab === 'style' && (
           <JsonConfigEditor
             label="Style"
-            value={section.style_config}
+            value={sectionConfig.style}
             description="Manage colors, decorative tokens, surfaces and visual overrides for this section."
-            onSave={(style_config) => onUpdate({ style_config })}
+            onSave={(style) => handleConfigUpdate('style', style)}
           />
         )}
 
@@ -163,9 +171,9 @@ export function SectionEditor({ section, onUpdate }: SectionEditorProps) {
         {activeTab === 'behavior' && (
           <JsonConfigEditor
             label="Behavior"
-            value={section.behavior_config}
+            value={sectionConfig.behavior}
             description="Configure animation, sticky logic, interactions and runtime behavior flags."
-            onSave={(behavior_config) => onUpdate({ behavior_config })}
+            onSave={(behavior) => handleConfigUpdate('behavior', behavior)}
           />
         )}
 

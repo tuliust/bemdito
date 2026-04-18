@@ -1,6 +1,8 @@
 import { db, supabase } from '../supabase/client';
 import type { MediaAsset } from '@/types/cms';
 
+const DEFAULT_SITE_ID = 'a0000000-0000-0000-0000-000000000001';
+
 function normalizeMediaAsset(raw: any): MediaAsset {
   return {
     id: raw.id,
@@ -13,7 +15,7 @@ function normalizeMediaAsset(raw: any): MediaAsset {
     url: raw.url,
     mime_type: raw.mime_type ?? raw.mimeType,
     mimeType: raw.mime_type ?? raw.mimeType,
-    size: raw.size_bytes ?? raw.size ?? 0,
+    size: raw.size ?? 0,
     width: raw.width ?? undefined,
     height: raw.height ?? undefined,
     created_at: raw.created_at,
@@ -45,7 +47,11 @@ export async function deleteMediaAsset(id: string) {
   }
 }
 
-export async function uploadMediaAssets(files: File[], folder = 'library') {
+export async function uploadMediaAssets(
+  files: File[],
+  folder = 'library',
+  siteId = DEFAULT_SITE_ID
+) {
   const uploaded: MediaAsset[] = [];
 
   for (const file of files) {
@@ -62,12 +68,12 @@ export async function uploadMediaAssets(files: File[], folder = 'library') {
     const { data, error } = await db
       .mediaAssets()
       .insert({
+        site_id: siteId,
         filename: file.name,
-        original_filename: file.name,
         mime_type: file.type,
-        size_bytes: file.size,
+        size: file.size,
         url: publicUrl,
-        folder,
+        alt_text: file.name,
       })
       .select()
       .single();

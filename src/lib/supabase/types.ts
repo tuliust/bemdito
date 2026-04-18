@@ -1,33 +1,24 @@
 /**
  * Supabase Database Types
  *
- * This file is still a hand-maintained approximation of the real schema.
- * The goal here is to keep client-side table access aligned with the snake_case
- * database contract used by the current CMS runtime and admin editor.
+ * Hand-maintained to match the real public schema currently running in Supabase.
  */
 
-import type {
-  NavigationMenu,
-  NavigationItem,
-  MediaAsset,
-  BlogPost,
-  Testimonial,
-  Award,
-  FAQGroup,
-  FAQItem,
-} from '@/types/cms';
-
-type Json = Record<string, any>;
+type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json }
+  | Json[];
 
 export interface DbPageRow {
   id: string;
   site_id: string;
   title: string;
   slug: string;
+  description?: string | null;
   status: string;
-  meta_title?: string | null;
-  meta_description?: string | null;
-  meta_image?: string | null;
   created_at?: string;
   updated_at?: string;
   published_at?: string | null;
@@ -39,12 +30,9 @@ export interface DbPageSectionRow {
   template_id: string;
   variant_id?: string | null;
   order_index: number;
-  visible: boolean;
   content: Json;
-  content_config?: Json | null;
-  style_config?: Json | null;
-  layout_config?: Json | null;
-  behavior_config?: Json | null;
+  config: Json;
+  visible?: boolean | null;
   created_at?: string;
   updated_at?: string;
 }
@@ -53,10 +41,10 @@ export interface DbSectionTemplateRow {
   id: string;
   name: string;
   slug: string;
-  description?: string | null;
   category?: string | null;
-  preview_image?: string | null;
-  schema?: Json | null;
+  description?: string | null;
+  schema: Json;
+  default_config?: Json | null;
   created_at?: string;
   updated_at?: string;
 }
@@ -67,8 +55,8 @@ export interface DbSectionVariantRow {
   name: string;
   slug: string;
   description?: string | null;
-  preview_image?: string | null;
-  config_overrides?: Json | null;
+  schema_overrides?: Json | null;
+  style_preset?: Json | null;
   created_at?: string;
   updated_at?: string;
 }
@@ -76,9 +64,10 @@ export interface DbSectionVariantRow {
 export interface DbSectionItemRow {
   id: string;
   section_id: string;
+  type: string;
   order_index: number;
-  visible: boolean;
   content: Json;
+  config?: Json | null;
   created_at?: string;
   updated_at?: string;
 }
@@ -87,8 +76,8 @@ export interface DbSectionBreakpointOverrideRow {
   id: string;
   section_id: string;
   breakpoint: 'mobile' | 'tablet' | 'desktop';
+  config: Json;
   visible?: boolean | null;
-  config_overrides?: Json | null;
   created_at?: string;
   updated_at?: string;
 }
@@ -97,11 +86,33 @@ export interface DbGlobalBlockRow {
   id: string;
   site_id: string;
   type: 'header' | 'footer' | 'menu_overlay' | 'support_modal' | 'floating_button';
-  name: string;
   slug: string;
-  visible: boolean;
+  name: string;
   content: Json;
   config: Json;
+  visible?: boolean | null;
+  position?: string | null;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface DbNavigationMenuRow {
+  id: string;
+  site_id: string;
+  location: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface DbNavigationItemRow {
+  id: string;
+  menu_id: string;
+  parent_id?: string | null;
+  label: string;
+  type: string;
+  target?: string | null;
+  icon?: string | null;
+  order_index: number;
   created_at?: string;
   updated_at?: string;
 }
@@ -119,48 +130,44 @@ export interface DbDesignTokenRow {
 
 export interface DbButtonPresetRow {
   id: string;
-  site_id?: string | null;
+  site_id: string;
   name: string;
-  slug: string;
-  variant: 'primary' | 'secondary' | 'tertiary' | 'outline' | 'ghost' | 'link';
-  size: 'sm' | 'md' | 'lg' | 'xl';
-  style_config?: Json | null;
+  variant: string;
+  size: string;
+  style: Json;
   created_at?: string;
   updated_at?: string;
 }
 
 export interface DbInputPresetRow {
   id: string;
-  site_id?: string | null;
+  site_id: string;
   name: string;
-  slug: string;
-  variant: 'default' | 'filled' | 'outline' | 'ghost';
-  size: 'sm' | 'md' | 'lg';
-  style_config?: Json | null;
+  variant: string;
+  size: string;
+  style: Json;
   created_at?: string;
   updated_at?: string;
 }
 
 export interface DbTypographyStyleRow {
   id: string;
-  site_id?: string | null;
+  site_id: string;
   name: string;
-  slug: string;
-  role: 'display' | 'heading' | 'title' | 'body' | 'label' | 'caption';
-  size: string;
-  weight: string;
-  line_height?: string | null;
+  slot: string;
+  font_family_id?: string | null;
+  font_size: string;
+  font_weight: number;
+  line_height: string;
   letter_spacing?: string | null;
-  font_family?: string | null;
   created_at?: string;
   updated_at?: string;
 }
 
 export interface DbAnimationPresetRow {
   id: string;
-  site_id?: string | null;
+  site_id: string;
   name: string;
-  slug: string;
   type: string;
   config: Json;
   created_at?: string;
@@ -169,76 +176,70 @@ export interface DbAnimationPresetRow {
 
 export interface DbMediaAssetRow {
   id: string;
-  site_id?: string | null;
+  site_id: string;
+  folder_id?: string | null;
   filename: string;
-  original_filename?: string | null;
-  mime_type: string;
-  size_bytes?: number | null;
-  width?: number | null;
-  height?: number | null;
-  url: string;
-  thumbnail_url?: string | null;
   alt_text?: string | null;
   caption?: string | null;
-  folder?: string | null;
+  url: string;
+  mime_type: string;
+  size: number;
+  width?: number | null;
+  height?: number | null;
   created_at?: string;
   updated_at?: string;
 }
 
 export interface DbBlogPostRow {
   id: string;
-  site_id?: string | null;
-  title: string;
+  site_id: string;
   slug: string;
+  title: string;
   excerpt?: string | null;
-  content?: Json | null;
+  content: string;
   featured_image?: string | null;
   category?: string | null;
-  tags?: string[] | null;
-  author_name?: string | null;
+  author_name: string;
   author_avatar?: string | null;
-  status: 'draft' | 'published' | 'archived';
   published_at?: string | null;
   views?: number | null;
+  status: 'draft' | 'published' | 'archived';
   created_at?: string;
   updated_at?: string;
 }
 
 export interface DbTestimonialRow {
   id: string;
-  site_id?: string | null;
+  site_id: string;
+  name: string;
+  company?: string | null;
+  role?: string | null;
+  avatar?: string | null;
   content: string;
-  author_name: string;
-  author_role?: string | null;
-  author_company?: string | null;
-  author_avatar?: string | null;
   rating?: number | null;
   featured?: boolean | null;
-  status?: 'draft' | 'published' | 'archived' | null;
+  order_index?: number | null;
   created_at?: string;
   updated_at?: string;
 }
 
 export interface DbAwardRow {
   id: string;
-  site_id?: string | null;
+  site_id: string;
   title: string;
   organization: string;
-  year?: number | null;
-  logo_url?: string | null;
+  year: number;
+  logo?: string | null;
   description?: string | null;
   order_index?: number | null;
-  status?: 'draft' | 'published' | 'archived' | null;
   created_at?: string;
   updated_at?: string;
 }
 
 export interface DbFaqGroupRow {
   id: string;
-  site_id?: string | null;
+  site_id: string;
   name: string;
-  slug: string;
-  description?: string | null;
   order_index?: number | null;
   created_at?: string;
   updated_at?: string;
@@ -293,14 +294,14 @@ export type Database = {
         Update: Partial<Omit<DbGlobalBlockRow, 'id'>>;
       };
       navigation_menus: {
-        Row: NavigationMenu;
-        Insert: Omit<NavigationMenu, 'id'>;
-        Update: Partial<Omit<NavigationMenu, 'id'>>;
+        Row: DbNavigationMenuRow;
+        Insert: Omit<DbNavigationMenuRow, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<DbNavigationMenuRow, 'id'>>;
       };
       navigation_items: {
-        Row: NavigationItem;
-        Insert: Omit<NavigationItem, 'id'>;
-        Update: Partial<Omit<NavigationItem, 'id'>>;
+        Row: DbNavigationItemRow;
+        Insert: Omit<DbNavigationItemRow, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<DbNavigationItemRow, 'id'>>;
       };
       media_assets: {
         Row: DbMediaAssetRow;
