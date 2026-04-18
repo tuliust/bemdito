@@ -1,34 +1,49 @@
+import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import { AdminLayout } from '@/admin/layouts/AdminLayout';
-import { Dashboard } from '@/admin/pages/Dashboard';
-import { PagesList } from '@/admin/pages/PagesList';
-import { PageEditor } from '@/admin/pages/PageEditor';
-import { GlobalBlocksPage } from '@/admin/pages/GlobalBlocksPage';
-import { PublicHome } from './PublicHome';
+import { ErrorBoundary } from '@/components/shared/ErrorBoundary';
+
+const PublicHome = lazy(() => import('./PublicHome').then((module) => ({ default: module.PublicHome })));
+const Dashboard = lazy(() => import('@/admin/pages/Dashboard').then((module) => ({ default: module.Dashboard })));
+const PagesList = lazy(() => import('@/admin/pages/PagesList').then((module) => ({ default: module.PagesList })));
+const PageEditor = lazy(() => import('@/admin/pages/PageEditor').then((module) => ({ default: module.PageEditor })));
+const GlobalBlocksPage = lazy(() => import('@/admin/pages/GlobalBlocksPage').then((module) => ({ default: module.GlobalBlocksPage })));
+const ContentModulesPage = lazy(() => import('@/admin/pages/ContentModulesPage').then((module) => ({ default: module.ContentModulesPage })));
+const MediaLibrary = lazy(() => import('@/components/admin/MediaLibrary').then((module) => ({ default: module.MediaLibrary })));
+const DesignSystemEditor = lazy(() => import('@/components/admin/DesignSystemEditor').then((module) => ({ default: module.DesignSystemEditor })));
+
+function RouteFallback() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-gray-50">
+      <div className="text-sm text-gray-500">Carregando modulo...</div>
+    </div>
+  );
+}
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Toaster position="top-right" richColors />
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<PublicHome />} />
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Toaster position="top-right" richColors />
+        <Suspense fallback={<RouteFallback />}>
+          <Routes>
+            <Route path="/" element={<PublicHome />} />
 
-        {/* Admin Routes */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="pages" element={<PagesList />} />
-          <Route path="global-blocks" element={<GlobalBlocksPage />} />
-          <Route path="media" element={<div className="p-8">Media Library (Coming Soon)</div>} />
-          <Route path="design-system" element={<div className="p-8">Design System (Coming Soon)</div>} />
-          <Route path="settings" element={<div className="p-8">Settings (Coming Soon)</div>} />
-        </Route>
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="pages" element={<PagesList />} />
+              <Route path="global-blocks" element={<GlobalBlocksPage />} />
+              <Route path="content" element={<ContentModulesPage />} />
+              <Route path="media" element={<MediaLibrary />} />
+              <Route path="design-system" element={<DesignSystemEditor />} />
+              <Route path="settings" element={<div className="p-8">Settings (Coming Soon)</div>} />
+            </Route>
 
-        {/* Page Editor - Full screen (outside AdminLayout) */}
-        <Route path="/admin/pages/:pageId/edit" element={<PageEditor />} />
-
-      </Routes>
-    </BrowserRouter>
+            <Route path="/admin/pages/:pageId/edit" element={<PageEditor />} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }

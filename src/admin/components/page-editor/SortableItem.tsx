@@ -51,6 +51,7 @@ export function SortableItem({
     opacity: isDragging ? 0.5 : 1,
   };
 
+  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -75,6 +76,7 @@ export function SortableItem({
       } ${!section.visible ? 'opacity-60' : ''}`}
     >
       <div className="flex items-center gap-2 p-3">
+        {/* Drag Handle */}
         <button
           {...attributes}
           {...listeners}
@@ -83,6 +85,7 @@ export function SortableItem({
           <GripVertical className="w-4 h-4 text-gray-400" />
         </button>
 
+        {/* Section Info */}
         <div className="flex-1 min-w-0" onClick={onSelect}>
           <h3 className="text-sm font-medium text-gray-900 truncate cursor-pointer">
             {section.template?.name || 'Unnamed Section'}
@@ -92,6 +95,7 @@ export function SortableItem({
           </p>
         </div>
 
+        {/* Actions */}
         <div className="flex items-center gap-1">
           <button
             onClick={onToggleVisibility}
@@ -141,6 +145,7 @@ export function SortableItem({
         </div>
       </div>
 
+      {/* Delete Confirmation */}
       {showDeleteConfirm && (
         <ConfirmDialog
           title="Delete Section"

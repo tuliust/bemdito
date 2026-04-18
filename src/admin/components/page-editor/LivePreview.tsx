@@ -62,10 +62,12 @@ export function LivePreview({ section }: LivePreviewProps) {
 
   return (
     <div className="flex flex-col h-full">
+      {/* Preview Toolbar */}
       <div className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-4">
         <h3 className="text-sm font-semibold text-gray-900">Preview</h3>
 
         <div className="flex items-center gap-2">
+          {/* Device Selector */}
           <div className="flex items-center gap-1 p-1 bg-gray-100 rounded-lg">
             <button
               onClick={() => setDevice('desktop')}
@@ -102,6 +104,7 @@ export function LivePreview({ section }: LivePreviewProps) {
             </button>
           </div>
 
+          {/* Refresh */}
           <button
             onClick={handleRefresh}
             className="p-1.5 hover:bg-gray-100 rounded transition-colors"
@@ -112,6 +115,7 @@ export function LivePreview({ section }: LivePreviewProps) {
         </div>
       </div>
 
+      {/* Preview Frame */}
       <div className="flex-1 overflow-auto bg-gray-100 p-4">
         <div
           className="mx-auto bg-white shadow-lg transition-all duration-300"
@@ -138,6 +142,7 @@ export function LivePreview({ section }: LivePreviewProps) {
         </div>
       </div>
 
+      {/* Info Bar */}
       <div className="h-10 bg-gray-50 border-t border-gray-200 flex items-center justify-center">
         <p className="text-xs text-gray-500">
           {section.template?.name || 'Unknown Template'} • {device} view

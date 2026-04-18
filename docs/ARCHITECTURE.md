@@ -1,452 +1,298 @@
-# 🏗️ ARQUITETURA - BemDito CMS
+# Arquitetura da Plataforma CMS
 
-**Versão:** 1.0
-**Data:** 2026-02-19
-**Última atualização:** 2026-02-19
+## Visão Geral
 
----
+Plataforma web completa, mobile-first, orientada por schema, com CMS visual e renderização dinâmica baseada em templates e variantes.
 
-## 🎯 Visão Geral
+## Princípios Fundamentais
 
-Este documento registra as **decisões técnicas críticas** tomadas durante o desenvolvimento do BemDito CMS.
+1. **Zero Hardcode**: Todo conteúdo, estilo e comportamento relevante é controlado via banco/admin
+2. **Schema-Driven**: Templates, variantes e configurações orientam a renderização
+3. **Breakpoint-First**: Configurações específicas por dispositivo (mobile, tablet, desktop)
+4. **Extensível**: Sistema preparado para crescer sem refatoração estrutural
 
----
+## Camadas da Solução
 
-## 📐 Decisões Arquiteturais
-
-### 1. Sistema Unificado de Seções (2026-02-10)
-
-**Decisão:** Consolidar todos os tipos de seção (`hero`, `cta`, `cards_grid`, etc) em um **tipo único** (`'unico'`).
-
-**Motivação:**
-- ❌ **Antes:** 6 funções de renderização separadas (~800 linhas duplicadas)
-- ✅ **Depois:** 1 função `renderUnifiedLayout()` (~300 linhas)
-
-**Benefícios:**
-- 100% de consistência entre seções
-- Mudanças globais em um só lugar
-- Redução de bugs (correção afeta tudo)
-- Manutenção simplificada
-
-**Impacto:** Sistema inteiro de seções.
-
-**Arquivo:** `SectionRenderer.tsx`
-
----
-
-### 2. JSONB para Flexibilidade Máxima (2026-02-08)
-
-**Decisão:** Usar **4 colunas JSONB** na tabela `sections` ao invés de 100+ colunas relacionais.
-
-**Estrutura:**
-```typescript
-sections {
-  config: JSONB;    // Configurações gerais (gridRows, gridCols, textos, cores)
-  layout: JSONB;    // Posições dos elementos (text, media, cards) — strings diretas
-  styling: JSONB;   // Espaçamento, tipografia, altura
-  elements: JSONB;  // Elementos visíveis (hasCards, hasMedia, hasButton…)
-}
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     PRESENTATION LAYER                          │
+├─────────────────────────────────────────────────────────────────┤
+│  Public Web  │  Admin Portal  │  Company  │  Professional      │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+┌─────────────────────────────────────────────────────────────────┐
+│                     CMS / RENDERER ENGINE                       │
+├─────────────────────────────────────────────────────────────────┤
+│  • Template Registry                                            │
+│  • Variant Resolution                                           │
+│  • Breakpoint Overrides                                         │
+│  • Dynamic Rendering                                            │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+┌─────────────────────────────────────────────────────────────────┐
+│                     SHARED UX SYSTEM                            │
+├─────────────────────────────────────────────────────────────────┤
+│  • Global Blocks (Header, Footer, Modals)                      │
+│  • Section Templates (Hero, Stats, Features, etc)              │
+│  • Foundation Components (Button, Card, Input)                 │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+┌─────────────────────────────────────────────────────────────────┐
+│                     DESIGN SYSTEM RUNTIME                       │
+├─────────────────────────────────────────────────────────────────┤
+│  • Tokens (Colors, Typography, Spacing)                        │
+│  • Presets (Buttons, Inputs, Animations)                       │
+│  • Theme Provider                                               │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+┌─────────────────────────────────────────────────────────────────┐
+│                         DATA LAYER                              │
+├─────────────────────────────────────────────────────────────────┤
+│  Supabase (PostgreSQL + Auth + Storage)                        │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-**Motivação:**
-- ✅ Schema flexível (adicionar campos sem migration)
-- ✅ Configurações opcionais/condicionais
-- ✅ Versionamento simples (snapshot completo em JSONB)
-- ✅ Queries complexas via GIN index
+## Modelo de Dados
 
-**Trade-offs:**
-- ❌ Sem constraints nativos do PostgreSQL
-- ❌ Queries JSONB mais verbosas
-- ✅ Validação feita no frontend (TypeScript)
+### Core Entities
 
-**Impacto:** Tabelas `sections`, `card_templates`, `menu_items`, `footer_config`.
+#### Sites
+- Multi-tenancy base
+- Cada site tem suas próprias configurações, páginas, mídia
 
-**Arquivo:** `/guidelines/SCHEMA_OFICIAL_V3.0.sql` ← oficial atual (V2.0 supersedido em 2026-02-19)
+#### Pages
+- Compostas por seções ordenadas
+- Status: draft, published, archived
+- SEO metadata
 
----
+#### Section Templates
+- Registros globais de templates disponíveis
+- Schema define estrutura de conteúdo
+- Exemplos: hero_section, stats_cards_section, testimonials_section
 
-### 3. Sistema de Grid 2×2 (2026-02-14)
+#### Section Variants
+- Variações de um template
+- Herdam schema base com overrides
+- Exemplos: feature_showcase.analytics_dashboard, feature_showcase.wellness_routine
 
-**Decisão:** Usar **grid CSS de 2 colunas × 2 linhas** para posicionamento de elementos.
+#### Page Sections
+- Instância de um template/variante em uma página
+- Content: dados específicos (título, descrição, CTAs)
+- Config: layout, estilo, comportamento
+- Breakpoint overrides: ajustes por dispositivo
 
-**Posições válidas:**
+#### Section Items
+- Conteúdo repetível dentro de seções
+- Exemplos: cards em stats, benefícios em features, FAQs
+- Também suportam breakpoint overrides
+
+### Global Blocks
+
+#### Header, Footer, Menu Overlay, Support Modal, Floating Button
+- Blocos reutilizáveis entre páginas
+- Configuração centralizada
+- Posição e visibilidade controladas
+
+### Design System
+
+#### Color Palettes
+- Múltiplas paletas por site
+- Roles: primary, secondary, accent, neutral, semantic
+
+#### Typography Styles
+- Slots semânticos: display, heading, subheading, body, supporting, label
+- Breakpoint-specific overrides
+
+#### Component Presets
+- Buttons: variants (primary, secondary), sizes, estilos
+- Inputs: variants (pill, default), validações
+- Animations: entrance, exit, hover, scroll
+
+### Content Management
+
+#### Blog Posts
+- Título, conteúdo, categoria
+- Featured image, author
+- Views tracking
+
+#### Testimonials
+- Nome, empresa, cargo
+- Rating, avatar
+- Featured flag, ordering
+
+#### Awards
+- Organização, ano, logo
+- Ordenável
+
+#### FAQs
+- Agrupados
+- Ordenáveis
+
+### Media Library
+
+#### Media Assets
+- Upload, folders
+- Variants (crops, formatos)
+- Usage tracking (onde a mídia é usada)
+
+## Fluxo de Renderização
+
 ```
-┌─────────┬─────────┐
-│ top-    │ top-    │
-│ left    │ right   │
-├─────────┼─────────┤
-│ bottom- │ bottom- │
-│ left    │ right   │
-└─────────┴─────────┘
-
-+ middle-left, middle-right, center
-+ top-center, bottom-center
-```
-
-**Motivação:**
-- ✅ Flexibilidade total de layout
-- ✅ Elementos podem ocupar 1×1, 2×1, 1×2 ou 2×2
-- ✅ Texto + mídia lado a lado ou empilhados
-
-**Regras críticas:**
-- Posições são **strings diretas**, não objetos
-- `gridRows/gridCols` em `config`, **não** em `layout`
-- Auto-fix em runtime se dados inconsistentes
-
-**Impacto:** Sistema inteiro de seções.
-
-**Arquivo:** `SectionRenderer.tsx`
-
----
-
-### 4. Spacing em Incrementos de 25px (2026-02-17)
-
-**Decisão:** Padronizar todos os spacings (padding, margin, gap) em **incrementos de 25px**.
-
-**Valores disponíveis:**
-```
-0px, 25px, 50px, 75px, 100px, 125px, 150px, 175px, 200px
-```
-
-**Motivação:**
-- ✅ Design System consistente
-- ✅ Valores previsíveis e escaláveis
-- ✅ Fácil de entender (múltiplos de 25)
-- ❌ **Antes:** Valores legados (8px, 16px, 24px, 32px, 48px, 64px, 80px, 96px)
-
-**Implementação:**
-- Migration SQL para converter valores antigos
-- Dropdowns no admin usam apenas valores padronizados
-- `parseSpacing()` aceita tokens legados (retrocompatibilidade)
-
-**Impacto:** Sistema inteiro de spacing.
-
-**Arquivo:** `SectionBuilder.tsx`, `SectionRenderer.tsx`
-
----
-
-### 5. Auto-Fix de Dados Inconsistentes (2026-02-15)
-
-**Decisão:** Implementar **validação e correção automática em runtime** ao invés de apenas lançar erros.
-
-**Exemplo: gridRows inconsistente**
-```typescript
-const calculateGridRows = (layout, configGridRows) => {
-  const positions = [layout?.desktop?.text, layout?.desktop?.media];
-  const requiresTwoRows = positions.some(pos =>
-    ['middle-left', 'middle-right', 'center'].includes(pos)
-  );
-
-  if (requiresTwoRows && configGridRows === 1) {
-    console.warn('⚠️ [AUTO-FIX] gridRows ajustado de 1 para 2');
-    return 2;  // ✅ Corrigir automaticamente
-  }
-
-  return configGridRows;
-};
-```
-
-**Motivação:**
-- ✅ Site **nunca quebra** por dados inconsistentes
-- ✅ Warnings no console indicam onde corrigir permanentemente
-- ✅ Melhor UX (funciona mesmo com bugs)
-
-**Trade-off:**
-- ❌ Pode mascarar bugs
-- ✅ Mas migrations SQL corrigem permanentemente
-
-**Impacto:** `SectionRenderer.tsx`
-
----
-
-### 6. Mídia como Background ao invés de Elemento Separado (2026-02-10)
-
-**Decisão:** Cards renderizam mídia como **background com opacidade configurável** ao invés de elemento `<img>` separado.
-
-**Estrutura:**
-```tsx
-<div className="relative min-h-[300px]">
-  {/* 🔵 Camada 1: Cor de fundo sólida */}
-  <div style={{ backgroundColor: bgColor }} />
-
-  {/* 🖼️ Camada 2: Mídia com opacidade */}
-  <img style={{ opacity: mediaOpacity / 100 }} />
-
-  {/* 📝 Camada 3: Conteúdo (texto, ícone) */}
-  <div className="relative z-10">{/* Conteúdo */}</div>
-</div>
+1. User requests page → /
+2. Fetch page by slug
+3. Load page sections (ordered)
+4. For each section:
+   a. Resolve template + variant
+   b. Merge schema + content
+   c. Apply breakpoint overrides
+   d. Fetch section items
+   e. Render component
+5. Inject global blocks (header, footer, modals)
+6. Apply design tokens from database
+7. Return composed page
 ```
 
-**Motivação:**
-- ✅ Flexibilidade de design (cor de fundo + imagem)
-- ✅ Controle de opacidade (0-100%)
-- ✅ Texto sempre legível (z-index maior)
-
-**Impacto:** Sistema de cards.
-
-**Arquivo:** `CardRenderer.tsx`
-
----
-
-### 7. Operador `??` ao invés de `||` para Valores Numéricos (2026-02-16)
-
-**Decisão:** Usar **nullish coalescing (`??`)** ao invés de OR lógico (`||`) quando `0` é um valor válido.
-
-**Problema:**
-```typescript
-const padding = parseInt("0px") || 24;  // ❌ Retorna 24 (0 é falsy)
-```
-
-**Solução:**
-```typescript
-const parsed = parseInt("0px");
-const padding = !isNaN(parsed) ? parsed : 24;  // ✅ Retorna 0
-```
-
-**Motivação:**
-- ✅ `0` é um valor válido para padding/spacing
-- ✅ Evita bugs sutis (padding-top: 0px virando 24px)
-
-**Regra geral:**
-- Use `??` quando `0`, `false` ou `''` são valores válidos
-- Use `||` apenas para fallbacks onde falsy = inválido
-
-**Impacto:** Todos os parsers numéricos.
-
-**Arquivo:** `SectionRenderer.tsx` (função `parseSpacing`)
-
----
-
-### 8. Storage Privado com Signed URLs (2026-02-08)
-
-**Decisão:** Usar bucket **privado** (`make-72da2481-media`) com signed URLs ao invés de público.
-
-**Motivação:**
-- ✅ Controle de acesso (futuro: paywalls, login)
-- ✅ URLs expiram (segurança)
-- ✅ Fácil migrar para privado depois
-
-**Configuração:**
-- Validade: 1 ano (suficiente para cache)
-- Políticas RLS: INSERT, SELECT, DELETE para `anon`
-
-**Trade-off:**
-- ❌ URLs mais longas
-- ❌ Precisa regenerar signed URLs periodicamente
-- ✅ Mas componente `MediaUploader` gerencia automaticamente
-
-**Impacto:** Sistema de upload de mídias.
-
-**Arquivo:** `MediaUploader.tsx`
-
----
-
-### 9. Migrations Incrementais ao invés de Recreate (2026-02-08)
-
-**Decisão:** Sempre usar **migrations incrementais** (`ALTER TABLE ADD COLUMN`) ao invés de recriar tabelas.
-
-**Motivação:**
-- ✅ Preserva dados existentes
-- ✅ Rollback possível
-- ✅ Versionamento claro
-
-**Nomenclatura obrigatória:**
-```
-<número>_<descrição_curta>.sql
-
-Exemplos:
-001_initial_schema.sql
-002_seed_data.sql
-003_update_schema_for_cms_managers.sql
-```
-
-**Trade-off:**
-- ❌ Acumula migrations ao longo do tempo
-- ✅ Mas histórico completo preservado
-
-**Impacto:** Todas as mudanças de schema.
-
-**Pasta:** `/supabase/migrations/`
-
----
-
-### 10. Tokens UUID ao invés de Valores Hardcoded (2026-02-08)
-
-**Decisão:** Usar **foreign keys para `design_tokens`** ao invés de valores hardcoded.
-
-**Estrutura:**
-```sql
-card_templates {
-  card_bg_color_token UUID → design_tokens.id
-  icon_color_token UUID → design_tokens.id
-  title_font_size UUID → design_tokens.id
-}
-```
-
-**Motivação:**
-- ✅ Design System centralizado
-- ✅ Mudanças globais (ex: trocar cor primária afeta tudo)
-- ✅ Consistência garantida (não pode usar cor que não existe)
-
-**Trade-off:**
-- ❌ Queries JSONB mais complexas (JOIN necessário)
-- ✅ Mas benefício de consistência compensa
-
-**Impacto:** ~25 foreign keys em 5 tabelas.
-
-**Arquivo:** `/guidelines/SCHEMA_OFICIAL_V3.0.sql` ← oficial atual
-
----
-
-### 11. Sistema de Tema Dinâmico do Painel Admin (2026-02-21)
-
-**Decisão:** Substituir classes Tailwind utilitárias hardcoded no JSX do admin por **CSS custom properties injetadas dinamicamente** via `AdminThemeProvider`.
-
-**Problema anterior:**
-- Tipografia do painel (tamanho, peso, cor) estava distribuída em centenas de classes Tailwind (`text-xl font-semibold text-gray-900`) em cada componente
-- Impossível alterar globalmente sem editar arquivo por arquivo
-
-**Solução arquitetural:**
-```
-design_tokens (category='admin-ui', 16 tokens)
-  → AdminThemeProvider (montado em /src/app/admin/layout.tsx)
-    → buildCSS() → <style id="admin-theme-dynamic"> no <head>
-      → CSS vars --admin-* disponíveis globalmente
-        → componentes consomem via adminVar() em style={{}}
-```
-
-**Novo helper `adminVar()`:**
-```typescript
-import { adminVar } from '@/app/components/admin/AdminThemeProvider';
-
-// Retorna referência à CSS var — nunca o valor diretamente
-adminVar('item-title-grid', 'size')   // → 'var(--admin-item-title-grid-size)'
-adminVar('card-border', '')           // → 'var(--admin-card-border)'
-```
-
-**Regra de uso:**
-- ✅ Componentes admin usam `style={{ fontSize: adminVar('...', 'size') }}`
-- ✅ Tema atualiza em runtime sem refresh (`refreshTheme()` após salvar no banco)
-- ❌ `theme.css` NÃO contém vars `--admin-*` (são exclusivamente dinâmicas)
-
-**Impacto:** Layout admin, AdminGridCard, AdminEmptyState, AdminPageLayout (tipografia).
-
-**Arquivos:**
-- Provider: `/src/app/components/admin/AdminThemeProvider.tsx`
-- Gestão: `/src/app/admin/system-manager/page.tsx`
-- Layout: `/src/app/admin/layout.tsx`
-
----
-
-## 🎯 Padrões de Código
-
-### 1. Componentes Reutilizáveis
-
-**Regra:** Sempre criar componente reutilizável ao invés de copiar/colar código.
-
-**Exemplos:**
-- `BaseModal` - Base para todos os modais
-- `MediaUploader` - Upload com drag-and-drop e biblioteca
-- `ColorTokenPicker` - Seletor de cores do DS
-- `CornerPositionSelector` - Seletor de posição no grid
-
-**Localização:** `/src/app/components/admin/`
-
----
-
-### 2. Validação em Camadas
-
-**Camada 1: TypeScript (compile-time)**
-```typescript
-interface Section {
-  layout: SectionLayout;   // desktop.text é GridPosition (string union)
-  styling: SectionStyling; // spacing usa px ou tokens legados
-}
-```
-
-**Camada 2: Runtime (SectionRenderer)**
-```typescript
-const calculateGridRows = (layout, configGridRows) => {
-  // ✅ Auto-fix se dados inconsistentes
-  if (requiresTwoRows && configGridRows === 1) {
-    return 2;
-  }
-  return configGridRows;
-};
-```
-
-**Camada 3: SQL Constraints**
-```sql
-ALTER TABLE card_templates
-ADD CONSTRAINT media_opacity_range
-CHECK (media_opacity >= 0 AND media_opacity <= 100);
-```
-
----
-
-### 3. Console Logging Estratégico
-
-**Regra:** Sempre logar informações de debug com prefixo identificável.
-
-**Exemplo:**
-```typescript
-console.log('🔍 [loadSectionCards] DIAGNÓSTICO INICIAL...');
-console.log('   sectionId:', sectionId);
-console.log('   cardTemplateId:', cardTemplateId);
-console.warn('⚠️ [AUTO-FIX] gridRows ajustado de 1 para 2');
-console.error('❌ [SectionRenderer] Erro ao carregar cards:', error);
-```
-
-**Benefícios:**
-- ✅ Fácil filtrar logs por componente
-- ✅ Emojis facilitam identificação visual
-- ✅ Hierarquia clara (🔍 info, ⚠️ warning, ❌ error)
-
----
-
-### 4. Documentação Inline em SQL
-
-**Regra:** Sempre documentar queries complexas com comentários.
-
-**Exemplo:**
-```sql
--- ✅ CORREÇÃO 2026-02-17: Converter objetos para strings
-UPDATE sections
-SET layout = jsonb_set(
-  layout,
-  '{desktop,text}',
-  to_jsonb((layout->'desktop'->'text'->>'position'))  -- Extrai string do objeto
-)
-WHERE
-  jsonb_typeof(layout->'desktop'->'text') = 'object'  -- Só se for objeto
-  AND layout->'desktop'->'text'->>'position' IS NOT NULL;
-```
-
----
-
-## 📊 Métricas de Código
-
-| Métrica | Valor |
-|---------|-------|
-| **Linhas de código** | ~18.000 |
-| **Componentes React** | 60+ |
-| **Tabelas no banco** | 16 |
-| **Migrations SQL** | 8 (numeradas 001–008) |
-| **Tokens design_tokens** | 53 (37 pré-existentes + 16 admin-ui adicionados em 2026-02-21) |
-| **Correções críticas** | 130+ |
-| **Documentação consolidada** | Guidelines.md + /guidelines/*.md |
-
----
-
-## 🔗 Referências
-
-- [Guidelines.md](/guidelines/Guidelines.md) - Regras do Design System (documento canônico)
-- [Schema Oficial V3.0](/guidelines/SCHEMA_OFICIAL_V3.0.sql) - ⭐ DDL oficial atual (2026-02-19)
-- [Troubleshooting](/docs/TROUBLESHOOTING.md) - Problemas comuns e soluções
-- [Preview System](/docs/PREVIEW_SYSTEM.md) - Especificação do sistema de preview
-- [SQL Guide](/guides/SQL_GUIDE.md) - Queries úteis e tabelas reais
-
----
-
-**Última atualização:** 2026-02-21
-**Mantido por:** Equipe BemDito CMS
+## Admin CMS
+
+### Page Editor
+
+**3-Column Layout**:
+- **Left**: Lista de seções (drag-and-drop ordering)
+- **Center**: Editor da seção selecionada (tabs: Conteúdo, Itens, Layout, Estilo, Breakpoints, Comportamento)
+- **Right**: Preview + Inspector
+
+### Tabs do Section Editor
+
+1. **Conteúdo**: Campos baseados no schema (título, descrição, CTAs)
+2. **Itens**: Gerenciar cards/items dentro da seção
+3. **Layout**: Container size, alignment, spacing
+4. **Estilo**: Background, cores, borders, shadows
+5. **Breakpoints**: Overrides por mobile/tablet/desktop
+6. **Comportamento**: Animações, sticky, parallax
+
+### Media Library
+
+- Grid/List view
+- Upload, folders
+- Search, filters
+- Crop, variants
+- Usage tracking
+
+### Design System Editor
+
+- **Cores**: Paleta editável, tokens nomeados
+- **Tipografia**: Slots semânticos, font families, weights, sizes
+- **Componentes**: Presets de buttons, inputs, cards
+- **Ícones**: Biblioteca Lucide com busca e preview
+
+### Outras Áreas do Admin
+
+- **Navegação**: Menus primary, footer, mobile, legal
+- **Blog**: CRUD de posts, categorias
+- **Depoimentos**: Gerenciar testimonials
+- **Premiações**: CRUD de awards
+- **FAQ**: Grupos e itens
+- **Formulários**: Builder visual, submissions
+- **Usuários**: Roles, permissões
+
+## Stack Técnico
+
+### Frontend
+- React 18+
+- TypeScript
+- Tailwind CSS v4
+- Motion (Framer Motion)
+- Lucide React (icons)
+- React Hook Form + Zod
+- shadcn/ui components
+
+### Backend
+- Supabase (PostgreSQL)
+- Row Level Security (RLS)
+- Realtime subscriptions
+- Storage para mídia
+
+### Deployment
+- Vercel (frontend)
+- Supabase Cloud (backend)
+- GitHub Actions (CI/CD)
+
+## Responsividade
+
+### Breakpoints
+- **Mobile**: < 768px (prioridade)
+- **Tablet**: 768px - 1024px
+- **Desktop**: > 1024px
+
+### Override System
+- Cada seção/item pode ter config específica por breakpoint
+- Campos override: layout, style, visibility, order, typography, media
+
+## Extensibilidade Futura
+
+### Novos Templates
+1. Criar entrada em `section_templates`
+2. Definir schema
+3. Criar componente React correspondente
+4. Registrar no template registry
+5. Disponível no admin imediatamente
+
+### Novas Variantes
+1. Criar entrada em `section_variants` linkada ao template
+2. Definir schema overrides
+3. Ajustar componente React para suportar variante
+4. Disponível para uso
+
+### Novos Breakpoints
+- Adicionar ao enum
+- Sistema automaticamente oferece override UI
+
+### Novas Áreas (Company, Professional)
+- Compartilham design system
+- Compartilham foundation components
+- Podem ter templates específicos
+- RLS do Supabase controla acesso
+
+## Performance
+
+### Otimizações
+- Lazy loading de seções
+- Image optimization (variants)
+- Prefetch de dados críticos
+- Cache de templates/variants
+- Memoization de componentes pesados
+
+### Métricas
+- Lighthouse score > 90
+- FCP < 1.5s
+- LCP < 2.5s
+- CLS < 0.1
+
+## Segurança
+
+- RLS no Supabase
+- Validação de schemas (Zod)
+- Sanitização de inputs
+- LGPD compliance
+- Audit logs de mudanças críticas
+- 2FA para admin
+
+## Testes
+
+- Unit: Foundation components, utils
+- Integration: Template rendering, data fetching
+- E2E: Admin workflows, public page rendering
+- Visual regression: Seções renderizadas
+
+## Próximos Passos
+
+1. Implementar autenticação (Supabase Auth)
+2. Conectar frontend ao Supabase (client setup)
+3. Implementar template registry dinâmico
+4. Criar page renderer dinâmico
+5. Implementar drag-and-drop no page editor
+6. Conectar design system ao database
+7. Implementar preview responsivo real
+8. Deploy inicial no Vercel
+9. Testes com usuários reais
+10. Iterar baseado em feedback

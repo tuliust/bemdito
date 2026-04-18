@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { cn } from "./utils";
 
-function Card({ className, style, ...props }: React.ComponentProps<"div">) {
+function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card"
@@ -10,13 +10,6 @@ function Card({ className, style, ...props }: React.ComponentProps<"div">) {
         "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border",
         className,
       )}
-      style={{
-        backgroundColor: 'var(--admin-card-bg, var(--card))',
-        borderColor: 'var(--admin-card-border, var(--border))',
-        borderRadius: 'var(--admin-card-radius, 0.75rem)',
-        borderWidth: '2px',
-        ...style,
-      }}
       {...props}
     />
   );
@@ -45,16 +38,11 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function CardDescription({ className, style, ...props }: React.ComponentProps<"div">) {
+function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <p
       data-slot="card-description"
       className={cn("text-muted-foreground", className)}
-      style={{
-        fontSize: 'var(--admin-section-subheader-size, inherit)',
-        color: 'var(--admin-section-subheader-color, var(--muted-foreground))',
-        ...style,
-      }}
       {...props}
     />
   );
