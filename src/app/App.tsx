@@ -1,18 +1,34 @@
-import { RouterProvider } from 'react-router';
-import { router } from './routes';
-import { Toaster } from './components/ui/sonner';
-import { DesignSystemProvider } from '@/lib/contexts/DesignSystemContext';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'sonner';
+import { AdminLayout } from '@/admin/layouts/AdminLayout';
+import { Dashboard } from '@/admin/pages/Dashboard';
+import { PagesList } from '@/admin/pages/PagesList';
+import { PageEditor } from '@/admin/pages/PageEditor';
+import { GlobalBlocksPage } from '@/admin/pages/GlobalBlocksPage';
+import { PublicHome } from './PublicHome';
 
 export default function App() {
   return (
-    <DesignSystemProvider>
-      <RouterProvider 
-        router={router}
-        future={{
-          v7_startTransition: true,
-        }}
-      />
-      <Toaster position="bottom-right" closeButton />
-    </DesignSystemProvider>
+    <BrowserRouter>
+      <Toaster position="top-right" richColors />
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<PublicHome />} />
+
+        {/* Admin Routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="pages" element={<PagesList />} />
+          <Route path="global-blocks" element={<GlobalBlocksPage />} />
+          <Route path="media" element={<div className="p-8">Media Library (Coming Soon)</div>} />
+          <Route path="design-system" element={<div className="p-8">Design System (Coming Soon)</div>} />
+          <Route path="settings" element={<div className="p-8">Settings (Coming Soon)</div>} />
+        </Route>
+
+        {/* Page Editor - Full screen (outside AdminLayout) */}
+        <Route path="/admin/pages/:pageId/edit" element={<PageEditor />} />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
