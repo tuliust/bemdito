@@ -1,0 +1,602 @@
+Running frontend commit 3c4397a03b3834d1f9c986d87f0e0dcfae958710
+vendor-core-83c17265f2588e9e.min.js.br:54 Statsig is not ready to log exposures, will retry in 1 seconds
+(anonymous) @ vendor-core-83c17265f2588e9e.min.js.br:54Understand this warning
+vendor-core-83c17265f2588e9e.min.js.br:54 Loaded 40 scripts (6414784b), 0 from cache (0b)
+vendor-core-83c17265f2588e9e.min.js.br:54 [import] git: 1af7567b136c0dbdc0685d28604a07e9a5c706ff, stamp: B762A62DAF400E05
+vendor-core-83c17265f2588e9e.min.js.br:54 Autosave Changes not available or already claimed by another tab undefined
+(index):1  Failed to load resource: net::ERR_FAILEDUnderstand this error
+8041-ae2db558ba398702.min.js.br:7 The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+initialize @ 8041-ae2db558ba398702.min.js.br:7Understand this warning
+vendor-core-83c17265f2588e9e.min.js.br:54 [Fullscreen] Booting... (emscripten version 4.0.21)
+vendor-core-83c17265f2588e9e.min.js.br:54 [GPU] graphicsAPI:"WebGPU", vendor:"Google Inc. (NVIDIA)" renderer:"ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Ti (0x00002782) Direct3D11 vs_5_0 ps_5_0, D3D11)" deviceArchitecture:"lovelace" deviceDescription:"" webGPUDevice:"" webGPUVendor:"nvidia" bindings:"emdawnwebgpu"
+vendor-core-83c17265f2588e9e.min.js.br:54 [Fullscreen] Ready in 498.3ms
+vendor-core-83c17265f2588e9e.min.js.br:54 [FullscreenApp] calling setEditorTheme and setting preference dark
+vendor-core-83c17265f2588e9e.min.js.br:54 [MultiplayerSession] connecting to wss://www.figma.com/api/multiplayer/ZQSfZHkoHyvvnGCSCVRPJX?role=editor&tracking_session_id=yNjjRzX5F0Ejh5yJ&version=151&recentReload=0&file-load-streaming-compression&user-id=1625302332632949207&client_release=3c4397a03b3834d1f9c986d87f0e0dcfae958710
+vendor-core-83c17265f2588e9e.min.js.br:54 [MultiplayerSession] Joining file version 106 (initial load)
+vendor-core-83c17265f2588e9e.min.js.br:54 [FullscreenApp] calling setEditorTheme and setting preference dark
+Plataforma-Web-Responsiva?p=f&t=CKTuMxOjBUF0RHV8-0:1 Access to image at 'https://www.gravatar.com/avatar/62cce2ac3cf5f845e5ac1bd2276fb642?size=240&default=https%3A%2F%2Fs3-alpha.figma.com%2Fstatic%2Fuser_b_v2.png?c=1' from origin 'https://www.figma.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.Understand this error
+www.gravatar.com/avatar/62cce2ac3cf5f845e5ac1bd2276fb642?size=240&default=https%3A%2F%2Fs3-alpha.figma.com%2Fstatic%2Fuser_b_v2.png?c=1:1  Failed to load resource: net::ERR_FAILEDUnderstand this error
+vendor-core-83c17265f2588e9e.min.js.br:54 [Fullscreen] loadtime=3.60s maxmem=12668852
+vendor-core-83c17265f2588e9e.min.js.br:54 [devtools] Initialized LS
+/api/plans/0f5ce995-2299-442c-9e0b-320d699be17b/npm_private_registry/scopes:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+/api/make/ZQSfZHkoHyvvnGCSCVRPJX/cached_preview_urls?source_code_hash=ee0b6d28652049967b5bdfb27deb9c883d91262e:1  Failed to load resource: the server responded with a status of 404 ()Understand this error
+vendor-core-83c17265f2588e9e.min.js.br:54 [devtools] Initialized LS
+vendor-core-83c17265f2588e9e.min.js.br:54 [Sprigma] Sprig SDK is ready
+code_components_preview_iframe-b4da7618b1d101bd.min.js.br:106 Sample section structure: {id: 'a1000000-0000-0000-0000-000000000001', template_id: '70000000-0000-0000-0000-000000000001', template: {…}, template_type: 'object', template_is_array: false}id: "a1000000-0000-0000-0000-000000000001"template: category: "hero"id: "70000000-0000-0000-0000-000000000001"name: "Hero Section"slug: "hero_section"[[Prototype]]: Objectconstructor: ƒ Object()hasOwnProperty: ƒ hasOwnProperty()isPrototypeOf: ƒ isPrototypeOf()propertyIsEnumerable: ƒ propertyIsEnumerable()toLocaleString: ƒ toLocaleString()toString: ƒ toString()valueOf: ƒ valueOf()__defineGetter__: ƒ __defineGetter__()__defineSetter__: ƒ __defineSetter__()__lookupGetter__: ƒ __lookupGetter__()__lookupSetter__: ƒ __lookupSetter__()__proto__: (...)get __proto__: ƒ __proto__()set __proto__: ƒ __proto__()template_id: "70000000-0000-0000-0000-000000000001"template_is_array: falsetemplate_type: "object"[[Prototype]]: Object
+code_components_preview_iframe-b4da7618b1d101bd.min.js.br:106 Page loaded successfully: {title: 'Home', sections_count: 12}sections_count: 12title: "Home"[[Prototype]]: Object
+code_components_preview_iframe-b4da7618b1d101bd.min.js.br:106 Global blocks loaded: {count: 5, types: Array(5)}count: 5types: Array(5)0: "header"1: "menu_overlay"2: "footer"3: "support_modal"4: "floating_button"length: 5[[Prototype]]: Array(0)[[Prototype]]: Object
+StatsCardsSection.tsx:33 Uncaught TypeError: Cannot read properties of undefined (reading 'map')
+    at StatsCardsSection (StatsCardsSection.tsx:33:18)
+    at ms (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:68027)
+    at _S (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:114634)
+    at _4 (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:127720)
+    at HTMLUnknownElement.y (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54006)
+    at Object.iG (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54331)
+    at iz (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:55284)
+    at ep (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:166948)
+    at SX (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160942)
+    at S$ (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160557)
+StatsCardsSection @ StatsCardsSection.tsx:33
+ms @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_S @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_4 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+y @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iG @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+ep @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SX @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+S$ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+code_components_preview_iframe-b4da7618b1d101bd.min.js.br:17 Warning: Each child in a list should have a unique "key" prop.
+
+Check the render method of `FeatureShowcaseSection`. See https://reactjs.org/link/warning-keys for more information.
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at FeatureShowcaseSection (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/components/sections/FeatureShowcaseSection.tsx:22:3)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at SectionRenderer (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/lib/cms/renderers/SectionRenderer.tsx:22:35)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at div
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at PageRenderer (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/lib/cms/renderers/PageRenderer.tsx:24:32)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at main
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at div
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at PublicHome (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/app/PublicHome.tsx:26:27)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at RenderedRoute (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:6413:26)
+    at Routes (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:7280:3)
+    at Router (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:7210:13)
+    at BrowserRouter (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:10508:3)
+    at App
+    at o8 (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:133:4420)
+    at O (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:588:13261)
+    at rn (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:642:13925)
+    at AT (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:659:10316)
+    at div
+    at ad (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:133:14188)
+    at Sf (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:649:260474)
+    at SX (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:649:271672)
+    at iL (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:118:165934)
+    at hu (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:452:8433)
+r @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:17
+error @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:106
+U @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:45
+G @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:45
+eP @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:45
+eM @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:45
+eF @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:45
+jsxDEV @ __x00__figma:react-jsx-dev-runtime:17
+FeatureShowcaseSection @ FeatureShowcaseSection.tsx:43
+ms @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_S @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_4 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+ep @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SX @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+S$ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+IconFeatureListSection.tsx:59 Uncaught TypeError: Cannot read properties of undefined (reading 'map')
+    at IconFeatureListSection (IconFeatureListSection.tsx:59:21)
+    at ms (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:68027)
+    at _S (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:114634)
+    at _4 (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:127720)
+    at HTMLUnknownElement.y (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54006)
+    at Object.iG (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54331)
+    at iz (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:55284)
+    at ep (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:166948)
+    at SX (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160942)
+    at S$ (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160557)
+IconFeatureListSection @ IconFeatureListSection.tsx:59
+ms @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_S @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_4 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+y @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iG @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+ep @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SX @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+S$ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+LogoMarqueeSection.tsx:44 Uncaught TypeError: Cannot read properties of undefined (reading 'map')
+    at LogoMarqueeSection (LogoMarqueeSection.tsx:44:20)
+    at ms (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:68027)
+    at _S (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:114634)
+    at _4 (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:127720)
+    at HTMLUnknownElement.y (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54006)
+    at Object.iG (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54331)
+    at iz (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:55284)
+    at ep (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:166948)
+    at SX (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160942)
+    at S$ (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160557)
+LogoMarqueeSection @ LogoMarqueeSection.tsx:44
+ms @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_S @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_4 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+y @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iG @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+ep @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SX @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+S$ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+TestimonialsSection.tsx:39 Uncaught TypeError: Cannot read properties of undefined (reading '0')
+    at TestimonialsSection (TestimonialsSection.tsx:39:30)
+    at ms (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:68027)
+    at _S (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:114634)
+    at _4 (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:127720)
+    at HTMLUnknownElement.y (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54006)
+    at Object.iG (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54331)
+    at iz (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:55284)
+    at ep (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:166948)
+    at SX (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160942)
+    at S$ (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160557)
+TestimonialsSection @ TestimonialsSection.tsx:39
+ms @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_S @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_4 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+y @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iG @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+ep @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SX @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+S$ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+StatsCardsSection.tsx:33 Uncaught TypeError: Cannot read properties of undefined (reading 'map')
+    at StatsCardsSection (StatsCardsSection.tsx:33:18)
+    at ms (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:68027)
+    at _S (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:114634)
+    at _4 (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:127720)
+    at HTMLUnknownElement.y (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54006)
+    at Object.iG (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54331)
+    at iz (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:55284)
+    at ep (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:166948)
+    at SX (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160942)
+    at S$ (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160557)
+StatsCardsSection @ StatsCardsSection.tsx:33
+ms @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_S @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_4 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+y @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iG @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+ep @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SX @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+S$ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SI @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+IconFeatureListSection.tsx:59 Uncaught TypeError: Cannot read properties of undefined (reading 'map')
+    at IconFeatureListSection (IconFeatureListSection.tsx:59:21)
+    at ms (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:68027)
+    at _S (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:114634)
+    at _4 (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:127720)
+    at HTMLUnknownElement.y (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54006)
+    at Object.iG (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54331)
+    at iz (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:55284)
+    at ep (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:166948)
+    at SX (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160942)
+    at S$ (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160557)
+IconFeatureListSection @ IconFeatureListSection.tsx:59
+ms @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_S @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_4 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+y @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iG @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+ep @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SX @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+S$ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SI @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+LogoMarqueeSection.tsx:44 Uncaught TypeError: Cannot read properties of undefined (reading 'map')
+    at LogoMarqueeSection (LogoMarqueeSection.tsx:44:20)
+    at ms (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:68027)
+    at _S (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:114634)
+    at _4 (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:127720)
+    at HTMLUnknownElement.y (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54006)
+    at Object.iG (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54331)
+    at iz (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:55284)
+    at ep (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:166948)
+    at SX (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160942)
+    at S$ (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160557)
+LogoMarqueeSection @ LogoMarqueeSection.tsx:44
+ms @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_S @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_4 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+y @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iG @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+ep @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SX @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+S$ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SI @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+TestimonialsSection.tsx:39 Uncaught TypeError: Cannot read properties of undefined (reading '0')
+    at TestimonialsSection (TestimonialsSection.tsx:39:30)
+    at ms (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:68027)
+    at _S (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:114634)
+    at _4 (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:127720)
+    at HTMLUnknownElement.y (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54006)
+    at Object.iG (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:54331)
+    at iz (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25:55284)
+    at ep (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:166948)
+    at SX (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160942)
+    at S$ (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160557)
+TestimonialsSection @ TestimonialsSection.tsx:39
+ms @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_S @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_4 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+y @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iG @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+iz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:25
+ep @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SX @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+S$ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SI @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+code_components_preview_iframe-b4da7618b1d101bd.min.js.br:17 The above error occurred in the <StatsCardsSection> component:
+
+    at StatsCardsSection (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/components/sections/StatsCardsSection.tsx:20:37)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at SectionRenderer (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/lib/cms/renderers/SectionRenderer.tsx:22:35)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at div
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at PageRenderer (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/lib/cms/renderers/PageRenderer.tsx:24:32)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at main
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at div
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at PublicHome (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/app/PublicHome.tsx:26:27)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at RenderedRoute (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:6413:26)
+    at Routes (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:7280:3)
+    at Router (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:7210:13)
+    at BrowserRouter (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:10508:3)
+    at App
+    at o8 (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:133:4420)
+    at O (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:588:13261)
+    at rn (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:642:13925)
+    at AT (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:659:10316)
+    at div
+    at ad (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:133:14188)
+    at Sf (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:649:260474)
+    at SX (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:649:271672)
+    at iL (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:118:165934)
+    at hu (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:452:8433)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+r @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:17
+error @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:106
+EZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+E0.i.callback @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+gg @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+g_ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TC @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+T0 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TQ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SJ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sv @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+code_components_preview_iframe-b4da7618b1d101bd.min.js.br:17 The above error occurred in the <IconFeatureListSection> component:
+
+    at IconFeatureListSection (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/components/sections/IconFeatureListSection.tsx:22:3)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at SectionRenderer (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/lib/cms/renderers/SectionRenderer.tsx:22:35)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at div
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at PageRenderer (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/lib/cms/renderers/PageRenderer.tsx:24:32)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at main
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at div
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at PublicHome (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/app/PublicHome.tsx:26:27)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at RenderedRoute (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:6413:26)
+    at Routes (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:7280:3)
+    at Router (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:7210:13)
+    at BrowserRouter (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:10508:3)
+    at App
+    at o8 (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:133:4420)
+    at O (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:588:13261)
+    at rn (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:642:13925)
+    at AT (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:659:10316)
+    at div
+    at ad (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:133:14188)
+    at Sf (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:649:260474)
+    at SX (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:649:271672)
+    at iL (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:118:165934)
+    at hu (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:452:8433)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+r @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:17
+error @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:106
+EZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+E0.i.callback @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+gg @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+g_ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TC @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+T0 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TQ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SJ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sv @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+code_components_preview_iframe-b4da7618b1d101bd.min.js.br:17 The above error occurred in the <LogoMarqueeSection> component:
+
+    at LogoMarqueeSection (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/components/sections/LogoMarqueeSection.tsx:21:3)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at SectionRenderer (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/lib/cms/renderers/SectionRenderer.tsx:22:35)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at div
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at PageRenderer (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/lib/cms/renderers/PageRenderer.tsx:24:32)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at main
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at div
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at PublicHome (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/app/PublicHome.tsx:26:27)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at RenderedRoute (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:6413:26)
+    at Routes (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:7280:3)
+    at Router (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:7210:13)
+    at BrowserRouter (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:10508:3)
+    at App
+    at o8 (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:133:4420)
+    at O (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:588:13261)
+    at rn (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:642:13925)
+    at AT (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:659:10316)
+    at div
+    at ad (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:133:14188)
+    at Sf (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:649:260474)
+    at SX (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:649:271672)
+    at iL (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:118:165934)
+    at hu (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:452:8433)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+r @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:17
+error @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:106
+EZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+E0.i.callback @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+gg @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+g_ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TC @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+T0 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TQ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SJ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sv @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+code_components_preview_iframe-b4da7618b1d101bd.min.js.br:17 The above error occurred in the <TestimonialsSection> component:
+
+    at TestimonialsSection (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/components/sections/TestimonialsSection.tsx:24:3)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at SectionRenderer (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/lib/cms/renderers/SectionRenderer.tsx:22:35)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at div
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at PageRenderer (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/lib/cms/renderers/PageRenderer.tsx:24:32)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at main
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at div
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at PublicHome (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/src/app/PublicHome.tsx:26:27)
+    at https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:306:12522
+    at FGCmp (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/@id/fginspector:3:55)
+    at RenderedRoute (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:6413:26)
+    at Routes (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:7280:3)
+    at Router (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:7210:13)
+    at BrowserRouter (https://app-hqjoxsw7nl2wsamcxqrdpmqrox65s7lt3svh5ol3ppe45u6uuwmq.makeproxy-c.figma.site/node_modules/.vite/deps/react-router-dom.js?v=823ac584:10508:3)
+    at App
+    at o8 (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:133:4420)
+    at O (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:588:13261)
+    at rn (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:642:13925)
+    at AT (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:659:10316)
+    at div
+    at ad (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:133:14188)
+    at Sf (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:649:260474)
+    at SX (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:649:271672)
+    at iL (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:118:165934)
+    at hu (https://www.figma.com/webpack-artifacts/assets/code_components_preview_iframe-b4da7618b1d101bd.min.js.br:452:8433)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+r @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:17
+error @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:106
+EZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+E0.i.callback @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+gg @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+g_ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TC @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+T0 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TQ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SJ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sv @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37 Uncaught TypeError: Cannot read properties of undefined (reading 'map')
+    at StatsCardsSection (StatsCardsSection.tsx:33:18)
+    at ms (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:68027)
+    at _S (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:114634)
+    at _4 (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:127720)
+    at ep (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:166810)
+    at SX (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160942)
+    at S$ (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160557)
+    at Sz (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:160323)
+    at SI (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:156868)
+    at SS (code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37:156422)
+StatsCardsSection @ StatsCardsSection.tsx:33
+ms @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_S @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+_4 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+ep @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SX @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+S$ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sz @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SI @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
+code_components_preview_iframe-b4da7618b1d101bd.min.js.br:17 [Make] Blank preview detected: Your app rendered no content.
+
+This typically happens when:
+1. The component returns null, undefined, or an empty fragment
+2. A conditional render (e.g., `condition && <Component />`) evaluated to false
+3. The component threw an error during render that was silently caught
+4. Required props are missing or have unexpected values
+
+To fix this:
+- Check that your component's return statement returns valid JSX
+- Verify all conditional renders have fallback content
+- Ensure required props are being passed correctly
+- Check the console for any other errors that may have occurred
+r @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:17
+error @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:106
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:118
+setTimeout
+ei @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:118
+onRendered @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:133
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:118
+TN @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TC @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+T0 @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TQ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+TZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SZ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SJ @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+Sv @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+SS @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:37
+(anonymous) @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:65
+V @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+B @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61
+eo @ code_components_preview_iframe-b4da7618b1d101bd.min.js.br:61Understand this error
